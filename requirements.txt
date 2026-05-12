@@ -1,0 +1,24 @@
+# Core runtime dependencies for Zoology MQAR/RMT work.
+# Install torch/torchvision separately before this file so the wheel matches
+# your driver or CPU-only target:
+# https://pytorch.org/get-started/locally/
+
+numpy
+einops
+tqdm
+click
+pydantic
+pandas
+wandb
+comet_ml
+PyYAML
+pytest
+
+transformers
+rotary-embedding-torch
+einx
+
+# Optional CUDA-extension mixers are intentionally not installed by default.
+# Install them separately only if you need those mixers and your CUDA toolkit
+# matches your PyTorch CUDA build:
+#   pip install -e ".[cuda_mixers]"

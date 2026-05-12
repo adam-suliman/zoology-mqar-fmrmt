@@ -1,0 +1,902 @@
+{
+  "aggregate": {
+    "attention": {
+      "final_avg_forgetting": {
+        "mean": 0.044148763020833336,
+        "std": 0.007604594294834652
+      },
+      "final_seen_avg_accuracy": {
+        "mean": 0.038492838541666664,
+        "std": 0.049407424908163224
+      },
+      "final_stage_accuracy": {
+        "0": {
+          "mean": 0.027058919270833332,
+          "std": 0.03267161991719747
+        },
+        "1": {
+          "mean": 0.023844401041666668,
+          "std": 0.041299714080214926
+        },
+        "2": {
+          "mean": 0.0423583984375,
+          "std": 0.07336689822099615
+        },
+        "3": {
+          "mean": 0.060709635416666664,
+          "std": 0.051343640247428116
+        }
+      },
+      "final_stage_forgetting": {
+        "0": {
+          "mean": 0.10453287760416667,
+          "std": 0.03097853370093407
+        },
+        "1": {
+          "mean": 0.0452880859375,
+          "std": 0.016406086512159756
+        },
+        "2": {
+          "mean": 0.026774088541666668,
+          "std": 0.018087975625421724
+        },
+        "3": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "runs": [
+        "attention-continual-vocab-seed123",
+        "attention-continual-vocab-seed456",
+        "attention-continual-vocab-seed789"
+      ]
+    },
+    "base_rmt": {
+      "final_avg_forgetting": {
+        "mean": 0.059305826822916664,
+        "std": 0.014910338187729624
+      },
+      "final_seen_avg_accuracy": {
+        "mean": 0.029347737630208332,
+        "std": 0.03603444154714654
+      },
+      "final_stage_accuracy": {
+        "0": {
+          "mean": 0.0027669270833333335,
+          "std": 0.0024454718752143097
+        },
+        "1": {
+          "mean": 0.030843098958333332,
+          "std": 0.05331613340290991
+        },
+        "2": {
+          "mean": 0.0438232421875,
+          "std": 0.07590408202114587
+        },
+        "3": {
+          "mean": 0.039957682291666664,
+          "std": 0.014137161701898158
+        }
+      },
+      "final_stage_forgetting": {
+        "0": {
+          "mean": 0.1429443359375,
+          "std": 0.018374319284507015
+        },
+        "1": {
+          "mean": 0.0703125,
+          "std": 0.04981201716324239
+        },
+        "2": {
+          "mean": 0.023966471354166668,
+          "std": 0.016844965969303065
+        },
+        "3": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "runs": [
+        "base_rmt-continual-vocab-seed123",
+        "base_rmt-continual-vocab-seed456",
+        "base_rmt-continual-vocab-seed789"
+      ]
+    },
+    "fast_memory_rmt": {
+      "final_avg_forgetting": {
+        "mean": 0.07384236653645833,
+        "std": 0.01602728853178232
+      },
+      "final_seen_avg_accuracy": {
+        "mean": 0.036722819010416664,
+        "std": 0.027533322495874216
+      },
+      "final_stage_accuracy": {
+        "0": {
+          "mean": 4.0690104166666664e-05,
+          "std": 7.047732778193673e-05
+        },
+        "1": {
+          "mean": 0.0016682942708333333,
+          "std": 0.002889570439059406
+        },
+        "2": {
+          "mean": 0.07596842447916667,
+          "std": 0.06907824415950051
+        },
+        "3": {
+          "mean": 0.0692138671875,
+          "std": 0.04653809592751506
+        }
+      },
+      "final_stage_forgetting": {
+        "0": {
+          "mean": 0.13224283854166666,
+          "std": 0.0067264323707484615
+        },
+        "1": {
+          "mean": 0.115234375,
+          "std": 0.013044399552012595
+        },
+        "2": {
+          "mean": 0.047892252604166664,
+          "std": 0.06748228976952657
+        },
+        "3": {
+          "mean": 0.0,
+          "std": 0.0
+        }
+      },
+      "runs": [
+        "fast_memory_rmt-continual-vocab-seed123",
+        "fast_memory_rmt-continual-vocab-seed456",
+        "fast_memory_rmt-continual-vocab-seed789"
+      ]
+    }
+  },
+  "created_at": "2026-05-11T14:31:17",
+  "elapsed_seconds": 603.8176012039185,
+  "runs": [
+    {
+      "final_avg_forgetting": 0.048370361328125,
+      "final_seen_avg_accuracy": 0.007843017578125,
+      "final_stage_accuracy": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0313720703125
+      },
+      "final_stage_forgetting": {
+        "0": 0.13037109375,
+        "1": 0.033203125,
+        "2": 0.0299072265625,
+        "3": 0.0
+      },
+      "final_stage_loss": {
+        "0": 12.366083145141602,
+        "1": 11.435107231140137,
+        "2": 9.700969696044922,
+        "3": 3.4728286266326904
+      },
+      "final_train_loss": 3.471374273300171,
+      "run_id": "attention-continual-vocab-seed123",
+      "stage_summaries": [
+        {
+          "continual/avg_forgetting": 0.0,
+          "continual/seen_avg_accuracy": 0.13037109375,
+          "continual/stage": 0,
+          "continual/stage_0/accuracy": 0.13037109375,
+          "continual/stage_0/forgetting": 0.0,
+          "continual/stage_0/loss": 3.0467913150787354,
+          "epoch": 15
+        },
+        {
+          "continual/avg_forgetting": 0.06512451171875,
+          "continual/seen_avg_accuracy": 0.01666259765625,
+          "continual/stage": 1,
+          "continual/stage_0/accuracy": 0.0001220703125,
+          "continual/stage_0/forgetting": 0.1302490234375,
+          "continual/stage_0/loss": 12.073528289794922,
+          "continual/stage_1/accuracy": 0.033203125,
+          "continual/stage_1/forgetting": 0.0,
+          "continual/stage_1/loss": 3.4724769592285156,
+          "epoch": 31
+        },
+        {
+          "continual/avg_forgetting": 0.054524739583333336,
+          "continual/seen_avg_accuracy": 0.009969075520833334,
+          "continual/stage": 2,
+          "continual/stage_0/accuracy": 0.0,
+          "continual/stage_0/forgetting": 0.13037109375,
+          "continual/stage_0/loss": 12.237881660461426,
+          "continual/stage_1/accuracy": 0.0,
+          "continual/stage_1/forgetting": 0.033203125,
+          "continual/stage_1/loss": 12.621160507202148,
+          "continual/stage_2/accuracy": 0.0299072265625,
+          "continual/stage_2/forgetting": 0.0,
+          "continual/stage_2/loss": 3.4683144092559814,
+          "epoch": 47
+        },
+        {
+          "continual/avg_forgetting": 0.048370361328125,
+          "continual/seen_avg_accuracy": 0.007843017578125,
+          "continual/stage": 3,
+          "continual/stage_0/accuracy": 0.0,
+          "continual/stage_0/forgetting": 0.13037109375,
+          "continual/stage_0/loss": 12.366083145141602,
+          "continual/stage_1/accuracy": 0.0,
+          "continual/stage_1/forgetting": 0.033203125,
+          "continual/stage_1/loss": 11.435107231140137,
+          "continual/stage_2/accuracy": 0.0,
+          "continual/stage_2/forgetting": 0.0299072265625,
+          "continual/stage_2/loss": 9.700969696044922,
+          "continual/stage_3/accuracy": 0.0313720703125,
+          "continual/stage_3/forgetting": 0.0,
+          "continual/stage_3/loss": 3.4728286266326904,
+          "epoch": 63
+        }
+      ]
+    },
+    {
+      "final_avg_forgetting": 0.074371337890625,
+      "final_seen_avg_accuracy": 0.008087158203125,
+      "final_stage_accuracy": {
+        "0": 0.0,
+        "1": 0.0001220703125,
+        "2": 0.0,
+        "3": 0.0322265625
+      },
+      "final_stage_forgetting": {
+        "0": 0.1341552734375,
+        "1": 0.1278076171875,
+        "2": 0.0355224609375,
+        "3": 0.0
+      },
+      "final_stage_loss": {
+        "0": 12.445952415466309,
+        "1": 11.106019020080566,
+        "2": 12.085132598876953,
+        "3": 3.4712274074554443
+      },
+      "final_train_loss": 3.4688570499420166,
+      "run_id": "base_rmt-continual-vocab-seed123",
+      "stage_summaries": [
+        {
+          "continual/avg_forgetting": 0.0,
+          "continual/seen_avg_accuracy": 0.1341552734375,
+          "continual/stage": 0,
+          "continual/stage_0/accuracy": 0.1341552734375,
+          "continual/stage_0/forgetting": 0.0,
+          "continual/stage_0/loss": 2.5234832763671875,
+          "epoch": 15
+        },
+        {
+          "continual/avg_forgetting": 0.0311279296875,
+          "continual/seen_avg_accuracy": 0.09991455078125,
+          "continual/stage": 1,
+          "continual/stage_0/accuracy": 0.0718994140625,
+          "continual/stage_0/forgetting": 0.062255859375,
+          "continual/stage_0/loss": 4.255356311798096,
+          "continual/stage_1/accuracy": 0.1279296875,
+          "continual/stage_1/forgetting": 0.0,
+          "continual/stage_1/loss": 2.5962655544281006,
+          "epoch": 31
+        },
+        {
+          "continual/avg_forgetting": 0.08296712239583333,
+          "continual/seen_avg_accuracy": 0.0162353515625,
+          "continual/stage": 2,
+          "continual/stage_0/accuracy": 0.0,
+          "continual/stage_0/forgetting": 0.1341552734375,
+          "continual/stage_0/loss": 11.485210418701172,
+          "continual/stage_1/accuracy": 0.01318359375,
+          "continual/stage_1/forgetting": 0.11474609375,
+          "continual/stage_1/loss": 13.059083938598633,
+          "continual/stage_2/accuracy": 0.0355224609375,
+          "continual/stage_2/forgetting": 0.0,
+          "continual/stage_2/loss": 3.465660333633423,
+          "epoch": 47
+        },
+        {
+          "continual/avg_forgetting": 0.074371337890625,
+          "continual/seen_avg_accuracy": 0.008087158203125,
+          "continual/stage": 3,
+          "continual/stage_0/accuracy": 0.0,
+          "continual/stage_0/forgetting": 0.1341552734375,
+          "continual/stage_0/loss": 12.445952415466309,
+          "continual/stage_1/accuracy": 0.0001220703125,
+          "continual/stage_1/forgetting": 0.1278076171875,
+          "continual/stage_1/loss": 11.106019020080566,
+          "continual/stage_2/accuracy": 0.0,
+          "continual/stage_2/forgetting": 0.0355224609375,
+          "continual/stage_2/loss": 12.085132598876953,
+          "continual/stage_3/accuracy": 0.0322265625,
+          "continual/stage_3/forgetting": 0.0,
+          "continual/stage_3/loss": 3.4712274074554443,
+          "epoch": 63
+        }
+      ]
+    },
+    {
+      "final_avg_forgetting": 0.06781005859375,
+      "final_seen_avg_accuracy": 0.06573486328125,
+      "final_stage_accuracy": {
+        "0": 0.0,
+        "1": 0.0050048828125,
+        "2": 0.135009765625,
+        "3": 0.1229248046875
+      },
+      "final_stage_forgetting": {
+        "0": 0.1380615234375,
+        "1": 0.1302490234375,
+        "2": 0.0029296875,
+        "3": 0.0
+      },
+      "final_stage_loss": {
+        "0": 11.29012393951416,
+        "1": 8.391326904296875,
+        "2": 2.5924391746520996,
+        "3": 3.079592704772949
+      },
+      "final_train_loss": 3.121753454208374,
+      "run_id": "fast_memory_rmt-continual-vocab-seed123",
+      "stage_summaries": [
+        {
+          "continual/avg_forgetting": 0.0,
+          "continual/seen_avg_accuracy": 0.1380615234375,
+          "continual/stage": 0,
+          "continual/stage_0/accuracy": 0.1380615234375,
+          "continual/stage_0/forgetting": 0.0,
+          "continual/stage_0/loss": 2.3689944744110107,
+          "epoch": 15
+        },
+        {
+          "continual/avg_forgetting": 0.04632568359375,
+          "continual/seen_avg_accuracy": 0.09033203125,
+          "continual/stage": 1,
+          "continual/stage_0/accuracy": 0.04541015625,
+          "continual/stage_0/forgetting": 0.0926513671875,
+          "continual/stage_0/loss": 5.553637981414795,
+          "continual/stage_1/accuracy": 0.13525390625,
+          "continual/stage_1/forgetting": 0.0,
+          "continual/stage_1/loss": 2.5696263313293457,
+          "epoch": 31
+        },
+        {
+          "continual/avg_forgetting": 0.06803385416666667,
+          "continual/seen_avg_accuracy": 0.06905110677083333,
+          "continual/stage": 2,
+          "continual/stage_0/accuracy": 0.0,
+          "continual/stage_0/forgetting": 0.1380615234375,
+          "continual/stage_0/loss": 10.33241081237793,
+          "continual/stage_1/accuracy": 0.0692138671875,
+          "continual/stage_1/forgetting": 0.0660400390625,
+          "continual/stage_1/loss": 5.852786064147949,
+          "continual/stage_2/accuracy": 0.137939453125,
+          "continual/stage_2/forgetting": 0.0,
+          "continual/stage_2/loss": 2.489109754562378,
+          "epoch": 47
+        },
+        {
+          "continual/avg_forgetting": 0.06781005859375,
+          "continual/seen_avg_accuracy": 0.06573486328125,
+          "continual/stage": 3,
+          "continual/stage_0/accuracy": 0.0,
+          "continual/stage_0/forgetting": 0.1380615234375,
+          "continual/stage_0/loss": 11.29012393951416,
+          "continual/stage_1/accuracy": 0.0050048828125,
+          "continual/stage_1/forgetting": 0.1302490234375,
+          "continual/stage_1/loss": 8.391326904296875,
+          "continual/stage_2/accuracy": 0.135009765625,
+          "continual/stage_2/forgetting": 0.0029296875,
+          "continual/stage_2/loss": 2.5924391746520996,
+          "continual/stage_3/accuracy": 0.1229248046875,
+          "continual/stage_3/forgetting": 0.0,
+          "continual/stage_3/loss": 3.079592704772949,
+          "epoch": 63
+        }
+      ]
+    },
+    {
+      "final_avg_forgetting": 0.035369873046875,
+      "final_seen_avg_accuracy": 0.095489501953125,
+      "final_stage_accuracy": {
+        "0": 0.0633544921875,
+        "1": 0.071533203125,
+        "2": 0.1270751953125,
+        "3": 0.1199951171875
+      },
+      "final_stage_forgetting": {
+        "0": 0.0701904296875,
+        "1": 0.06396484375,
+        "2": 0.00732421875,
+        "3": 0.0
+      },
+      "final_stage_loss": {
+        "0": 4.98382043838501,
+        "1": 4.314204216003418,
+        "2": 2.9246835708618164,
+        "3": 3.064713478088379
+      },
+      "final_train_loss": 3.107295036315918,
+      "run_id": "attention-continual-vocab-seed456",
+      "stage_summaries": [
+        {
+          "continual/avg_forgetting": 0.0,
+          "continual/seen_avg_accuracy": 0.133544921875,
+          "continual/stage": 0,
+          "continual/stage_0/accuracy": 0.133544921875,
+          "continual/stage_0/forgetting": 0.0,
+          "continual/stage_0/loss": 2.281489133834839,
+          "epoch": 15
+        },
+        {
+          "continual/avg_forgetting": 0.015625,
+          "continual/seen_avg_accuracy": 0.118896484375,
+          "continual/stage": 1,
+          "continual/stage_0/accuracy": 0.102294921875,
+          "continual/stage_0/forgetting": 0.03125,
+          "continual/stage_0/loss": 4.1546549797058105,
+          "continual/stage_1/accuracy": 0.135498046875,
+          "continual/stage_1/forgetting": 0.0,
+          "continual/stage_1/loss": 2.65265154838562,
+          "epoch": 31
+        },
+        {
+          "continual/avg_forgetting": 0.07108561197916667,
+          "continual/seen_avg_accuracy": 0.06339518229166667,
+          "continual/stage": 2,
+          "continual/stage_0/accuracy": 0.0006103515625,
+          "continual/stage_0/forgetting": 0.1329345703125,
+          "continual/stage_0/loss": 7.881782531738281,
+          "continual/stage_1/accuracy": 0.05517578125,
+          "continual/stage_1/forgetting": 0.080322265625,
+          "continual/stage_1/loss": 5.142784595489502,
+          "continual/stage_2/accuracy": 0.1343994140625,
+          "continual/stage_2/forgetting": 0.0,
+          "continual/stage_2/loss": 2.6989941596984863,
+          "epoch": 47
+        },
+        {
+          "continual/avg_forgetting": 0.035369873046875,
+          "continual/seen_avg_accuracy": 0.095489501953125,
+          "continual/stage": 3,
+          "continual/stage_0/accuracy": 0.0633544921875,
+          "continual/stage_0/forgetting": 0.0701904296875,
+          "continual/stage_0/loss": 4.98382043838501,
+          "continual/stage_1/accuracy": 0.071533203125,
+          "continual/stage_1/forgetting": 0.06396484375,
+          "continual/stage_1/loss": 4.314204216003418,
+          "continual/stage_2/accuracy": 0.1270751953125,
+          "continual/stage_2/forgetting": 0.00732421875,
+          "continual/stage_2/loss": 2.9246835708618164,
+          "continual/stage_3/accuracy": 0.1199951171875,
+          "continual/stage_3/forgetting": 0.0,
+          "continual/stage_3/loss": 3.064713478088379,
+          "epoch": 63
+        }
+      ]
+    },
+    {
+      "final_avg_forgetting": 0.0445556640625,
+      "final_seen_avg_accuracy": 0.070953369140625,
+      "final_stage_accuracy": {
+        "0": 0.003662109375,
+        "1": 0.0924072265625,
+        "2": 0.1314697265625,
+        "3": 0.0562744140625
+      },
+      "final_stage_forgetting": {
+        "0": 0.130615234375,
+        "1": 0.04296875,
+        "2": 0.004638671875,
+        "3": 0.0
+      },
+      "final_stage_loss": {
+        "0": 6.33715295791626,
+        "1": 3.3911521434783936,
+        "2": 2.53448224067688,
+        "3": 3.455256938934326
+      },
+      "final_train_loss": 3.450449228286743,
+      "run_id": "base_rmt-continual-vocab-seed456",
+      "stage_summaries": [
+        {
+          "continual/avg_forgetting": 0.0,
+          "continual/seen_avg_accuracy": 0.13427734375,
+          "continual/stage": 0,
+          "continual/stage_0/accuracy": 0.13427734375,
+          "continual/stage_0/forgetting": 0.0,
+          "continual/stage_0/loss": 2.4977991580963135,
+          "epoch": 15
+        },
+        {
+          "continual/avg_forgetting": 0.0450439453125,
+          "continual/seen_avg_accuracy": 0.08978271484375,
+          "continual/stage": 1,
+          "continual/stage_0/accuracy": 0.044189453125,
+          "continual/stage_0/forgetting": 0.090087890625,
+          "continual/stage_0/loss": 4.822932720184326,
+          "continual/stage_1/accuracy": 0.1353759765625,
+          "continual/stage_1/forgetting": 0.0,
+          "continual/stage_1/loss": 2.883629560470581,
+          "epoch": 31
+        },
+        {
+          "continual/avg_forgetting": 0.046956380208333336,
+          "continual/seen_avg_accuracy": 0.08829752604166667,
+          "continual/stage": 2,
+          "continual/stage_0/accuracy": 0.0582275390625,
+          "continual/stage_0/forgetting": 0.0760498046875,
+          "continual/stage_0/loss": 4.786899089813232,
+          "continual/stage_1/accuracy": 0.070556640625,
+          "continual/stage_1/forgetting": 0.0648193359375,
+          "continual/stage_1/loss": 3.3069543838500977,
+          "continual/stage_2/accuracy": 0.1361083984375,
+          "continual/stage_2/forgetting": 0.0,
+          "continual/stage_2/loss": 2.4309961795806885,
+          "epoch": 47
+        },
+        {
+          "continual/avg_forgetting": 0.0445556640625,
+          "continual/seen_avg_accuracy": 0.070953369140625,
+          "continual/stage": 3,
+          "continual/stage_0/accuracy": 0.003662109375,
+          "continual/stage_0/forgetting": 0.130615234375,
+          "continual/stage_0/loss": 6.33715295791626,
+          "continual/stage_1/accuracy": 0.0924072265625,
+          "continual/stage_1/forgetting": 0.04296875,
+          "continual/stage_1/loss": 3.3911521434783936,
+          "continual/stage_2/accuracy": 0.1314697265625,
+          "continual/stage_2/forgetting": 0.004638671875,
+          "continual/stage_2/loss": 2.53448224067688,
+          "continual/stage_3/accuracy": 0.0562744140625,
+          "continual/stage_3/forgetting": 0.0,
+          "continual/stage_3/loss": 3.455256938934326,
+          "epoch": 63
+        }
+      ]
+    },
+    {
+      "final_avg_forgetting": 0.092010498046875,
+      "final_seen_avg_accuracy": 0.010955810546875,
+      "final_stage_accuracy": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0438232421875
+      },
+      "final_stage_forgetting": {
+        "0": 0.1337890625,
+        "1": 0.1087646484375,
+        "2": 0.12548828125,
+        "3": 0.0
+      },
+      "final_stage_loss": {
+        "0": 11.167757987976074,
+        "1": 9.707148551940918,
+        "2": 15.183541297912598,
+        "3": 3.4682602882385254
+      },
+      "final_train_loss": 3.467111587524414,
+      "run_id": "fast_memory_rmt-continual-vocab-seed456",
+      "stage_summaries": [
+        {
+          "continual/avg_forgetting": 0.0,
+          "continual/seen_avg_accuracy": 0.1337890625,
+          "continual/stage": 0,
+          "continual/stage_0/accuracy": 0.1337890625,
+          "continual/stage_0/forgetting": 0.0,
+          "continual/stage_0/loss": 2.2745919227600098,
+          "epoch": 15
+        },
+        {
+          "continual/avg_forgetting": 0.05938720703125,
+          "continual/seen_avg_accuracy": 0.0618896484375,
+          "continual/stage": 1,
+          "continual/stage_0/accuracy": 0.0150146484375,
+          "continual/stage_0/forgetting": 0.1187744140625,
+          "continual/stage_0/loss": 8.45094108581543,
+          "continual/stage_1/accuracy": 0.1087646484375,
+          "continual/stage_1/forgetting": 0.0,
+          "continual/stage_1/loss": 3.27380633354187,
+          "epoch": 31
+        },
+        {
+          "continual/avg_forgetting": 0.08085123697916667,
+          "continual/seen_avg_accuracy": 0.041829427083333336,
+          "continual/stage": 2,
+          "continual/stage_0/accuracy": 0.0,
+          "continual/stage_0/forgetting": 0.1337890625,
+          "continual/stage_0/loss": 10.433086395263672,
+          "continual/stage_1/accuracy": 0.0,
+          "continual/stage_1/forgetting": 0.1087646484375,
+          "continual/stage_1/loss": 9.280803680419922,
+          "continual/stage_2/accuracy": 0.12548828125,
+          "continual/stage_2/forgetting": 0.0,
+          "continual/stage_2/loss": 3.123706340789795,
+          "epoch": 47
+        },
+        {
+          "continual/avg_forgetting": 0.092010498046875,
+          "continual/seen_avg_accuracy": 0.010955810546875,
+          "continual/stage": 3,
+          "continual/stage_0/accuracy": 0.0,
+          "continual/stage_0/forgetting": 0.1337890625,
+          "continual/stage_0/loss": 11.167757987976074,
+          "continual/stage_1/accuracy": 0.0,
+          "continual/stage_1/forgetting": 0.1087646484375,
+          "continual/stage_1/loss": 9.707148551940918,
+          "continual/stage_2/accuracy": 0.0,
+          "continual/stage_2/forgetting": 0.12548828125,
+          "continual/stage_2/loss": 15.183541297912598,
+          "continual/stage_3/accuracy": 0.0438232421875,
+          "continual/stage_3/forgetting": 0.0,
+          "continual/stage_3/loss": 3.4682602882385254,
+          "epoch": 63
+        }
+      ]
+    },
+    {
+      "final_avg_forgetting": 0.0487060546875,
+      "final_seen_avg_accuracy": 0.01214599609375,
+      "final_stage_accuracy": {
+        "0": 0.017822265625,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.03076171875
+      },
+      "final_stage_forgetting": {
+        "0": 0.113037109375,
+        "1": 0.0386962890625,
+        "2": 0.0430908203125,
+        "3": 0.0
+      },
+      "final_stage_loss": {
+        "0": 7.189723014831543,
+        "1": 10.493595123291016,
+        "2": 10.519000053405762,
+        "3": 3.4746344089508057
+      },
+      "final_train_loss": 3.4741861820220947,
+      "run_id": "attention-continual-vocab-seed789",
+      "stage_summaries": [
+        {
+          "continual/avg_forgetting": 0.0,
+          "continual/seen_avg_accuracy": 0.130859375,
+          "continual/stage": 0,
+          "continual/stage_0/accuracy": 0.130859375,
+          "continual/stage_0/forgetting": 0.0,
+          "continual/stage_0/loss": 2.8150503635406494,
+          "epoch": 15
+        },
+        {
+          "continual/avg_forgetting": 0.0654296875,
+          "continual/seen_avg_accuracy": 0.01934814453125,
+          "continual/stage": 1,
+          "continual/stage_0/accuracy": 0.0,
+          "continual/stage_0/forgetting": 0.130859375,
+          "continual/stage_0/loss": 12.6046781539917,
+          "continual/stage_1/accuracy": 0.0386962890625,
+          "continual/stage_1/forgetting": 0.0,
+          "continual/stage_1/loss": 3.4688355922698975,
+          "epoch": 31
+        },
+        {
+          "continual/avg_forgetting": 0.0565185546875,
+          "continual/seen_avg_accuracy": 0.014363606770833334,
+          "continual/stage": 2,
+          "continual/stage_0/accuracy": 0.0,
+          "continual/stage_0/forgetting": 0.130859375,
+          "continual/stage_0/loss": 9.325798988342285,
+          "continual/stage_1/accuracy": 0.0,
+          "continual/stage_1/forgetting": 0.0386962890625,
+          "continual/stage_1/loss": 15.70948600769043,
+          "continual/stage_2/accuracy": 0.0430908203125,
+          "continual/stage_2/forgetting": 0.0,
+          "continual/stage_2/loss": 3.4456210136413574,
+          "epoch": 47
+        },
+        {
+          "continual/avg_forgetting": 0.0487060546875,
+          "continual/seen_avg_accuracy": 0.01214599609375,
+          "continual/stage": 3,
+          "continual/stage_0/accuracy": 0.017822265625,
+          "continual/stage_0/forgetting": 0.113037109375,
+          "continual/stage_0/loss": 7.189723014831543,
+          "continual/stage_1/accuracy": 0.0,
+          "continual/stage_1/forgetting": 0.0386962890625,
+          "continual/stage_1/loss": 10.493595123291016,
+          "continual/stage_2/accuracy": 0.0,
+          "continual/stage_2/forgetting": 0.0430908203125,
+          "continual/stage_2/loss": 10.519000053405762,
+          "continual/stage_3/accuracy": 0.03076171875,
+          "continual/stage_3/forgetting": 0.0,
+          "continual/stage_3/loss": 3.4746344089508057,
+          "epoch": 63
+        }
+      ]
+    },
+    {
+      "final_avg_forgetting": 0.058990478515625,
+      "final_seen_avg_accuracy": 0.009002685546875,
+      "final_stage_accuracy": {
+        "0": 0.004638671875,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0313720703125
+      },
+      "final_stage_forgetting": {
+        "0": 0.1640625,
+        "1": 0.0401611328125,
+        "2": 0.03173828125,
+        "3": 0.0
+      },
+      "final_stage_loss": {
+        "0": 10.830690383911133,
+        "1": 12.434683799743652,
+        "2": 12.053853034973145,
+        "3": 3.4718103408813477
+      },
+      "final_train_loss": 3.4713149070739746,
+      "run_id": "base_rmt-continual-vocab-seed789",
+      "stage_summaries": [
+        {
+          "continual/avg_forgetting": 0.0,
+          "continual/seen_avg_accuracy": 0.168701171875,
+          "continual/stage": 0,
+          "continual/stage_0/accuracy": 0.168701171875,
+          "continual/stage_0/forgetting": 0.0,
+          "continual/stage_0/loss": 2.698228359222412,
+          "epoch": 15
+        },
+        {
+          "continual/avg_forgetting": 0.08050537109375,
+          "continual/seen_avg_accuracy": 0.02392578125,
+          "continual/stage": 1,
+          "continual/stage_0/accuracy": 0.0076904296875,
+          "continual/stage_0/forgetting": 0.1610107421875,
+          "continual/stage_0/loss": 8.168535232543945,
+          "continual/stage_1/accuracy": 0.0401611328125,
+          "continual/stage_1/forgetting": 0.0,
+          "continual/stage_1/loss": 3.466144561767578,
+          "epoch": 31
+        },
+        {
+          "continual/avg_forgetting": 0.06913248697916667,
+          "continual/seen_avg_accuracy": 0.011067708333333334,
+          "continual/stage": 2,
+          "continual/stage_0/accuracy": 0.00146484375,
+          "continual/stage_0/forgetting": 0.167236328125,
+          "continual/stage_0/loss": 10.510113716125488,
+          "continual/stage_1/accuracy": 0.0,
+          "continual/stage_1/forgetting": 0.0401611328125,
+          "continual/stage_1/loss": 17.544906616210938,
+          "continual/stage_2/accuracy": 0.03173828125,
+          "continual/stage_2/forgetting": 0.0,
+          "continual/stage_2/loss": 3.4759480953216553,
+          "epoch": 47
+        },
+        {
+          "continual/avg_forgetting": 0.058990478515625,
+          "continual/seen_avg_accuracy": 0.009002685546875,
+          "continual/stage": 3,
+          "continual/stage_0/accuracy": 0.004638671875,
+          "continual/stage_0/forgetting": 0.1640625,
+          "continual/stage_0/loss": 10.830690383911133,
+          "continual/stage_1/accuracy": 0.0,
+          "continual/stage_1/forgetting": 0.0401611328125,
+          "continual/stage_1/loss": 12.434683799743652,
+          "continual/stage_2/accuracy": 0.0,
+          "continual/stage_2/forgetting": 0.03173828125,
+          "continual/stage_2/loss": 12.053853034973145,
+          "continual/stage_3/accuracy": 0.0313720703125,
+          "continual/stage_3/forgetting": 0.0,
+          "continual/stage_3/loss": 3.4718103408813477,
+          "epoch": 63
+        }
+      ]
+    },
+    {
+      "final_avg_forgetting": 0.06170654296875,
+      "final_seen_avg_accuracy": 0.033477783203125,
+      "final_stage_accuracy": {
+        "0": 0.0001220703125,
+        "1": 0.0,
+        "2": 0.0928955078125,
+        "3": 0.0408935546875
+      },
+      "final_stage_forgetting": {
+        "0": 0.1248779296875,
+        "1": 0.106689453125,
+        "2": 0.0152587890625,
+        "3": 0.0
+      },
+      "final_stage_loss": {
+        "0": 7.958238124847412,
+        "1": 12.858725547790527,
+        "2": 3.5443882942199707,
+        "3": 3.466862440109253
+      },
+      "final_train_loss": 3.4667725563049316,
+      "run_id": "fast_memory_rmt-continual-vocab-seed789",
+      "stage_summaries": [
+        {
+          "continual/avg_forgetting": 0.0,
+          "continual/seen_avg_accuracy": 0.125,
+          "continual/stage": 0,
+          "continual/stage_0/accuracy": 0.125,
+          "continual/stage_0/forgetting": 0.0,
+          "continual/stage_0/loss": 2.9060611724853516,
+          "epoch": 15
+        },
+        {
+          "continual/avg_forgetting": 0.05328369140625,
+          "continual/seen_avg_accuracy": 0.06256103515625,
+          "continual/stage": 1,
+          "continual/stage_0/accuracy": 0.0184326171875,
+          "continual/stage_0/forgetting": 0.1065673828125,
+          "continual/stage_0/loss": 6.689698219299316,
+          "continual/stage_1/accuracy": 0.106689453125,
+          "continual/stage_1/forgetting": 0.0,
+          "continual/stage_1/loss": 3.090672016143799,
+          "epoch": 31
+        },
+        {
+          "continual/avg_forgetting": 0.07710774739583333,
+          "continual/seen_avg_accuracy": 0.036173502604166664,
+          "continual/stage": 2,
+          "continual/stage_0/accuracy": 0.0003662109375,
+          "continual/stage_0/forgetting": 0.1246337890625,
+          "continual/stage_0/loss": 7.296713352203369,
+          "continual/stage_1/accuracy": 0.0,
+          "continual/stage_1/forgetting": 0.106689453125,
+          "continual/stage_1/loss": 16.10907554626465,
+          "continual/stage_2/accuracy": 0.108154296875,
+          "continual/stage_2/forgetting": 0.0,
+          "continual/stage_2/loss": 3.080687999725342,
+          "epoch": 47
+        },
+        {
+          "continual/avg_forgetting": 0.06170654296875,
+          "continual/seen_avg_accuracy": 0.033477783203125,
+          "continual/stage": 3,
+          "continual/stage_0/accuracy": 0.0001220703125,
+          "continual/stage_0/forgetting": 0.1248779296875,
+          "continual/stage_0/loss": 7.958238124847412,
+          "continual/stage_1/accuracy": 0.0,
+          "continual/stage_1/forgetting": 0.106689453125,
+          "continual/stage_1/loss": 12.858725547790527,
+          "continual/stage_2/accuracy": 0.0928955078125,
+          "continual/stage_2/forgetting": 0.0152587890625,
+          "continual/stage_2/loss": 3.5443882942199707,
+          "continual/stage_3/accuracy": 0.0408935546875,
+          "continual/stage_3/forgetting": 0.0,
+          "continual/stage_3/loss": 3.466862440109253,
+          "epoch": 63
+        }
+      ]
+    }
+  ],
+  "setup": {
+    "batch_size": 64,
+    "input_seq_len": 128,
+    "keys_per_stage": 64,
+    "learning_rate": 0.003,
+    "max_epochs_per_stage": 16,
+    "num_kv_pairs": 8,
+    "num_stages": 4,
+    "random_accuracy": 0.03125,
+    "random_cross_entropy": 3.4657359027997265,
+    "seeds": [
+      123,
+      456,
+      789
+    ],
+    "segment_len": 64,
+    "test_examples": 1024,
+    "train_examples": 4096,
+    "values_per_stage": 32,
+    "vocab_size": 1024
+  }
+}

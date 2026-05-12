@@ -1,7 +1,7 @@
 import argparse
 from datetime import datetime
 from functools import partial
-from typing import List, Tuple, Union, Literal
+from typing import List, Optional, Tuple, Union, Literal
 
 from pydantic import BaseModel
 
@@ -82,11 +82,22 @@ class DataConfig(BaseConfig):
     # can pass a tuple if you want a different batch size for train and test
     batch_size: Union[int, Tuple[int, int]] = 32
     seed: int = 123
-    cache_dir: str = None
+    cache_dir: Optional[str] = None
     force_cache: bool = False 
 
     # JRT style sequences (https://arxiv.org/abs/2407.05483)
     num_passes: int = 1
+
+
+class ContinualDataConfig(BaseConfig):
+    train_stage_configs: List[DataSegmentConfig]
+    test_stage_configs: List[DataSegmentConfig]
+
+    # can pass a tuple if you want a different batch size for train and test
+    batch_size: Union[int, Tuple[int, int]] = 32
+    seed: int = 123
+    cache_dir: Optional[str] = None
+    force_cache: bool = False
 
 
 class ModelConfig(BaseConfig):
@@ -115,8 +126,16 @@ class ModelConfig(BaseConfig):
 
 class LoggerConfig(BaseConfig):
 
-    project_name: str = None
-    entity: str = None
+    backend: Optional[Literal["wandb", "comet", "none"]] = None
+    project_name: Optional[str] = None
+    entity: Optional[str] = None
+
+    # Comet uses "workspace" where WandB uses "entity".
+    workspace: Optional[str] = None
+    api_key: Optional[str] = None
+    experiment_key: Optional[str] = None
+    offline: bool = False
+    tags: List[str] = []
     
 
 class TrainConfig(BaseConfig):
@@ -130,7 +149,7 @@ class TrainConfig(BaseConfig):
 
     # stop training once this metric reaches the threshold
     # set metric to None to disable early stopping
-    early_stopping_metric: str = "valid/accuracy"
+    early_stopping_metric: Optional[str] = "valid/accuracy"
     early_stopping_threshold: float = 0.99
     slice_keys: List[str] = []
 
@@ -138,6 +157,12 @@ class TrainConfig(BaseConfig):
     weight_decay: float = 0.1
     seed: int = 123
 
-    launch_id: str = None
-    sweep_id: str = None
+    launch_id: Optional[str] = None
+    sweep_id: Optional[str] = None
     run_id: str = "default"
+
+
+class ContinualTrainConfig(TrainConfig):
+    data: ContinualDataConfig
+    training_mode: Literal["continual"] = "continual"
+    evaluate_future_stages: bool = False

@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import find_packages, setup
 
 
 _REQUIRED = [
@@ -7,12 +7,13 @@ _REQUIRED = [
     "tqdm",
     "click",
     "pydantic",
+    "pandas",
     "wandb",
-    "flash-linear-attention",
+    "comet_ml",
     "rotary-embedding-torch",
-    "causal_conv1d",
     "einx",
     "transformers",
+    "PyYAML",
 ]
 
 _OPTIONAL = {
@@ -24,21 +25,25 @@ _OPTIONAL = {
     "extra":[
         "rich", 
         "ray",
-        "PyYAML",
-    ]
+    ],
+    "extras": [
+        "rich",
+        "ray",
+    ],
+    "test": [
+        "pytest",
+    ],
+    "cuda_mixers": [
+        "flash-linear-attention",
+        "causal_conv1d",
+    ],
 }
-
-# ensure that torch is installed, and send to torch website if not
-try:
-    import torch
-except ModuleNotFoundError:
-    raise ValueError("Please install torch first: https://pytorch.org/get-started/locally/")
 
 setup(
     name="zoology", 
     version="0.0.1",
     description="",
-    packages=["zoology"],  
+    packages=find_packages(),  
     install_requires=_REQUIRED,
     extras_require=_OPTIONAL,
     entry_points={

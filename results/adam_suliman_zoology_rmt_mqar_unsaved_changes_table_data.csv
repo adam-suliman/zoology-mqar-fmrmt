@@ -1,0 +1,13 @@
+Name,Tags,Duration,valid/accuracy,valid/loss,train/loss,model.name,model.sequence_mixer.name,train/rmt_memory_norm,train/rmt_memory_update_norm,train/rmt_memory_grad_norm
+attention-kv64-seq512,rmt_mqar,4,0.0015869140625,6.251728534698486,6.242718696594238,attention,zoology.mixers.attention.MHA,,,
+fast_memory_rmt-kv32-seq256,rmt_mqar,5,9.765625E-4,6.329361915588379,6.223917484283447,fast_memory_rmt,zoology.mixers.rmt.FastMemoryRMTMixer,0.22229695320129395,5.4286188969854265E-5,0.0010857237502932549
+base_rmt-kv32-seq256,rmt_mqar,5,0.001953125,6.316797256469727,6.2261061668396,base_rmt,zoology.mixers.rmt.BaseRMTMixer,34.6323356628418,,
+attention-kv32-seq256,rmt_mqar,4,0.0029296875,6.263260841369629,6.231849193572998,attention,zoology.mixers.attention.MHA,,,
+fast_memory_rmt-kv16-seq128,rmt_mqar,4,4.8828125E-4,6.40301513671875,6.1567888259887695,fast_memory_rmt,zoology.mixers.rmt.FastMemoryRMTMixer,0.31848597526550293,3.4740494447760284E-4,0.006948098540306091
+base_rmt-kv16-seq128,rmt_mqar,4,4.8828125E-4,6.39247989654541,6.152798652648926,base_rmt,zoology.mixers.rmt.BaseRMTMixer,14.280328750610352,,
+attention-kv16-seq128,rmt_mqar,4,0.0029296875,6.291637420654297,6.224466323852539,attention,zoology.mixers.attention.MHA,,,
+base_rmt-kv8-seq64,rmt_mqar,4,9.765625E-4,6.504427433013916,6.067986011505127,base_rmt,zoology.mixers.rmt.BaseRMTMixer,4.6777801513671875,,
+fast_memory_rmt-kv8-seq64,rmt_mqar,5,9.765625E-4,6.504427433013916,6.067986011505127,fast_memory_rmt,zoology.mixers.rmt.FastMemoryRMTMixer,0.32097339630126953,0.001204734668135643,0.02409469522535801
+attention-kv8-seq64,rmt_mqar,8,0.0048828125,6.278067588806152,6.115734100341797,attention,zoology.mixers.attention.MHA,,,
+fast_memory_rmt-kv64-seq512,rmt_mqar,7,0.0015869140625,6.276926040649414,6.236567497253418,fast_memory_rmt,zoology.mixers.rmt.FastMemoryRMTMixer,0.22245250642299652,3.380634734639898E-5,6.761269178241491E-4
+base_rmt-kv64-seq512,rmt_mqar,7,0.0015869140625,6.2589921951293945,6.2473249435424805,base_rmt,zoology.mixers.rmt.BaseRMTMixer,416.1463623046875,,

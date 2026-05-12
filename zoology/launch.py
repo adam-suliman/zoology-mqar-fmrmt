@@ -5,16 +5,27 @@ import importlib.util
 import click
 from tqdm import tqdm
 
-from zoology.train import train
-from zoology.config import TrainConfig
+from zoology.train import train, train_continual
+from zoology.config import ContinualTrainConfig, TrainConfig
 
 
 MAX_WORKERS_PER_GPU = 1
 
 
+def run_config(config: TrainConfig):
+    is_continual = (
+        isinstance(config, ContinualTrainConfig)
+        or getattr(config, "training_mode", None) == "continual"
+    )
+    if is_continual:
+        train_continual(config=config)
+    else:
+        train(config=config)
+
+
 def execute_config(config: TrainConfig):
     try: 
-        train(config=config)
+        run_config(config=config)
     except Exception as e:
         return config, e
     return config, None
@@ -58,7 +69,7 @@ def main(python_file, outdir, name: str, parallelize: bool, gpus: str):
     # Run each script in parallel using Ray
     if not use_ray:
         for config in configs: 
-            train(config)
+            run_config(config)
     else:
         completed = 0
         failed = 0
