@@ -1,0 +1,4703 @@
+{
+  "created_at": "2026-05-13T05:46:44",
+  "experiment": "class_incremental_ar_horizon_formal_cl",
+  "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+  "setup": {
+    "cuda_visible_devices": "2",
+    "cuda_available": true,
+    "cuda_device_name": "NVIDIA GeForce GTX 1080 Ti"
+  },
+  "aggregates": {
+    "5stage": {
+      "attention": {
+        "num_runs": 3,
+        "condition": {
+          "num_stages": 5,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "condition_name": "5stage"
+        },
+        "model_info": {
+          "num_parameters": 173824
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.03797200520833333,
+            "std": 0.016626986315626254,
+            "median": 0.03818359375,
+            "min": 0.021240234375,
+            "max": 0.0544921875
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 0.657861328125,
+            "std": 0.0859226699517619,
+            "median": 0.635888671875,
+            "min": 0.58505859375,
+            "max": 0.75263671875
+          },
+          "final_plasticity": {
+            "mean": 0.0771484375,
+            "std": 0.02516070213963481,
+            "median": 0.062744140625,
+            "min": 0.0625,
+            "max": 0.106201171875
+          },
+          "final_avg_bwt": {
+            "mean": -0.7748616536458334,
+            "std": 0.0873211175988916,
+            "median": -0.74713134765625,
+            "min": -0.8726806640625,
+            "max": -0.70477294921875
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.6198893229166667,
+            "std": 0.06985689407911327,
+            "median": 0.597705078125,
+            "min": 0.563818359375,
+            "max": 0.69814453125
+          },
+          "final_avg_fwt_from_random": {
+            "mean": -0.0625,
+            "std": 0.0,
+            "median": -0.0625,
+            "min": -0.0625,
+            "max": -0.0625
+          },
+          "final_avg_fwt_from_initial": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "final_train_loss": {
+            "mean": 2.8867713610331216,
+            "std": 0.0026172234357615194,
+            "median": 2.8852787017822266,
+            "min": 2.885241985321045,
+            "max": 2.8897933959960938
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.001220703125,
+            "std": 0.0021143198334581024,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.003662109375
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 0.8479817708333334,
+            "std": 0.2630918929292803,
+            "median": 0.999755859375,
+            "min": 0.544189453125,
+            "max": 1.0
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.06778971354166667,
+            "std": 0.07738384915613412,
+            "median": 0.05126953125,
+            "min": 0.0,
+            "max": 0.152099609375
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 0.9248046875,
+            "std": 0.1302421017410191,
+            "median": 1.0,
+            "min": 0.7744140625,
+            "max": 1.0
+          },
+          "stage_3_final_accuracy": {
+            "mean": 0.043701171875,
+            "std": 0.03866913140322943,
+            "median": 0.0576171875,
+            "min": 0.0,
+            "max": 0.073486328125
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 0.4393717447916667,
+            "std": 0.2963901710204454,
+            "median": 0.50048828125,
+            "min": 0.1171875,
+            "max": 0.700439453125
+          },
+          "stage_4_final_accuracy": {
+            "mean": 0.0771484375,
+            "std": 0.02516070213963481,
+            "median": 0.062744140625,
+            "min": 0.0625,
+            "max": 0.106201171875
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 0.0771484375,
+            "std": 0.02516070213963481,
+            "median": 0.062744140625,
+            "min": 0.0625,
+            "max": 0.106201171875
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.0544921875,
+            "final_avg_learning_accuracy": 0.75263671875,
+            "final_plasticity": 0.062744140625,
+            "final_avg_bwt": -0.8726806640625,
+            "final_avg_forgetting_from_learning": 0.69814453125
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.03818359375,
+            "final_avg_learning_accuracy": 0.635888671875,
+            "final_plasticity": 0.0625,
+            "final_avg_bwt": -0.74713134765625,
+            "final_avg_forgetting_from_learning": 0.597705078125
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.021240234375,
+            "final_avg_learning_accuracy": 0.58505859375,
+            "final_plasticity": 0.106201171875,
+            "final_avg_bwt": -0.70477294921875,
+            "final_avg_forgetting_from_learning": 0.563818359375
+          }
+        }
+      },
+      "base_rmt_nmem4": {
+        "num_runs": 3,
+        "condition": {
+          "num_stages": 5,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "condition_name": "5stage"
+        },
+        "model_info": {
+          "num_parameters": 174336
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.8909505208333334,
+            "std": 0.05259043700069579,
+            "median": 0.90888671875,
+            "min": 0.83173828125,
+            "max": 0.9322265625
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_plasticity": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.13631184895833334,
+            "std": 0.06573804625086975,
+            "median": -0.1138916015625,
+            "min": -0.2103271484375,
+            "max": -0.084716796875
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.10904947916666667,
+            "std": 0.0525904370006958,
+            "median": 0.09111328125,
+            "min": 0.0677734375,
+            "max": 0.16826171875
+          },
+          "final_avg_fwt_from_random": {
+            "mean": -0.06142578125,
+            "std": 0.0018606014534431282,
+            "median": -0.0625,
+            "min": -0.0625,
+            "max": -0.05927734375
+          },
+          "final_avg_fwt_from_initial": {
+            "mean": 0.0010742187499999999,
+            "std": 0.0018606014534431298,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.00322265625
+          },
+          "final_train_loss": {
+            "mean": 0.7314372956752777,
+            "std": 0.30549274527921877,
+            "median": 0.7740775942802429,
+            "min": 0.4068644940853119,
+            "max": 1.0133697986602783
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.5263671875,
+            "std": 0.23997781591407547,
+            "median": 0.650390625,
+            "min": 0.249755859375,
+            "max": 0.678955078125
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.9940592447916666,
+            "std": 0.010289689856162763,
+            "median": 1.0,
+            "min": 0.982177734375,
+            "max": 1.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.934326171875,
+            "std": 0.05736057876491779,
+            "median": 0.908935546875,
+            "min": 0.89404296875,
+            "max": 1.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.83173828125,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.2103271484375,
+            "final_avg_forgetting_from_learning": 0.16826171875
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.90888671875,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.1138916015625,
+            "final_avg_forgetting_from_learning": 0.09111328125
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.9322265625,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.084716796875,
+            "final_avg_forgetting_from_learning": 0.0677734375
+          }
+        }
+      },
+      "fmrmt_stable_lr0p005_slow4": {
+        "num_runs": 3,
+        "condition": {
+          "num_stages": 5,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "condition_name": "5stage"
+        },
+        "model_info": {
+          "num_parameters": 175104
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.9447591145833334,
+            "std": 0.02968237313958145,
+            "median": 0.9486328125,
+            "min": 0.913330078125,
+            "max": 0.972314453125
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 0.9635091145833333,
+            "std": 0.025881777430152055,
+            "median": 0.96162109375,
+            "min": 0.938623046875,
+            "max": 0.990283203125
+          },
+          "final_plasticity": {
+            "mean": 0.8175455729166666,
+            "std": 0.12940888715076035,
+            "median": 0.80810546875,
+            "min": 0.693115234375,
+            "max": 0.951416015625
+          },
+          "final_avg_bwt": {
+            "mean": -0.0234375,
+            "std": 0.007736792908931067,
+            "median": -0.0224609375,
+            "min": -0.0316162109375,
+            "max": -0.0162353515625
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.01875,
+            "std": 0.006189434327144853,
+            "median": 0.01796875,
+            "min": 0.01298828125,
+            "max": 0.02529296875
+          },
+          "final_avg_fwt_from_random": {
+            "mean": -0.061865234375,
+            "std": 0.0010574417884622908,
+            "median": -0.062451171875,
+            "min": -0.0625,
+            "max": -0.06064453125
+          },
+          "final_avg_fwt_from_initial": {
+            "mean": 0.000634765625,
+            "std": 0.0010574417884622908,
+            "median": 4.8828125e-05,
+            "min": 0.0,
+            "max": 0.00185546875
+          },
+          "final_train_loss": {
+            "mean": 4.770285606384277,
+            "std": 0.1870816697470695,
+            "median": 4.7438459396362305,
+            "min": 4.597830295562744,
+            "max": 4.969180583953857
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.90625,
+            "std": 0.030947171635724267,
+            "median": 0.91015625,
+            "min": 0.87353515625,
+            "max": 0.93505859375
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 0.8175455729166666,
+            "std": 0.12940888715076035,
+            "median": 0.80810546875,
+            "min": 0.693115234375,
+            "max": 0.951416015625
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 0.8175455729166666,
+            "std": 0.12940888715076035,
+            "median": 0.80810546875,
+            "min": 0.693115234375,
+            "max": 0.951416015625
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.972314453125,
+            "final_avg_learning_accuracy": 0.990283203125,
+            "final_plasticity": 0.951416015625,
+            "final_avg_bwt": -0.0224609375,
+            "final_avg_forgetting_from_learning": 0.01796875
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.913330078125,
+            "final_avg_learning_accuracy": 0.938623046875,
+            "final_plasticity": 0.693115234375,
+            "final_avg_bwt": -0.0316162109375,
+            "final_avg_forgetting_from_learning": 0.02529296875
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.9486328125,
+            "final_avg_learning_accuracy": 0.96162109375,
+            "final_plasticity": 0.80810546875,
+            "final_avg_bwt": -0.0162353515625,
+            "final_avg_forgetting_from_learning": 0.01298828125
+          }
+        }
+      }
+    },
+    "10stage": {
+      "attention": {
+        "num_runs": 3,
+        "condition": {
+          "num_stages": 10,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "condition_name": "10stage"
+        },
+        "model_info": {
+          "num_parameters": 173824
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.012345377604166666,
+            "std": 0.007065934710412166,
+            "median": 0.01435546875,
+            "min": 0.0044921875,
+            "max": 0.0181884765625
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 0.5575032552083333,
+            "std": 0.016182773130695,
+            "median": 0.566650390625,
+            "min": 0.538818359375,
+            "max": 0.567041015625
+          },
+          "final_plasticity": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.6057309751157408,
+            "std": 0.010683675980300098,
+            "median": -0.6094021267361112,
+            "min": -0.6140950520833334,
+            "max": -0.5936957465277778
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.5456868489583333,
+            "std": 0.009926570872435371,
+            "median": 0.550048828125,
+            "min": 0.534326171875,
+            "max": 0.552685546875
+          },
+          "final_avg_fwt_from_random": {
+            "mean": -0.0625,
+            "std": 0.0,
+            "median": -0.0625,
+            "min": -0.0625,
+            "max": -0.0625
+          },
+          "final_avg_fwt_from_initial": {
+            "mean": -0.000146484375,
+            "std": 0.0002537183800149723,
+            "median": 0.0,
+            "min": -0.000439453125,
+            "max": 0.0
+          },
+          "final_train_loss": {
+            "mean": 5.979231834411621,
+            "std": 1.3927337451986102,
+            "median": 5.356861114501953,
+            "min": 5.006206035614014,
+            "max": 7.5746283531188965
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 0.9142252604166666,
+            "std": 0.14265634838266592,
+            "median": 0.994873046875,
+            "min": 0.74951171875,
+            "max": 0.998291015625
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.024007161458333332,
+            "std": 0.04137037150299102,
+            "median": 0.000244140625,
+            "min": 0.0,
+            "max": 0.07177734375
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 0.9991048177083334,
+            "std": 0.0015505012112026083,
+            "median": 1.0,
+            "min": 0.997314453125,
+            "max": 1.0
+          },
+          "stage_3_final_accuracy": {
+            "mean": 0.004069010416666667,
+            "std": 0.007047732778193674,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.01220703125
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 0.9306640625,
+            "std": 0.11967050257372858,
+            "median": 0.999755859375,
+            "min": 0.79248046875,
+            "max": 0.999755859375
+          },
+          "stage_4_final_accuracy": {
+            "mean": 0.010904947916666666,
+            "std": 0.018887923845559047,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.03271484375
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 0.7975260416666666,
+            "std": 0.17572263517454187,
+            "median": 0.707763671875,
+            "min": 0.684814453125,
+            "max": 1.0
+          },
+          "stage_5_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_5_learning_accuracy": {
+            "mean": 0.3030598958333333,
+            "std": 0.3807362153548426,
+            "median": 0.101806640625,
+            "min": 0.065185546875,
+            "max": 0.7421875
+          },
+          "stage_6_final_accuracy": {
+            "mean": 0.015950520833333332,
+            "std": 0.0276271124905192,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0478515625
+          },
+          "stage_6_learning_accuracy": {
+            "mean": 0.3286946614583333,
+            "std": 0.15019517228045984,
+            "median": 0.39892578125,
+            "min": 0.15625,
+            "max": 0.430908203125
+          },
+          "stage_7_final_accuracy": {
+            "mean": 0.007975260416666666,
+            "std": 0.0138135562452596,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.02392578125
+          },
+          "stage_7_learning_accuracy": {
+            "mean": 0.14933268229166666,
+            "std": 0.1189930319522453,
+            "median": 0.103515625,
+            "min": 0.06005859375,
+            "max": 0.284423828125
+          },
+          "stage_8_final_accuracy": {
+            "mean": 0.060546875,
+            "std": 0.10487026373952187,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.181640625
+          },
+          "stage_8_learning_accuracy": {
+            "mean": 0.15242513020833334,
+            "std": 0.0712561683884741,
+            "median": 0.165771484375,
+            "min": 0.075439453125,
+            "max": 0.216064453125
+          },
+          "stage_9_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_9_learning_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.0044921875,
+            "final_avg_learning_accuracy": 0.538818359375,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.5936957465277778,
+            "final_avg_forgetting_from_learning": 0.534326171875
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.01435546875,
+            "final_avg_learning_accuracy": 0.567041015625,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.6140950520833334,
+            "final_avg_forgetting_from_learning": 0.552685546875
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.0181884765625,
+            "final_avg_learning_accuracy": 0.566650390625,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.6094021267361112,
+            "final_avg_forgetting_from_learning": 0.550048828125
+          }
+        }
+      },
+      "base_rmt_nmem4": {
+        "num_runs": 3,
+        "condition": {
+          "num_stages": 10,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "condition_name": "10stage"
+        },
+        "model_info": {
+          "num_parameters": 174336
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.90322265625,
+            "std": 0.02702856149699199,
+            "median": 0.9080078125,
+            "min": 0.87412109375,
+            "max": 0.9275390625
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_plasticity": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.10753038194444446,
+            "std": 0.030031734996657806,
+            "median": -0.10221354166666667,
+            "min": -0.1398654513888889,
+            "max": -0.08051215277777778
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.09677734375000001,
+            "std": 0.027028561496992023,
+            "median": 0.0919921875,
+            "min": 0.0724609375,
+            "max": 0.12587890625
+          },
+          "final_avg_fwt_from_random": {
+            "mean": -0.061962890624999996,
+            "std": 0.0009303007267215641,
+            "median": -0.0625,
+            "min": -0.0625,
+            "max": -0.060888671875
+          },
+          "final_avg_fwt_from_initial": {
+            "mean": 0.0004150390625,
+            "std": 0.0010366637571075266,
+            "median": -0.000146484375,
+            "min": -0.0002197265625,
+            "max": 0.001611328125
+          },
+          "final_train_loss": {
+            "mean": 3.297990163167318,
+            "std": 0.08715868777020273,
+            "median": 3.284764051437378,
+            "min": 3.218200445175171,
+            "max": 3.3910059928894043
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.38671875,
+            "std": 0.19176884774653555,
+            "median": 0.418212890625,
+            "min": 0.18115234375,
+            "max": 0.560791015625
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.8528645833333334,
+            "std": 0.17328246693804414,
+            "median": 0.896728515625,
+            "min": 0.661865234375,
+            "max": 1.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.9053548177083334,
+            "std": 0.16393026442078484,
+            "median": 1.0,
+            "min": 0.716064453125,
+            "max": 1.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_final_accuracy": {
+            "mean": 0.98583984375,
+            "std": 0.024526110068113983,
+            "median": 1.0,
+            "min": 0.95751953125,
+            "max": 1.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 0.9019368489583334,
+            "std": 0.16985035995446754,
+            "median": 1.0,
+            "min": 0.705810546875,
+            "max": 1.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_5_final_accuracy": {
+            "mean": 0.99951171875,
+            "std": 0.0008457279333832408,
+            "median": 1.0,
+            "min": 0.99853515625,
+            "max": 1.0
+          },
+          "stage_5_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_6_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_6_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.9080078125,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.10221354166666667,
+            "final_avg_forgetting_from_learning": 0.0919921875
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.9275390625,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.08051215277777778,
+            "final_avg_forgetting_from_learning": 0.0724609375
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.87412109375,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.1398654513888889,
+            "final_avg_forgetting_from_learning": 0.12587890625
+          }
+        }
+      },
+      "fmrmt_stable_lr0p005_slow4": {
+        "num_runs": 3,
+        "condition": {
+          "num_stages": 10,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "condition_name": "10stage"
+        },
+        "model_info": {
+          "num_parameters": 175104
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.8746988932291666,
+            "std": 0.017702574822096605,
+            "median": 0.8824462890625,
+            "min": 0.854443359375,
+            "max": 0.88720703125
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 0.9,
+            "std": 0.0,
+            "median": 0.9,
+            "min": 0.9,
+            "max": 0.9
+          },
+          "final_plasticity": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.028112340856481483,
+            "std": 0.019669527580107368,
+            "median": -0.019504123263888888,
+            "min": -0.050618489583333336,
+            "max": -0.014214409722222222
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.02530110677083333,
+            "std": 0.01770257482209663,
+            "median": 0.0175537109375,
+            "min": 0.01279296875,
+            "max": 0.045556640625
+          },
+          "final_avg_fwt_from_random": {
+            "mean": -0.062174479166666664,
+            "std": 0.0005428127000537868,
+            "median": -0.0624755859375,
+            "min": -0.0625,
+            "max": -0.0615478515625
+          },
+          "final_avg_fwt_from_initial": {
+            "mean": 0.00020345052083333334,
+            "std": 0.0005356276911427192,
+            "median": 2.44140625e-05,
+            "min": -0.0002197265625,
+            "max": 0.0008056640625
+          },
+          "final_train_loss": {
+            "mean": 6.081427892049153,
+            "std": 0.07569339710926956,
+            "median": 6.083487033843994,
+            "min": 6.004725933074951,
+            "max": 6.156070709228516
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.7894694010416666,
+            "std": 0.10458465002885131,
+            "median": 0.824462890625,
+            "min": 0.671875,
+            "max": 0.8720703125
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.9984537760416666,
+            "std": 0.0026781384557135962,
+            "median": 1.0,
+            "min": 0.995361328125,
+            "max": 1.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.9590657552083334,
+            "std": 0.07090019174862836,
+            "median": 1.0,
+            "min": 0.877197265625,
+            "max": 1.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_5_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_5_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_6_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_6_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_9_learning_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.854443359375,
+            "final_avg_learning_accuracy": 0.9,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.050618489583333336,
+            "final_avg_forgetting_from_learning": 0.045556640625
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.88720703125,
+            "final_avg_learning_accuracy": 0.9,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.014214409722222222,
+            "final_avg_forgetting_from_learning": 0.01279296875
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.8824462890625,
+            "final_avg_learning_accuracy": 0.9,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.019504123263888888,
+            "final_avg_forgetting_from_learning": 0.0175537109375
+          }
+        }
+      }
+    },
+    "20stage": {
+      "attention": {
+        "num_runs": 3,
+        "condition": {
+          "num_stages": 20,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "condition_name": "20stage"
+        },
+        "model_info": {
+          "num_parameters": 173824
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.008064778645833333,
+            "std": 0.001359664564606305,
+            "median": 0.00765380859375,
+            "min": 0.0069580078125,
+            "max": 0.00958251953125
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 0.5371175130208333,
+            "std": 0.1265192371961613,
+            "median": 0.4875244140625,
+            "min": 0.44290771484375,
+            "max": 0.68092041015625
+          },
+          "final_plasticity": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.5568976151315789,
+            "std": 0.1318821976266471,
+            "median": -0.505859375,
+            "min": -0.7066714638157895,
+            "max": -0.45816200657894735
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.529052734375,
+            "std": 0.12528808774531477,
+            "median": 0.48056640625,
+            "min": 0.43525390625,
+            "max": 0.671337890625
+          },
+          "final_avg_fwt_from_random": {
+            "mean": -0.0625,
+            "std": 0.0,
+            "median": -0.0625,
+            "min": -0.0625,
+            "max": -0.0625
+          },
+          "final_avg_fwt_from_initial": {
+            "mean": -8.951822916666666e-05,
+            "std": 0.00012468712114294077,
+            "median": -3.662109375e-05,
+            "min": -0.00023193359375,
+            "max": 0.0
+          },
+          "final_train_loss": {
+            "mean": 6.567037423451741,
+            "std": 0.146831106068936,
+            "median": 6.637904644012451,
+            "min": 6.398214340209961,
+            "max": 6.6649932861328125
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 0.7308756510416666,
+            "std": 0.4608613506282768,
+            "median": 0.993896484375,
+            "min": 0.19873046875,
+            "max": 1.0
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 0.93603515625,
+            "std": 0.10973326725368743,
+            "median": 0.999267578125,
+            "min": 0.809326171875,
+            "max": 0.99951171875
+          },
+          "stage_3_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 0.8707682291666666,
+            "std": 0.17182042960635,
+            "median": 0.9365234375,
+            "min": 0.67578125,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 0.7230631510416666,
+            "std": 0.47966869288386144,
+            "median": 1.0,
+            "min": 0.169189453125,
+            "max": 1.0
+          },
+          "stage_5_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_5_learning_accuracy": {
+            "mean": 0.9832356770833334,
+            "std": 0.028404723901045273,
+            "median": 0.999267578125,
+            "min": 0.950439453125,
+            "max": 1.0
+          },
+          "stage_6_final_accuracy": {
+            "mean": 0.0013020833333333333,
+            "std": 0.0022552744890219755,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.00390625
+          },
+          "stage_6_learning_accuracy": {
+            "mean": 0.8711751302083334,
+            "std": 0.1574614923824324,
+            "median": 0.925048828125,
+            "min": 0.69384765625,
+            "max": 0.99462890625
+          },
+          "stage_7_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_7_learning_accuracy": {
+            "mean": 0.3968098958333333,
+            "std": 0.5217132256706561,
+            "median": 0.12890625,
+            "min": 0.0634765625,
+            "max": 0.998046875
+          },
+          "stage_8_final_accuracy": {
+            "mean": 0.007649739583333333,
+            "std": 0.013249737623004108,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.02294921875
+          },
+          "stage_8_learning_accuracy": {
+            "mean": 0.6517740885416666,
+            "std": 0.4741184746577913,
+            "median": 0.843505859375,
+            "min": 0.11181640625,
+            "max": 1.0
+          },
+          "stage_9_final_accuracy": {
+            "mean": 0.0006510416666666666,
+            "std": 0.0011276372445109878,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.001953125
+          },
+          "stage_9_learning_accuracy": {
+            "mean": 0.6333821614583334,
+            "std": 0.4025311326885899,
+            "median": 0.697509765625,
+            "min": 0.20263671875,
+            "max": 1.0
+          },
+          "stage_10_final_accuracy": {
+            "mean": 8.138020833333333e-05,
+            "std": 0.00014095465556387347,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.000244140625
+          },
+          "stage_10_learning_accuracy": {
+            "mean": 0.5987141927083334,
+            "std": 0.4801152073501185,
+            "median": 0.732421875,
+            "min": 0.06591796875,
+            "max": 0.997802734375
+          },
+          "stage_11_final_accuracy": {
+            "mean": 0.0009765625,
+            "std": 0.0016914558667664816,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0029296875
+          },
+          "stage_11_learning_accuracy": {
+            "mean": 0.6527506510416666,
+            "std": 0.31007880998521214,
+            "median": 0.5556640625,
+            "min": 0.40283203125,
+            "max": 0.999755859375
+          },
+          "stage_12_final_accuracy": {
+            "mean": 0.042887369791666664,
+            "std": 0.06968336860031164,
+            "median": 0.00537109375,
+            "min": 0.0,
+            "max": 0.123291015625
+          },
+          "stage_12_learning_accuracy": {
+            "mean": 0.5569661458333334,
+            "std": 0.46203639619619036,
+            "median": 0.639892578125,
+            "min": 0.05908203125,
+            "max": 0.971923828125
+          },
+          "stage_13_final_accuracy": {
+            "mean": 0.043782552083333336,
+            "std": 0.06010092300662588,
+            "median": 0.01904296875,
+            "min": 0.0,
+            "max": 0.1123046875
+          },
+          "stage_13_learning_accuracy": {
+            "mean": 0.5712076822916666,
+            "std": 0.4759621721444781,
+            "median": 0.654541015625,
+            "min": 0.05908203125,
+            "max": 1.0
+          },
+          "stage_14_final_accuracy": {
+            "mean": 0.020100911458333332,
+            "std": 0.03481579992427675,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.060302734375
+          },
+          "stage_14_learning_accuracy": {
+            "mean": 0.15559895833333334,
+            "std": 0.08642727550644459,
+            "median": 0.164794921875,
+            "min": 0.06494140625,
+            "max": 0.237060546875
+          },
+          "stage_15_final_accuracy": {
+            "mean": 0.043863932291666664,
+            "std": 0.052511426802307005,
+            "median": 0.029541015625,
+            "min": 0.0,
+            "max": 0.10205078125
+          },
+          "stage_15_learning_accuracy": {
+            "mean": 0.20231119791666666,
+            "std": 0.12898537105342842,
+            "median": 0.224365234375,
+            "min": 0.063720703125,
+            "max": 0.31884765625
+          },
+          "stage_16_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_16_learning_accuracy": {
+            "mean": 0.143798828125,
+            "std": 0.13807420478410845,
+            "median": 0.065673828125,
+            "min": 0.0625,
+            "max": 0.30322265625
+          },
+          "stage_17_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_17_learning_accuracy": {
+            "mean": 0.06266276041666667,
+            "std": 0.002076391735379732,
+            "median": 0.0634765625,
+            "min": 0.060302734375,
+            "max": 0.064208984375
+          },
+          "stage_18_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_18_learning_accuracy": {
+            "mean": 0.001220703125,
+            "std": 0.0021143198334581024,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.003662109375
+          },
+          "stage_19_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_19_learning_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.00765380859375,
+            "final_avg_learning_accuracy": 0.44290771484375,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.45816200657894735,
+            "final_avg_forgetting_from_learning": 0.43525390625
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.0069580078125,
+            "final_avg_learning_accuracy": 0.4875244140625,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.505859375,
+            "final_avg_forgetting_from_learning": 0.48056640625
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.00958251953125,
+            "final_avg_learning_accuracy": 0.68092041015625,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.7066714638157895,
+            "final_avg_forgetting_from_learning": 0.671337890625
+          }
+        }
+      },
+      "base_rmt_nmem4": {
+        "num_runs": 3,
+        "condition": {
+          "num_stages": 20,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "condition_name": "20stage"
+        },
+        "model_info": {
+          "num_parameters": 174336
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.78927001953125,
+            "std": 0.04197642185649818,
+            "median": 0.79764404296875,
+            "min": 0.74373779296875,
+            "max": 0.82642822265625
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 0.9499999999999998,
+            "std": 0.0,
+            "median": 0.95,
+            "min": 0.95,
+            "max": 0.95
+          },
+          "final_plasticity": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.169189453125,
+            "std": 0.044185707217366456,
+            "median": -0.16037469161184212,
+            "min": -0.21711811266447367,
+            "max": -0.1300755550986842
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.16072998046875,
+            "std": 0.04197642185649815,
+            "median": 0.15235595703125,
+            "min": 0.12357177734375,
+            "max": 0.20626220703125
+          },
+          "final_avg_fwt_from_random": {
+            "mean": -0.0622314453125,
+            "std": 0.00046515036336078406,
+            "median": -0.0625,
+            "min": -0.0625,
+            "max": -0.0616943359375
+          },
+          "final_avg_fwt_from_initial": {
+            "mean": 0.00019531249999999998,
+            "std": 0.0005298470315969411,
+            "median": -7.32421875e-05,
+            "min": -0.000146484375,
+            "max": 0.0008056640625
+          },
+          "final_train_loss": {
+            "mean": 6.195786794026692,
+            "std": 0.01639941746042419,
+            "median": 6.190281391143799,
+            "min": 6.1828484535217285,
+            "max": 6.214230537414551
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.09065755208333333,
+            "std": 0.09141700007593169,
+            "median": 0.064208984375,
+            "min": 0.015380859375,
+            "max": 0.1923828125
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.299072265625,
+            "std": 0.29807150802710497,
+            "median": 0.2265625,
+            "min": 0.0439453125,
+            "max": 0.626708984375
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.302734375,
+            "std": 0.05547743178646674,
+            "median": 0.31982421875,
+            "min": 0.24072265625,
+            "max": 0.34765625
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_final_accuracy": {
+            "mean": 0.8046061197916666,
+            "std": 0.1617881318926939,
+            "median": 0.8525390625,
+            "min": 0.624267578125,
+            "max": 0.93701171875
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 0.9370930989583334,
+            "std": 0.1089579487508742,
+            "median": 1.0,
+            "min": 0.811279296875,
+            "max": 1.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_5_final_accuracy": {
+            "mean": 0.7249348958333334,
+            "std": 0.3108306483918955,
+            "median": 0.869384765625,
+            "min": 0.3681640625,
+            "max": 0.937255859375
+          },
+          "stage_5_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_6_final_accuracy": {
+            "mean": 0.7325032552083334,
+            "std": 0.3663549792675081,
+            "median": 0.882568359375,
+            "min": 0.31494140625,
+            "max": 1.0
+          },
+          "stage_6_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_final_accuracy": {
+            "mean": 0.9759114583333334,
+            "std": 0.028411018421789547,
+            "median": 0.983154296875,
+            "min": 0.944580078125,
+            "max": 1.0
+          },
+          "stage_7_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_final_accuracy": {
+            "mean": 0.9178873697916666,
+            "std": 0.07117707675610194,
+            "median": 0.8798828125,
+            "min": 0.873779296875,
+            "max": 1.0
+          },
+          "stage_8_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_10_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_10_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_11_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_11_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_12_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_12_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_13_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_13_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_14_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_14_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_15_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_15_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_16_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_16_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_17_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_17_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_18_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_18_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_19_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_19_learning_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.82642822265625,
+            "final_avg_learning_accuracy": 0.95,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.1300755550986842,
+            "final_avg_forgetting_from_learning": 0.12357177734375
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.74373779296875,
+            "final_avg_learning_accuracy": 0.95,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.21711811266447367,
+            "final_avg_forgetting_from_learning": 0.20626220703125
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.79764404296875,
+            "final_avg_learning_accuracy": 0.95,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.16037469161184212,
+            "final_avg_forgetting_from_learning": 0.15235595703125
+          }
+        }
+      },
+      "fmrmt_stable_lr0p005_slow4": {
+        "num_runs": 3,
+        "condition": {
+          "num_stages": 20,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "condition_name": "20stage"
+        },
+        "model_info": {
+          "num_parameters": 175104
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.8783406575520832,
+            "std": 0.026406363123965527,
+            "median": 0.8901123046875,
+            "min": 0.848095703125,
+            "max": 0.89681396484375
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 0.8999959309895833,
+            "std": 7.047732778219313e-06,
+            "median": 0.9,
+            "min": 0.89998779296875,
+            "max": 0.9
+          },
+          "final_plasticity": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.02279502467105263,
+            "std": 0.027799036631501624,
+            "median": -0.010395250822368422,
+            "min": -0.05463610197368421,
+            "max": -0.003353721217105263
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.021659342447916664,
+            "std": 0.026406363123965555,
+            "median": 0.0098876953125,
+            "min": 0.00318603515625,
+            "max": 0.051904296875
+          },
+          "final_avg_fwt_from_random": {
+            "mean": -0.062337239583333336,
+            "std": 0.0002714063500268904,
+            "median": -0.06248779296875,
+            "min": -0.0625,
+            "max": -0.06202392578125
+          },
+          "final_avg_fwt_from_initial": {
+            "mean": 8.951822916666666e-05,
+            "std": 0.0002827010692168253,
+            "median": 1.220703125e-05,
+            "min": -0.000146484375,
+            "max": 0.00040283203125
+          },
+          "final_train_loss": {
+            "mean": 6.955738544464111,
+            "std": 0.017507763783782784,
+            "median": 6.958662033081055,
+            "min": 6.936953067779541,
+            "max": 6.971600532531738
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.782470703125,
+            "std": 0.26387118118392433,
+            "median": 0.933349609375,
+            "min": 0.477783203125,
+            "max": 0.936279296875
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.978271484375,
+            "std": 0.03763489303555422,
+            "median": 1.0,
+            "min": 0.934814453125,
+            "max": 1.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.8060709635416666,
+            "std": 0.23181719084191849,
+            "median": 0.868896484375,
+            "min": 0.54931640625,
+            "max": 1.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_5_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_5_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_6_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_6_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_10_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_10_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_11_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_11_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_12_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_12_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_13_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_13_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_14_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_14_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_15_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_15_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_16_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_16_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_17_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_17_learning_accuracy": {
+            "mean": 0.9999186197916666,
+            "std": 0.00014095465556387347,
+            "median": 1.0,
+            "min": 0.999755859375,
+            "max": 1.0
+          },
+          "stage_18_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_18_learning_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_19_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_19_learning_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.848095703125,
+            "final_avg_learning_accuracy": 0.9,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.05463610197368421,
+            "final_avg_forgetting_from_learning": 0.051904296875
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.8901123046875,
+            "final_avg_learning_accuracy": 0.89998779296875,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.010395250822368422,
+            "final_avg_forgetting_from_learning": 0.0098876953125
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.89681396484375,
+            "final_avg_learning_accuracy": 0.9,
+            "final_plasticity": 0.0,
+            "final_avg_bwt": -0.003353721217105263,
+            "final_avg_forgetting_from_learning": 0.00318603515625
+          }
+        }
+      }
+    }
+  },
+  "runs": [
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "5stage"
+      },
+      "model_name": "attention",
+      "seed": 123,
+      "run_id": "attention-class-incremental-ar-5stage-seed123",
+      "model_info": {
+        "num_parameters": 173824
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.0544921875,
+        "final_avg_forgetting": 0.69814453125,
+        "final_avg_forgetting_from_learning": 0.69814453125,
+        "final_avg_bwt": -0.8726806640625,
+        "final_avg_learning_accuracy": 0.75263671875,
+        "final_plasticity": 0.062744140625,
+        "final_plasticity_drop_from_stage_0": 0.937255859375,
+        "final_avg_plasticity_drop_from_stage_0": 0.24736328125,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": 0.0,
+        "final_train_loss": 2.8852787017822266,
+        "final_rmt_memory_norm": null,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.152099609375,
+          "3": 0.0576171875,
+          "4": 0.062744140625
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 0.700439453125,
+          "4": 0.062744140625
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -1.0,
+          "2": -0.847900390625,
+          "3": -0.642822265625,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 0.847900390625,
+          "3": 0.642822265625,
+          "4": 0.0
+        },
+        "num_log_records": 1289
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "5stage"
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 123,
+      "run_id": "base_rmt_nmem4-class-incremental-ar-5stage-seed123",
+      "model_info": {
+        "num_parameters": 174336
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.83173828125,
+        "final_avg_forgetting": 0.16826171875,
+        "final_avg_forgetting_from_learning": 0.16826171875,
+        "final_avg_bwt": -0.2103271484375,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_plasticity_drop_from_stage_0": 0.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.0,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": 0.0,
+        "final_train_loss": 1.0133697986602783,
+        "final_rmt_memory_norm": 11.277913093566895,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.249755859375,
+          "1": 1.0,
+          "2": 0.908935546875,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.750244140625,
+          "1": 0.0,
+          "2": -0.091064453125,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.750244140625,
+          "1": 0.0,
+          "2": 0.091064453125,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 1289
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "5stage"
+      },
+      "model_name": "fmrmt_stable_lr0p005_slow4",
+      "seed": 123,
+      "run_id": "fmrmt_stable_lr0p005_slow4-class-incremental-ar-5stage-seed123",
+      "model_info": {
+        "num_parameters": 175104
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.972314453125,
+        "final_avg_forgetting": 0.01796875,
+        "final_avg_forgetting_from_learning": 0.01796875,
+        "final_avg_bwt": -0.0224609375,
+        "final_avg_learning_accuracy": 0.990283203125,
+        "final_plasticity": 0.951416015625,
+        "final_plasticity_drop_from_stage_0": 0.048583984375,
+        "final_avg_plasticity_drop_from_stage_0": 0.009716796875,
+        "final_avg_fwt_from_random": -0.06064453125,
+        "final_avg_fwt_from_initial": 0.00185546875,
+        "final_train_loss": 4.597830295562744,
+        "final_rmt_memory_norm": 0.3066509962081909,
+        "final_rmt_memory_update_norm": 9.43189297686331e-05,
+        "final_rmt_memory_grad_norm": 0.01886378601193428,
+        "stage_accuracy": {
+          "0": 0.91015625,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 0.951416015625
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 0.951416015625
+        },
+        "stage_bwt": {
+          "0": -0.08984375,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.08984375,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 1289
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "5stage"
+      },
+      "model_name": "attention",
+      "seed": 456,
+      "run_id": "attention-class-incremental-ar-5stage-seed456",
+      "model_info": {
+        "num_parameters": 173824
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.03818359375,
+        "final_avg_forgetting": 0.597705078125,
+        "final_avg_forgetting_from_learning": 0.597705078125,
+        "final_avg_bwt": -0.74713134765625,
+        "final_avg_learning_accuracy": 0.635888671875,
+        "final_plasticity": 0.0625,
+        "final_plasticity_drop_from_stage_0": 0.9375,
+        "final_avg_plasticity_drop_from_stage_0": 0.364111328125,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": 0.0,
+        "final_train_loss": 2.885241985321045,
+        "final_rmt_memory_norm": null,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.003662109375,
+          "2": 0.05126953125,
+          "3": 0.073486328125,
+          "4": 0.0625
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 0.999755859375,
+          "2": 1.0,
+          "3": 0.1171875,
+          "4": 0.0625
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -0.99609375,
+          "2": -0.94873046875,
+          "3": -0.043701171875,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.99609375,
+          "2": 0.94873046875,
+          "3": 0.043701171875,
+          "4": 0.0
+        },
+        "num_log_records": 1289
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "5stage"
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 456,
+      "run_id": "base_rmt_nmem4-class-incremental-ar-5stage-seed456",
+      "model_info": {
+        "num_parameters": 174336
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.90888671875,
+        "final_avg_forgetting": 0.09111328125,
+        "final_avg_forgetting_from_learning": 0.09111328125,
+        "final_avg_bwt": -0.1138916015625,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_plasticity_drop_from_stage_0": 0.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.0,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": 0.0,
+        "final_train_loss": 0.4068644940853119,
+        "final_rmt_memory_norm": 41.718833923339844,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.650390625,
+          "1": 1.0,
+          "2": 0.89404296875,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.349609375,
+          "1": 0.0,
+          "2": -0.10595703125,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.349609375,
+          "1": 0.0,
+          "2": 0.10595703125,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 1289
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "5stage"
+      },
+      "model_name": "fmrmt_stable_lr0p005_slow4",
+      "seed": 456,
+      "run_id": "fmrmt_stable_lr0p005_slow4-class-incremental-ar-5stage-seed456",
+      "model_info": {
+        "num_parameters": 175104
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.913330078125,
+        "final_avg_forgetting": 0.02529296875,
+        "final_avg_forgetting_from_learning": 0.02529296875,
+        "final_avg_bwt": -0.0316162109375,
+        "final_avg_learning_accuracy": 0.938623046875,
+        "final_plasticity": 0.693115234375,
+        "final_plasticity_drop_from_stage_0": 0.306884765625,
+        "final_avg_plasticity_drop_from_stage_0": 0.061376953125,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": 0.0,
+        "final_train_loss": 4.969180583953857,
+        "final_rmt_memory_norm": 0.2906239926815033,
+        "final_rmt_memory_update_norm": 0.00024785357527434826,
+        "final_rmt_memory_grad_norm": 0.0495707206428051,
+        "stage_accuracy": {
+          "0": 0.87353515625,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 0.693115234375
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 0.693115234375
+        },
+        "stage_bwt": {
+          "0": -0.12646484375,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.12646484375,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 1289
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "5stage"
+      },
+      "model_name": "attention",
+      "seed": 789,
+      "run_id": "attention-class-incremental-ar-5stage-seed789",
+      "model_info": {
+        "num_parameters": 173824
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.021240234375,
+        "final_avg_forgetting": 0.563818359375,
+        "final_avg_forgetting_from_learning": 0.563818359375,
+        "final_avg_bwt": -0.70477294921875,
+        "final_avg_learning_accuracy": 0.58505859375,
+        "final_plasticity": 0.106201171875,
+        "final_plasticity_drop_from_stage_0": 0.893798828125,
+        "final_avg_plasticity_drop_from_stage_0": 0.41494140625,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": 0.0,
+        "final_train_loss": 2.8897933959960938,
+        "final_rmt_memory_norm": null,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.106201171875
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 0.544189453125,
+          "2": 0.7744140625,
+          "3": 0.50048828125,
+          "4": 0.106201171875
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -0.544189453125,
+          "2": -0.7744140625,
+          "3": -0.50048828125,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.544189453125,
+          "2": 0.7744140625,
+          "3": 0.50048828125,
+          "4": 0.0
+        },
+        "num_log_records": 1289
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "5stage"
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 789,
+      "run_id": "base_rmt_nmem4-class-incremental-ar-5stage-seed789",
+      "model_info": {
+        "num_parameters": 174336
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.9322265625,
+        "final_avg_forgetting": 0.0677734375,
+        "final_avg_forgetting_from_learning": 0.0677734375,
+        "final_avg_bwt": -0.084716796875,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_plasticity_drop_from_stage_0": 0.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.0,
+        "final_avg_fwt_from_random": -0.05927734375,
+        "final_avg_fwt_from_initial": 0.00322265625,
+        "final_train_loss": 0.7740775942802429,
+        "final_rmt_memory_norm": 13.839048385620117,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.678955078125,
+          "1": 0.982177734375,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.321044921875,
+          "1": -0.017822265625,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.321044921875,
+          "1": 0.017822265625,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 1289
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "5stage"
+      },
+      "model_name": "fmrmt_stable_lr0p005_slow4",
+      "seed": 789,
+      "run_id": "fmrmt_stable_lr0p005_slow4-class-incremental-ar-5stage-seed789",
+      "model_info": {
+        "num_parameters": 175104
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.9486328125,
+        "final_avg_forgetting": 0.01298828125,
+        "final_avg_forgetting_from_learning": 0.01298828125,
+        "final_avg_bwt": -0.0162353515625,
+        "final_avg_learning_accuracy": 0.96162109375,
+        "final_plasticity": 0.80810546875,
+        "final_plasticity_drop_from_stage_0": 0.19189453125,
+        "final_avg_plasticity_drop_from_stage_0": 0.03837890625,
+        "final_avg_fwt_from_random": -0.062451171875,
+        "final_avg_fwt_from_initial": 4.8828125e-05,
+        "final_train_loss": 4.7438459396362305,
+        "final_rmt_memory_norm": 0.2569204866886139,
+        "final_rmt_memory_update_norm": 8.406742563238367e-05,
+        "final_rmt_memory_grad_norm": 0.016813484951853752,
+        "stage_accuracy": {
+          "0": 0.93505859375,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 0.80810546875
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 0.80810546875
+        },
+        "stage_bwt": {
+          "0": -0.06494140625,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.06494140625,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 1289
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "10stage"
+      },
+      "model_name": "attention",
+      "seed": 123,
+      "run_id": "attention-class-incremental-ar-10stage-seed123",
+      "model_info": {
+        "num_parameters": 173824
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.0044921875,
+        "final_avg_forgetting": 0.534326171875,
+        "final_avg_forgetting_from_learning": 0.534326171875,
+        "final_avg_bwt": -0.5936957465277778,
+        "final_avg_learning_accuracy": 0.538818359375,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.461181640625,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": -0.000439453125,
+        "final_train_loss": 5.006206035614014,
+        "final_rmt_memory_norm": null,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.01220703125,
+          "4": 0.03271484375,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 0.994873046875,
+          "2": 1.0,
+          "3": 0.999755859375,
+          "4": 1.0,
+          "5": 0.101806640625,
+          "6": 0.15625,
+          "7": 0.06005859375,
+          "8": 0.075439453125,
+          "9": 0.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -0.994873046875,
+          "2": -1.0,
+          "3": -0.987548828125,
+          "4": -0.96728515625,
+          "5": -0.101806640625,
+          "6": -0.15625,
+          "7": -0.06005859375,
+          "8": -0.075439453125,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.994873046875,
+          "2": 1.0,
+          "3": 0.987548828125,
+          "4": 0.96728515625,
+          "5": 0.101806640625,
+          "6": 0.15625,
+          "7": 0.06005859375,
+          "8": 0.075439453125,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "10stage"
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 123,
+      "run_id": "base_rmt_nmem4-class-incremental-ar-10stage-seed123",
+      "model_info": {
+        "num_parameters": 174336
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.9080078125,
+        "final_avg_forgetting": 0.0919921875,
+        "final_avg_forgetting_from_learning": 0.0919921875,
+        "final_avg_bwt": -0.10221354166666667,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_plasticity_drop_from_stage_0": 0.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.0,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": -0.000146484375,
+        "final_train_loss": 3.3910059928894043,
+        "final_rmt_memory_norm": 9.514066696166992,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.418212890625,
+          "1": 0.661865234375,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.581787109375,
+          "1": -0.338134765625,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.581787109375,
+          "1": 0.338134765625,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "10stage"
+      },
+      "model_name": "fmrmt_stable_lr0p005_slow4",
+      "seed": 123,
+      "run_id": "fmrmt_stable_lr0p005_slow4-class-incremental-ar-10stage-seed123",
+      "model_info": {
+        "num_parameters": 175104
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.854443359375,
+        "final_avg_forgetting": 0.045556640625,
+        "final_avg_forgetting_from_learning": 0.045556640625,
+        "final_avg_bwt": -0.050618489583333336,
+        "final_avg_learning_accuracy": 0.9,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.1,
+        "final_avg_fwt_from_random": -0.0615478515625,
+        "final_avg_fwt_from_initial": 0.0008056640625,
+        "final_train_loss": 6.083487033843994,
+        "final_rmt_memory_norm": 0.3611305356025696,
+        "final_rmt_memory_update_norm": 0.00020494541968218982,
+        "final_rmt_memory_grad_norm": 0.04098908603191376,
+        "stage_accuracy": {
+          "0": 0.671875,
+          "1": 0.995361328125,
+          "2": 0.877197265625,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 0.0
+        },
+        "stage_bwt": {
+          "0": -0.328125,
+          "1": -0.004638671875,
+          "2": -0.122802734375,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.328125,
+          "1": 0.004638671875,
+          "2": 0.122802734375,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "10stage"
+      },
+      "model_name": "attention",
+      "seed": 456,
+      "run_id": "attention-class-incremental-ar-10stage-seed456",
+      "model_info": {
+        "num_parameters": 173824
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.01435546875,
+        "final_avg_forgetting": 0.552685546875,
+        "final_avg_forgetting_from_learning": 0.552685546875,
+        "final_avg_bwt": -0.6140950520833334,
+        "final_avg_learning_accuracy": 0.567041015625,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.432958984375,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": 0.0,
+        "final_train_loss": 5.356861114501953,
+        "final_rmt_memory_norm": null,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.07177734375,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0478515625,
+          "7": 0.02392578125,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 0.998291015625,
+          "2": 1.0,
+          "3": 0.999755859375,
+          "4": 0.707763671875,
+          "5": 0.065185546875,
+          "6": 0.39892578125,
+          "7": 0.284423828125,
+          "8": 0.216064453125,
+          "9": 0.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -0.998291015625,
+          "2": -0.92822265625,
+          "3": -0.999755859375,
+          "4": -0.707763671875,
+          "5": -0.065185546875,
+          "6": -0.35107421875,
+          "7": -0.260498046875,
+          "8": -0.216064453125,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.998291015625,
+          "2": 0.92822265625,
+          "3": 0.999755859375,
+          "4": 0.707763671875,
+          "5": 0.065185546875,
+          "6": 0.35107421875,
+          "7": 0.260498046875,
+          "8": 0.216064453125,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "10stage"
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 456,
+      "run_id": "base_rmt_nmem4-class-incremental-ar-10stage-seed456",
+      "model_info": {
+        "num_parameters": 174336
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.9275390625,
+        "final_avg_forgetting": 0.0724609375,
+        "final_avg_forgetting_from_learning": 0.0724609375,
+        "final_avg_bwt": -0.08051215277777778,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_plasticity_drop_from_stage_0": 0.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.0,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": -0.0002197265625,
+        "final_train_loss": 3.218200445175171,
+        "final_rmt_memory_norm": 34.482669830322266,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.560791015625,
+          "1": 1.0,
+          "2": 0.716064453125,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 0.99853515625,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.439208984375,
+          "1": 0.0,
+          "2": -0.283935546875,
+          "3": 0.0,
+          "4": 0.0,
+          "5": -0.00146484375,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.439208984375,
+          "1": 0.0,
+          "2": 0.283935546875,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.00146484375,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "10stage"
+      },
+      "model_name": "fmrmt_stable_lr0p005_slow4",
+      "seed": 456,
+      "run_id": "fmrmt_stable_lr0p005_slow4-class-incremental-ar-10stage-seed456",
+      "model_info": {
+        "num_parameters": 175104
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.88720703125,
+        "final_avg_forgetting": 0.01279296875,
+        "final_avg_forgetting_from_learning": 0.01279296875,
+        "final_avg_bwt": -0.014214409722222222,
+        "final_avg_learning_accuracy": 0.9,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.1,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": -0.0002197265625,
+        "final_train_loss": 6.004725933074951,
+        "final_rmt_memory_norm": 0.33708322048187256,
+        "final_rmt_memory_update_norm": 0.0001412287529092282,
+        "final_rmt_memory_grad_norm": 0.028245748952031136,
+        "stage_accuracy": {
+          "0": 0.8720703125,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 0.0
+        },
+        "stage_bwt": {
+          "0": -0.1279296875,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.1279296875,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "10stage"
+      },
+      "model_name": "attention",
+      "seed": 789,
+      "run_id": "attention-class-incremental-ar-10stage-seed789",
+      "model_info": {
+        "num_parameters": 173824
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.0181884765625,
+        "final_avg_forgetting": 0.550048828125,
+        "final_avg_forgetting_from_learning": 0.550048828125,
+        "final_avg_bwt": -0.6094021267361112,
+        "final_avg_learning_accuracy": 0.566650390625,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.433349609375,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": 0.0,
+        "final_train_loss": 7.5746283531188965,
+        "final_rmt_memory_norm": null,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.000244140625,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.181640625,
+          "9": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 0.74951171875,
+          "2": 0.997314453125,
+          "3": 0.79248046875,
+          "4": 0.684814453125,
+          "5": 0.7421875,
+          "6": 0.430908203125,
+          "7": 0.103515625,
+          "8": 0.165771484375,
+          "9": 0.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -0.74951171875,
+          "2": -0.9970703125,
+          "3": -0.79248046875,
+          "4": -0.684814453125,
+          "5": -0.7421875,
+          "6": -0.430908203125,
+          "7": -0.103515625,
+          "8": 0.015869140625,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.74951171875,
+          "2": 0.9970703125,
+          "3": 0.79248046875,
+          "4": 0.684814453125,
+          "5": 0.7421875,
+          "6": 0.430908203125,
+          "7": 0.103515625,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "10stage"
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 789,
+      "run_id": "base_rmt_nmem4-class-incremental-ar-10stage-seed789",
+      "model_info": {
+        "num_parameters": 174336
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.87412109375,
+        "final_avg_forgetting": 0.12587890625,
+        "final_avg_forgetting_from_learning": 0.12587890625,
+        "final_avg_bwt": -0.1398654513888889,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_plasticity_drop_from_stage_0": 0.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.0,
+        "final_avg_fwt_from_random": -0.060888671875,
+        "final_avg_fwt_from_initial": 0.001611328125,
+        "final_train_loss": 3.284764051437378,
+        "final_rmt_memory_norm": 8.138591766357422,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.18115234375,
+          "1": 0.896728515625,
+          "2": 1.0,
+          "3": 0.95751953125,
+          "4": 0.705810546875,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.81884765625,
+          "1": -0.103271484375,
+          "2": 0.0,
+          "3": -0.04248046875,
+          "4": -0.294189453125,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.81884765625,
+          "1": 0.103271484375,
+          "2": 0.0,
+          "3": 0.04248046875,
+          "4": 0.294189453125,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "10stage"
+      },
+      "model_name": "fmrmt_stable_lr0p005_slow4",
+      "seed": 789,
+      "run_id": "fmrmt_stable_lr0p005_slow4-class-incremental-ar-10stage-seed789",
+      "model_info": {
+        "num_parameters": 175104
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.8824462890625,
+        "final_avg_forgetting": 0.0175537109375,
+        "final_avg_forgetting_from_learning": 0.0175537109375,
+        "final_avg_bwt": -0.019504123263888888,
+        "final_avg_learning_accuracy": 0.9,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.1,
+        "final_avg_fwt_from_random": -0.0624755859375,
+        "final_avg_fwt_from_initial": 2.44140625e-05,
+        "final_train_loss": 6.156070709228516,
+        "final_rmt_memory_norm": 0.26639270782470703,
+        "final_rmt_memory_update_norm": 9.092130494536832e-05,
+        "final_rmt_memory_grad_norm": 0.01818426139652729,
+        "stage_accuracy": {
+          "0": 0.824462890625,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 0.0
+        },
+        "stage_bwt": {
+          "0": -0.175537109375,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.175537109375,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 20,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "20stage"
+      },
+      "model_name": "attention",
+      "seed": 123,
+      "run_id": "attention-class-incremental-ar-20stage-seed123",
+      "model_info": {
+        "num_parameters": 173824
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.00765380859375,
+        "final_avg_forgetting": 0.43525390625,
+        "final_avg_forgetting_from_learning": 0.43525390625,
+        "final_avg_bwt": -0.45816200657894735,
+        "final_avg_learning_accuracy": 0.44290771484375,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.55709228515625,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": -0.00023193359375,
+        "final_train_loss": 6.637904644012451,
+        "final_rmt_memory_norm": null,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0,
+          "10": 0.000244140625,
+          "11": 0.0,
+          "12": 0.123291015625,
+          "13": 0.0,
+          "14": 0.0,
+          "15": 0.029541015625,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 0.993896484375,
+          "2": 0.809326171875,
+          "3": 0.67578125,
+          "4": 0.169189453125,
+          "5": 0.999267578125,
+          "6": 0.99462890625,
+          "7": 0.0634765625,
+          "8": 0.11181640625,
+          "9": 0.20263671875,
+          "10": 0.732421875,
+          "11": 0.5556640625,
+          "12": 0.971923828125,
+          "13": 0.05908203125,
+          "14": 0.164794921875,
+          "15": 0.224365234375,
+          "16": 0.065673828125,
+          "17": 0.064208984375,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -0.993896484375,
+          "2": -0.809326171875,
+          "3": -0.67578125,
+          "4": -0.169189453125,
+          "5": -0.999267578125,
+          "6": -0.99462890625,
+          "7": -0.0634765625,
+          "8": -0.11181640625,
+          "9": -0.20263671875,
+          "10": -0.732177734375,
+          "11": -0.5556640625,
+          "12": -0.8486328125,
+          "13": -0.05908203125,
+          "14": -0.164794921875,
+          "15": -0.19482421875,
+          "16": -0.065673828125,
+          "17": -0.064208984375,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.993896484375,
+          "2": 0.809326171875,
+          "3": 0.67578125,
+          "4": 0.169189453125,
+          "5": 0.999267578125,
+          "6": 0.99462890625,
+          "7": 0.0634765625,
+          "8": 0.11181640625,
+          "9": 0.20263671875,
+          "10": 0.732177734375,
+          "11": 0.5556640625,
+          "12": 0.8486328125,
+          "13": 0.05908203125,
+          "14": 0.164794921875,
+          "15": 0.19482421875,
+          "16": 0.065673828125,
+          "17": 0.064208984375,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "num_log_records": 5159
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 20,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "20stage"
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 123,
+      "run_id": "base_rmt_nmem4-class-incremental-ar-20stage-seed123",
+      "model_info": {
+        "num_parameters": 174336
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.82642822265625,
+        "final_avg_forgetting": 0.12357177734375,
+        "final_avg_forgetting_from_learning": 0.12357177734375,
+        "final_avg_bwt": -0.1300755550986842,
+        "final_avg_learning_accuracy": 0.95,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.05,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": -7.32421875e-05,
+        "final_train_loss": 6.214230537414551,
+        "final_rmt_memory_norm": 5.994054794311523,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.1923828125,
+          "1": 0.2265625,
+          "2": 0.31982421875,
+          "3": 0.8525390625,
+          "4": 1.0,
+          "5": 0.937255859375,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0,
+          "10": 1.0,
+          "11": 1.0,
+          "12": 1.0,
+          "13": 1.0,
+          "14": 1.0,
+          "15": 1.0,
+          "16": 1.0,
+          "17": 1.0,
+          "18": 1.0,
+          "19": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0,
+          "10": 1.0,
+          "11": 1.0,
+          "12": 1.0,
+          "13": 1.0,
+          "14": 1.0,
+          "15": 1.0,
+          "16": 1.0,
+          "17": 1.0,
+          "18": 1.0,
+          "19": 0.0
+        },
+        "stage_bwt": {
+          "0": -0.8076171875,
+          "1": -0.7734375,
+          "2": -0.68017578125,
+          "3": -0.1474609375,
+          "4": 0.0,
+          "5": -0.062744140625,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0,
+          "10": 0.0,
+          "11": 0.0,
+          "12": 0.0,
+          "13": 0.0,
+          "14": 0.0,
+          "15": 0.0,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.8076171875,
+          "1": 0.7734375,
+          "2": 0.68017578125,
+          "3": 0.1474609375,
+          "4": 0.0,
+          "5": 0.062744140625,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0,
+          "10": 0.0,
+          "11": 0.0,
+          "12": 0.0,
+          "13": 0.0,
+          "14": 0.0,
+          "15": 0.0,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "num_log_records": 5159
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 20,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "20stage"
+      },
+      "model_name": "fmrmt_stable_lr0p005_slow4",
+      "seed": 123,
+      "run_id": "fmrmt_stable_lr0p005_slow4-class-incremental-ar-20stage-seed123",
+      "model_info": {
+        "num_parameters": 175104
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.848095703125,
+        "final_avg_forgetting": 0.051904296875,
+        "final_avg_forgetting_from_learning": 0.051904296875,
+        "final_avg_bwt": -0.05463610197368421,
+        "final_avg_learning_accuracy": 0.9,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.1,
+        "final_avg_fwt_from_random": -0.06202392578125,
+        "final_avg_fwt_from_initial": 0.00040283203125,
+        "final_train_loss": 6.936953067779541,
+        "final_rmt_memory_norm": 0.44744065403938293,
+        "final_rmt_memory_update_norm": 0.00039470146293751895,
+        "final_rmt_memory_grad_norm": 0.07894029468297958,
+        "stage_accuracy": {
+          "0": 0.477783203125,
+          "1": 0.934814453125,
+          "2": 0.54931640625,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0,
+          "10": 1.0,
+          "11": 1.0,
+          "12": 1.0,
+          "13": 1.0,
+          "14": 1.0,
+          "15": 1.0,
+          "16": 1.0,
+          "17": 1.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0,
+          "10": 1.0,
+          "11": 1.0,
+          "12": 1.0,
+          "13": 1.0,
+          "14": 1.0,
+          "15": 1.0,
+          "16": 1.0,
+          "17": 1.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_bwt": {
+          "0": -0.522216796875,
+          "1": -0.065185546875,
+          "2": -0.45068359375,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0,
+          "10": 0.0,
+          "11": 0.0,
+          "12": 0.0,
+          "13": 0.0,
+          "14": 0.0,
+          "15": 0.0,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.522216796875,
+          "1": 0.065185546875,
+          "2": 0.45068359375,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0,
+          "10": 0.0,
+          "11": 0.0,
+          "12": 0.0,
+          "13": 0.0,
+          "14": 0.0,
+          "15": 0.0,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "num_log_records": 5159
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 20,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "20stage"
+      },
+      "model_name": "attention",
+      "seed": 456,
+      "run_id": "attention-class-incremental-ar-20stage-seed456",
+      "model_info": {
+        "num_parameters": 173824
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.0069580078125,
+        "final_avg_forgetting": 0.48056640625,
+        "final_avg_forgetting_from_learning": 0.48056640625,
+        "final_avg_bwt": -0.505859375,
+        "final_avg_learning_accuracy": 0.4875244140625,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.5124755859375,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": 0.0,
+        "final_train_loss": 6.398214340209961,
+        "final_rmt_memory_norm": null,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.00390625,
+          "7": 0.0,
+          "8": 0.02294921875,
+          "9": 0.0,
+          "10": 0.0,
+          "11": 0.0,
+          "12": 0.0,
+          "13": 0.1123046875,
+          "14": 0.0,
+          "15": 0.0,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 0.999267578125,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 0.950439453125,
+          "6": 0.69384765625,
+          "7": 0.12890625,
+          "8": 0.843505859375,
+          "9": 0.697509765625,
+          "10": 0.06591796875,
+          "11": 0.40283203125,
+          "12": 0.05908203125,
+          "13": 0.654541015625,
+          "14": 0.06494140625,
+          "15": 0.063720703125,
+          "16": 0.0625,
+          "17": 0.0634765625,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -1.0,
+          "2": -0.999267578125,
+          "3": -1.0,
+          "4": -1.0,
+          "5": -0.950439453125,
+          "6": -0.68994140625,
+          "7": -0.12890625,
+          "8": -0.820556640625,
+          "9": -0.697509765625,
+          "10": -0.06591796875,
+          "11": -0.40283203125,
+          "12": -0.05908203125,
+          "13": -0.542236328125,
+          "14": -0.06494140625,
+          "15": -0.063720703125,
+          "16": -0.0625,
+          "17": -0.0634765625,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 0.999267578125,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 0.950439453125,
+          "6": 0.68994140625,
+          "7": 0.12890625,
+          "8": 0.820556640625,
+          "9": 0.697509765625,
+          "10": 0.06591796875,
+          "11": 0.40283203125,
+          "12": 0.05908203125,
+          "13": 0.542236328125,
+          "14": 0.06494140625,
+          "15": 0.063720703125,
+          "16": 0.0625,
+          "17": 0.0634765625,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "num_log_records": 5159
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 20,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "20stage"
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 456,
+      "run_id": "base_rmt_nmem4-class-incremental-ar-20stage-seed456",
+      "model_info": {
+        "num_parameters": 174336
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.74373779296875,
+        "final_avg_forgetting": 0.20626220703125,
+        "final_avg_forgetting_from_learning": 0.20626220703125,
+        "final_avg_bwt": -0.21711811266447367,
+        "final_avg_learning_accuracy": 0.95,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.05,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": -0.000146484375,
+        "final_train_loss": 6.1828484535217285,
+        "final_rmt_memory_norm": 7.419919013977051,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.064208984375,
+          "1": 0.626708984375,
+          "2": 0.24072265625,
+          "3": 0.624267578125,
+          "4": 0.811279296875,
+          "5": 0.3681640625,
+          "6": 0.31494140625,
+          "7": 0.944580078125,
+          "8": 0.8798828125,
+          "9": 1.0,
+          "10": 1.0,
+          "11": 1.0,
+          "12": 1.0,
+          "13": 1.0,
+          "14": 1.0,
+          "15": 1.0,
+          "16": 1.0,
+          "17": 1.0,
+          "18": 1.0,
+          "19": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0,
+          "10": 1.0,
+          "11": 1.0,
+          "12": 1.0,
+          "13": 1.0,
+          "14": 1.0,
+          "15": 1.0,
+          "16": 1.0,
+          "17": 1.0,
+          "18": 1.0,
+          "19": 0.0
+        },
+        "stage_bwt": {
+          "0": -0.935791015625,
+          "1": -0.373291015625,
+          "2": -0.75927734375,
+          "3": -0.375732421875,
+          "4": -0.188720703125,
+          "5": -0.6318359375,
+          "6": -0.68505859375,
+          "7": -0.055419921875,
+          "8": -0.1201171875,
+          "9": 0.0,
+          "10": 0.0,
+          "11": 0.0,
+          "12": 0.0,
+          "13": 0.0,
+          "14": 0.0,
+          "15": 0.0,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.935791015625,
+          "1": 0.373291015625,
+          "2": 0.75927734375,
+          "3": 0.375732421875,
+          "4": 0.188720703125,
+          "5": 0.6318359375,
+          "6": 0.68505859375,
+          "7": 0.055419921875,
+          "8": 0.1201171875,
+          "9": 0.0,
+          "10": 0.0,
+          "11": 0.0,
+          "12": 0.0,
+          "13": 0.0,
+          "14": 0.0,
+          "15": 0.0,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "num_log_records": 5159
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 20,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "20stage"
+      },
+      "model_name": "fmrmt_stable_lr0p005_slow4",
+      "seed": 456,
+      "run_id": "fmrmt_stable_lr0p005_slow4-class-incremental-ar-20stage-seed456",
+      "model_info": {
+        "num_parameters": 175104
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.8901123046875,
+        "final_avg_forgetting": 0.0098876953125,
+        "final_avg_forgetting_from_learning": 0.0098876953125,
+        "final_avg_bwt": -0.010395250822368422,
+        "final_avg_learning_accuracy": 0.89998779296875,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.10001220703125,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": -0.000146484375,
+        "final_train_loss": 6.971600532531738,
+        "final_rmt_memory_norm": 0.34663376212120056,
+        "final_rmt_memory_update_norm": 0.00030806384165771306,
+        "final_rmt_memory_grad_norm": 0.06161276996135712,
+        "stage_accuracy": {
+          "0": 0.933349609375,
+          "1": 1.0,
+          "2": 0.868896484375,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0,
+          "10": 1.0,
+          "11": 1.0,
+          "12": 1.0,
+          "13": 1.0,
+          "14": 1.0,
+          "15": 1.0,
+          "16": 1.0,
+          "17": 1.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0,
+          "10": 1.0,
+          "11": 1.0,
+          "12": 1.0,
+          "13": 1.0,
+          "14": 1.0,
+          "15": 1.0,
+          "16": 1.0,
+          "17": 0.999755859375,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_bwt": {
+          "0": -0.066650390625,
+          "1": 0.0,
+          "2": -0.131103515625,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0,
+          "10": 0.0,
+          "11": 0.0,
+          "12": 0.0,
+          "13": 0.0,
+          "14": 0.0,
+          "15": 0.0,
+          "16": 0.0,
+          "17": 0.000244140625,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.066650390625,
+          "1": 0.0,
+          "2": 0.131103515625,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0,
+          "10": 0.0,
+          "11": 0.0,
+          "12": 0.0,
+          "13": 0.0,
+          "14": 0.0,
+          "15": 0.0,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "num_log_records": 5159
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 20,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "20stage"
+      },
+      "model_name": "attention",
+      "seed": 789,
+      "run_id": "attention-class-incremental-ar-20stage-seed789",
+      "model_info": {
+        "num_parameters": 173824
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.00958251953125,
+        "final_avg_forgetting": 0.671337890625,
+        "final_avg_forgetting_from_learning": 0.671337890625,
+        "final_avg_bwt": -0.7066714638157895,
+        "final_avg_learning_accuracy": 0.68092041015625,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.31907958984375,
+        "final_avg_fwt_from_random": -0.0625,
+        "final_avg_fwt_from_initial": -3.662109375e-05,
+        "final_train_loss": 6.6649932861328125,
+        "final_rmt_memory_norm": null,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.001953125,
+          "10": 0.0,
+          "11": 0.0029296875,
+          "12": 0.00537109375,
+          "13": 0.01904296875,
+          "14": 0.060302734375,
+          "15": 0.10205078125,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 0.19873046875,
+          "2": 0.99951171875,
+          "3": 0.9365234375,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 0.925048828125,
+          "7": 0.998046875,
+          "8": 1.0,
+          "9": 1.0,
+          "10": 0.997802734375,
+          "11": 0.999755859375,
+          "12": 0.639892578125,
+          "13": 1.0,
+          "14": 0.237060546875,
+          "15": 0.31884765625,
+          "16": 0.30322265625,
+          "17": 0.060302734375,
+          "18": 0.003662109375,
+          "19": 0.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -0.19873046875,
+          "2": -0.99951171875,
+          "3": -0.9365234375,
+          "4": -1.0,
+          "5": -1.0,
+          "6": -0.925048828125,
+          "7": -0.998046875,
+          "8": -1.0,
+          "9": -0.998046875,
+          "10": -0.997802734375,
+          "11": -0.996826171875,
+          "12": -0.634521484375,
+          "13": -0.98095703125,
+          "14": -0.1767578125,
+          "15": -0.216796875,
+          "16": -0.30322265625,
+          "17": -0.060302734375,
+          "18": -0.003662109375,
+          "19": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.19873046875,
+          "2": 0.99951171875,
+          "3": 0.9365234375,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 0.925048828125,
+          "7": 0.998046875,
+          "8": 1.0,
+          "9": 0.998046875,
+          "10": 0.997802734375,
+          "11": 0.996826171875,
+          "12": 0.634521484375,
+          "13": 0.98095703125,
+          "14": 0.1767578125,
+          "15": 0.216796875,
+          "16": 0.30322265625,
+          "17": 0.060302734375,
+          "18": 0.003662109375,
+          "19": 0.0
+        },
+        "num_log_records": 5159
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 20,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "20stage"
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 789,
+      "run_id": "base_rmt_nmem4-class-incremental-ar-20stage-seed789",
+      "model_info": {
+        "num_parameters": 174336
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.79764404296875,
+        "final_avg_forgetting": 0.15235595703125,
+        "final_avg_forgetting_from_learning": 0.15235595703125,
+        "final_avg_bwt": -0.16037469161184212,
+        "final_avg_learning_accuracy": 0.95,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.05,
+        "final_avg_fwt_from_random": -0.0616943359375,
+        "final_avg_fwt_from_initial": 0.0008056640625,
+        "final_train_loss": 6.190281391143799,
+        "final_rmt_memory_norm": 6.27479362487793,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.015380859375,
+          "1": 0.0439453125,
+          "2": 0.34765625,
+          "3": 0.93701171875,
+          "4": 1.0,
+          "5": 0.869384765625,
+          "6": 0.882568359375,
+          "7": 0.983154296875,
+          "8": 0.873779296875,
+          "9": 1.0,
+          "10": 1.0,
+          "11": 1.0,
+          "12": 1.0,
+          "13": 1.0,
+          "14": 1.0,
+          "15": 1.0,
+          "16": 1.0,
+          "17": 1.0,
+          "18": 1.0,
+          "19": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0,
+          "10": 1.0,
+          "11": 1.0,
+          "12": 1.0,
+          "13": 1.0,
+          "14": 1.0,
+          "15": 1.0,
+          "16": 1.0,
+          "17": 1.0,
+          "18": 1.0,
+          "19": 0.0
+        },
+        "stage_bwt": {
+          "0": -0.984619140625,
+          "1": -0.9560546875,
+          "2": -0.65234375,
+          "3": -0.06298828125,
+          "4": 0.0,
+          "5": -0.130615234375,
+          "6": -0.117431640625,
+          "7": -0.016845703125,
+          "8": -0.126220703125,
+          "9": 0.0,
+          "10": 0.0,
+          "11": 0.0,
+          "12": 0.0,
+          "13": 0.0,
+          "14": 0.0,
+          "15": 0.0,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.984619140625,
+          "1": 0.9560546875,
+          "2": 0.65234375,
+          "3": 0.06298828125,
+          "4": 0.0,
+          "5": 0.130615234375,
+          "6": 0.117431640625,
+          "7": 0.016845703125,
+          "8": 0.126220703125,
+          "9": 0.0,
+          "10": 0.0,
+          "11": 0.0,
+          "12": 0.0,
+          "13": 0.0,
+          "14": 0.0,
+          "15": 0.0,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "num_log_records": 5159
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_horizon",
+      "condition": {
+        "num_stages": 20,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "20stage"
+      },
+      "model_name": "fmrmt_stable_lr0p005_slow4",
+      "seed": 789,
+      "run_id": "fmrmt_stable_lr0p005_slow4-class-incremental-ar-20stage-seed789",
+      "model_info": {
+        "num_parameters": 175104
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.89681396484375,
+        "final_avg_forgetting": 0.00318603515625,
+        "final_avg_forgetting_from_learning": 0.00318603515625,
+        "final_avg_bwt": -0.003353721217105263,
+        "final_avg_learning_accuracy": 0.9,
+        "final_plasticity": 0.0,
+        "final_plasticity_drop_from_stage_0": 1.0,
+        "final_avg_plasticity_drop_from_stage_0": 0.1,
+        "final_avg_fwt_from_random": -0.06248779296875,
+        "final_avg_fwt_from_initial": 1.220703125e-05,
+        "final_train_loss": 6.958662033081055,
+        "final_rmt_memory_norm": 0.2614232301712036,
+        "final_rmt_memory_update_norm": 0.00021057750564068556,
+        "final_rmt_memory_grad_norm": 0.042115502059459686,
+        "stage_accuracy": {
+          "0": 0.936279296875,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0,
+          "10": 1.0,
+          "11": 1.0,
+          "12": 1.0,
+          "13": 1.0,
+          "14": 1.0,
+          "15": 1.0,
+          "16": 1.0,
+          "17": 1.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0,
+          "10": 1.0,
+          "11": 1.0,
+          "12": 1.0,
+          "13": 1.0,
+          "14": 1.0,
+          "15": 1.0,
+          "16": 1.0,
+          "17": 1.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_bwt": {
+          "0": -0.063720703125,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0,
+          "10": 0.0,
+          "11": 0.0,
+          "12": 0.0,
+          "13": 0.0,
+          "14": 0.0,
+          "15": 0.0,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.063720703125,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0,
+          "10": 0.0,
+          "11": 0.0,
+          "12": 0.0,
+          "13": 0.0,
+          "14": 0.0,
+          "15": 0.0,
+          "16": 0.0,
+          "17": 0.0,
+          "18": 0.0,
+          "19": 0.0
+        },
+        "num_log_records": 5159
+      }
+    }
+  ]
+}

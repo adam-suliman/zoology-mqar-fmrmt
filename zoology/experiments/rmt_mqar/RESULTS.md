@@ -4,6 +4,11 @@ This file tracks the important local results for the RMT/MQAR work. The raw
 artifacts live in `results/`; this report is the hand-curated summary we can
 update after each meaningful run.
 
+Note: class-incremental AR results before 2026-05-13 used cumulative-prefix test
+splits. Current formal CL runs use stage-local test splits so plasticity, BWT,
+and forgetting are not conflated. Treat the older cumulative-prefix tables as
+historical architecture probes, not directly comparable formal CL metrics.
+
 ## Metric Notes
 
 - `final cumulative accuracy`: accuracy on the final class-incremental test
@@ -12,10 +17,67 @@ update after each meaningful run.
   training stage.
 - `avg forgetting`: mean drop from each stage's best historical accuracy to its
   final accuracy.
+- `plasticity`: current-stage accuracy immediately after training that stage.
+- `BWT`: final old-stage accuracy minus the accuracy immediately after that
+  stage was learned; negative values indicate forgetting.
 - For class-incremental AR with 5 stages and 16 values per stage, final random
-  accuracy is `1 / (5 * 16) = 0.0125`.
+  cumulative-prefix accuracy is `1 / (5 * 16) = 0.0125`; stage-local random
+  accuracy is `1 / 16 = 0.0625`.
 
-## Current Best Result
+## Formal Class-Incremental AR CL Metrics
+
+Source: `results/class_incremental_ar_formal_cl_20260513_022211.json`
+
+Setup:
+
+- Task: class-incremental associative retrieval with stage-local test splits.
+- Stages: 5.
+- New associations per stage: 16.
+- Queries per sequence: 8.
+- Sequence length: 128.
+- Train examples per stage: 4096.
+- Test examples per stage: 1024.
+- Epochs per stage: 16.
+- Seeds: 123, 456, 789.
+- Segment length for RMT variants: 64.
+- `evaluate_future_stages=True`.
+- Stage-local random accuracy: 0.0625.
+
+| Model | Final Seen Avg Accuracy | Avg Learning Accuracy | Final Plasticity | Avg BWT | Forgetting From Learning |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| FMRMT n_mem=8, lr=0.005, slow_freq=4, epoch reset | 0.8501 +/- 0.0488 | 1.0000 +/- 0.0000 | 1.0000 +/- 0.0000 | -0.1874 +/- 0.0609 | 0.1499 +/- 0.0488 |
+| Base RMT n_mem=4 | 0.8081 +/- 0.0147 | 1.0000 +/- 0.0000 | 1.0000 +/- 0.0000 | -0.2399 +/- 0.0183 | 0.1919 +/- 0.0147 |
+| Transformer/MHA | 0.1321 +/- 0.1024 | 0.8925 +/- 0.0713 | 0.4832 +/- 0.3324 | -0.9504 +/- 0.0455 | 0.7604 +/- 0.0364 |
+
+Final stage-local accuracies after all training:
+
+| Model | Stage 0 | Stage 1 | Stage 2 | Stage 3 | Stage 4 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| FMRMT n_mem=8, lr=0.005, slow_freq=4 | 0.3011 | 0.9997 | 0.9495 | 1.0000 | 1.0000 |
+| Base RMT n_mem=4 | 0.0416 | 1.0000 | 0.9987 | 1.0000 | 1.0000 |
+| Transformer/MHA | 0.0000 | 0.0000 | 0.0148 | 0.1627 | 0.4832 |
+
+Learning-time stage accuracies:
+
+| Model | Stage 0 | Stage 1 | Stage 2 | Stage 3 | Stage 4 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| FMRMT n_mem=8, lr=0.005, slow_freq=4 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
+| Base RMT n_mem=4 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
+| Transformer/MHA | 1.0000 | 1.0000 | 0.9851 | 0.9941 | 0.4832 |
+
+Interpretation:
+
+- Base RMT and FMRMT show no loss of plasticity in this 5-stage setting: each
+  newly introduced stage reaches 1.0 accuracy immediately after training.
+- Their difference is retention. FMRMT has higher final seen accuracy and less
+  negative BWT than Base RMT, mostly because it retains stage 0 better.
+- Transformer/MHA shows both severe forgetting and emerging plasticity failure:
+  it learns early stages initially, then forgets them, and its final-stage
+  plasticity drops sharply.
+- FWT is essentially zero or below random for all models, so this setup does not
+  show positive forward transfer.
+
+## Historical Cumulative-Prefix Class-Incremental Result
 
 Source: `results/best_arch_class_incremental_ar_20260511_200731.json`
 
