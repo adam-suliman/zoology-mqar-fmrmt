@@ -144,6 +144,11 @@ class TrainConfig(BaseConfig):
     logger: LoggerConfig = LoggerConfig()
 
     max_epochs: int = 100
+
+    # Per-batch training metric logging interval. Set to 0 to disable batch logs.
+    # Epoch and stage summary metrics are still logged.
+    train_log_interval: int = 1
+
     loss_type: Literal["ce", "mse", "ce_embed"] = "ce"
     input_type: Literal["discrete", "continuous"] = "discrete"
 
@@ -166,3 +171,7 @@ class ContinualTrainConfig(TrainConfig):
     data: ContinualDataConfig
     training_mode: Literal["continual"] = "continual"
     evaluate_future_stages: bool = False
+
+    # Log current-stage validation curves during continual training. Stage-end
+    # evaluation still computes all seen-stage CL metrics. Set <= 0 to disable.
+    continual_epoch_eval_interval: int = 1

@@ -1,0 +1,3304 @@
+{
+  "created_at": "2026-05-17T04:06:09",
+  "experiment": "class_incremental_ar_base_rmt_memory_sweep_formal_cl",
+  "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+  "setup": {
+    "cuda_visible_devices": "0",
+    "cuda_available": true,
+    "cuda_device_name": "NVIDIA GeForce GTX 1080 Ti",
+    "seeds": [
+      123,
+      456,
+      789
+    ],
+    "n_mems": [
+      2,
+      4,
+      8,
+      16
+    ],
+    "tasks": [
+      "5stage",
+      "10stage"
+    ],
+    "task_specs": {
+      "5stage": {
+        "num_stages": 5,
+        "train_examples": 4096,
+        "test_examples": 1024,
+        "max_epochs": 16
+      },
+      "10stage": {
+        "num_stages": 10,
+        "train_examples": 2048,
+        "test_examples": 512,
+        "max_epochs": 8
+      }
+    },
+    "batch_size": 64,
+    "segment_len": 64,
+    "input_seq_len": 128,
+    "learning_rate": 0.003,
+    "stage_local_random_accuracy": 0.0625,
+    "comparison_notes": [
+      "5stage uses the same seed list and budget as class_incremental_ar_formal_cl_20260513_022211.json.",
+      "10stage uses the same seed list and budget as the 10stage condition in class_incremental_ar_horizon_formal_cl_20260513_054644.json."
+    ]
+  },
+  "aggregates": {
+    "5stage": {
+      "base_rmt_nmem2": {
+        "num_runs": 3,
+        "condition": {
+          "condition_name": "5stage",
+          "num_stages": 5,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "train_examples_per_stage": 4096,
+          "test_examples_per_stage": 1024,
+          "max_epochs": 16
+        },
+        "model_info": {
+          "num_parameters": 174208,
+          "state_size": 512
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.7598714192708332,
+            "std": 0.06349870188079566,
+            "median": 0.763623046875,
+            "min": 0.694580078125,
+            "max": 0.8214111328125
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 0.9999918619791667,
+            "std": 1.4095465556374528e-05,
+            "median": 1.0,
+            "min": 0.9999755859375,
+            "max": 1.0
+          },
+          "final_plasticity": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.3001505533854167,
+            "std": 0.079388165971472,
+            "median": -0.29547119140625,
+            "min": -0.38177490234375,
+            "max": -0.22320556640625
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.24012044270833333,
+            "std": 0.06351053277717761,
+            "median": 0.236376953125,
+            "min": 0.178564453125,
+            "max": 0.305419921875
+          },
+          "final_train_loss": {
+            "mean": 0.03590519602100054,
+            "std": 0.008524906151370411,
+            "median": 0.033708423376083374,
+            "min": 0.02869366854429245,
+            "max": 0.04531349614262581
+          },
+          "final_rmt_memory_norm": {
+            "mean": 6.759352525075276,
+            "std": 1.435566522909185,
+            "median": 5.997225284576416,
+            "min": 5.865573883056641,
+            "max": 8.415258407592773
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.037068684895833336,
+            "std": 0.06420484560934436,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.1112060546875
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.975341796875,
+            "std": 0.03916992674442129,
+            "median": 0.995849609375,
+            "min": 0.93017578125,
+            "max": 1.0
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.7869466145833334,
+            "std": 0.2776835692444671,
+            "median": 0.887939453125,
+            "min": 0.472900390625,
+            "max": 1.0
+          },
+          "stage_3_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 0.9999593098958334,
+            "std": 7.047732778193673e-05,
+            "median": 1.0,
+            "min": 0.9998779296875,
+            "max": 1.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.8214111328125,
+            "final_avg_learning_accuracy": 0.9999755859375,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.22320556640625,
+            "final_avg_forgetting_from_learning": 0.178564453125
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.763623046875,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.29547119140625,
+            "final_avg_forgetting_from_learning": 0.236376953125
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.694580078125,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.38177490234375,
+            "final_avg_forgetting_from_learning": 0.305419921875
+          }
+        }
+      },
+      "base_rmt_nmem4": {
+        "num_runs": 3,
+        "condition": {
+          "condition_name": "5stage",
+          "num_stages": 5,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "train_examples_per_stage": 4096,
+          "test_examples_per_stage": 1024,
+          "max_epochs": 16
+        },
+        "model_info": {
+          "num_parameters": 174336,
+          "state_size": 1024
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.8080647786458334,
+            "std": 0.014650397275587423,
+            "median": 0.8,
+            "min": 0.79921875,
+            "max": 0.8249755859375
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_plasticity": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.23991902669270834,
+            "std": 0.0183129965944843,
+            "median": -0.25,
+            "min": -0.2509765625,
+            "max": -0.218780517578125
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.19193522135416666,
+            "std": 0.014650397275587444,
+            "median": 0.2,
+            "min": 0.1750244140625,
+            "max": 0.20078125
+          },
+          "final_train_loss": {
+            "mean": 0.030592961857716244,
+            "std": 0.0018894190426790257,
+            "median": 0.03079007752239704,
+            "min": 0.028612712398171425,
+            "max": 0.03237609565258026
+          },
+          "final_rmt_memory_norm": {
+            "mean": 5.623201211293538,
+            "std": 0.6988710228219926,
+            "median": 5.529228210449219,
+            "min": 4.976071357727051,
+            "max": 6.364304065704346
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.0416259765625,
+            "std": 0.07209830632092129,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.1248779296875
+          },
+          "stage_1_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.9986979166666666,
+            "std": 0.002255274489021976,
+            "median": 1.0,
+            "min": 0.99609375,
+            "max": 1.0
+          },
+          "stage_3_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.79921875,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.2509765625,
+            "final_avg_forgetting_from_learning": 0.20078125
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.8249755859375,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.218780517578125,
+            "final_avg_forgetting_from_learning": 0.1750244140625
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.8,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.25,
+            "final_avg_forgetting_from_learning": 0.2
+          }
+        }
+      },
+      "base_rmt_nmem8": {
+        "num_runs": 3,
+        "condition": {
+          "condition_name": "5stage",
+          "num_stages": 5,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "train_examples_per_stage": 4096,
+          "test_examples_per_stage": 1024,
+          "max_epochs": 16
+        },
+        "model_info": {
+          "num_parameters": 174592,
+          "state_size": 2048
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.6979492187499999,
+            "std": 0.06038394293884946,
+            "median": 0.7099365234375,
+            "min": 0.632470703125,
+            "max": 0.7514404296875
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_plasticity": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.3775634765625,
+            "std": 0.07547992867356179,
+            "median": -0.362579345703125,
+            "min": -0.45941162109375,
+            "max": -0.310699462890625
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.30205078125,
+            "std": 0.060383942938849446,
+            "median": 0.2900634765625,
+            "min": 0.2485595703125,
+            "max": 0.367529296875
+          },
+          "final_train_loss": {
+            "mean": 0.036414325858155884,
+            "std": 0.00733829146672108,
+            "median": 0.034493766725063324,
+            "min": 0.030227290466427803,
+            "max": 0.04452192038297653
+          },
+          "final_rmt_memory_norm": {
+            "mean": 9.7455153465271,
+            "std": 2.4828059740274298,
+            "median": 8.768911361694336,
+            "min": 7.899506092071533,
+            "max": 12.56812858581543
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.8149007161458334,
+            "std": 0.158129655395049,
+            "median": 0.736083984375,
+            "min": 0.711669921875,
+            "max": 0.9969482421875
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.6912434895833334,
+            "std": 0.20834131622914637,
+            "median": 0.8094482421875,
+            "min": 0.45068359375,
+            "max": 0.8135986328125
+          },
+          "stage_3_final_accuracy": {
+            "mean": 0.9836018880208334,
+            "std": 0.028402363096120504,
+            "median": 1.0,
+            "min": 0.9508056640625,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.7099365234375,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.362579345703125,
+            "final_avg_forgetting_from_learning": 0.2900634765625
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.632470703125,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.45941162109375,
+            "final_avg_forgetting_from_learning": 0.367529296875
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.7514404296875,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.310699462890625,
+            "final_avg_forgetting_from_learning": 0.2485595703125
+          }
+        }
+      },
+      "base_rmt_nmem16": {
+        "num_runs": 3,
+        "condition": {
+          "condition_name": "5stage",
+          "num_stages": 5,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "train_examples_per_stage": 4096,
+          "test_examples_per_stage": 1024,
+          "max_epochs": 16
+        },
+        "model_info": {
+          "num_parameters": 175104,
+          "state_size": 4096
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.7972737630208334,
+            "std": 0.007128418509463741,
+            "median": 0.8,
+            "min": 0.7891845703125,
+            "max": 0.80263671875
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_plasticity": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.2534077962239583,
+            "std": 0.008910523136829678,
+            "median": -0.25,
+            "min": -0.263519287109375,
+            "max": -0.2467041015625
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.2027262369791667,
+            "std": 0.007128418509463741,
+            "median": 0.2,
+            "min": 0.19736328125,
+            "max": 0.2108154296875
+          },
+          "final_train_loss": {
+            "mean": 0.031031157821416855,
+            "std": 0.004783834108052063,
+            "median": 0.03268272429704666,
+            "min": 0.025640364736318588,
+            "max": 0.034770384430885315
+          },
+          "final_rmt_memory_norm": {
+            "mean": 7.04454231262207,
+            "std": 0.6413179244865348,
+            "median": 6.844940185546875,
+            "min": 6.526761054992676,
+            "max": 7.76192569732666
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.008056640625,
+            "std": 0.013954510900823475,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.024169921875
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.9819742838541666,
+            "std": 0.031221456207397975,
+            "median": 1.0,
+            "min": 0.9459228515625,
+            "max": 1.0
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.996337890625,
+            "std": 0.006342959500374307,
+            "median": 1.0,
+            "min": 0.989013671875,
+            "max": 1.0
+          },
+          "stage_3_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.7891845703125,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.263519287109375,
+            "final_avg_forgetting_from_learning": 0.2108154296875
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.80263671875,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.2467041015625,
+            "final_avg_forgetting_from_learning": 0.19736328125
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.8,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.25,
+            "final_avg_forgetting_from_learning": 0.2
+          }
+        }
+      }
+    },
+    "10stage": {
+      "base_rmt_nmem2": {
+        "num_runs": 3,
+        "condition": {
+          "condition_name": "10stage",
+          "num_stages": 10,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "train_examples_per_stage": 2048,
+          "test_examples_per_stage": 512,
+          "max_epochs": 8
+        },
+        "model_info": {
+          "num_parameters": 174208,
+          "state_size": 512
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.90419921875,
+            "std": 0.05092040728841401,
+            "median": 0.93271484375,
+            "min": 0.84541015625,
+            "max": 0.93447265625
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 0.9979248046875,
+            "std": 0.0035943437168787736,
+            "median": 1.0,
+            "min": 0.9937744140625,
+            "max": 1.0
+          },
+          "final_plasticity": {
+            "mean": 0.979248046875,
+            "std": 0.035943437168787735,
+            "median": 1.0,
+            "min": 0.937744140625,
+            "max": 1.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.10413953993055554,
+            "std": 0.0525851552116645,
+            "median": -0.07476128472222222,
+            "min": -0.1648491753472222,
+            "max": -0.07280815972222222
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.09372558593750001,
+            "std": 0.047326639690498065,
+            "median": 0.06728515625,
+            "min": 0.06552734375,
+            "max": 0.1483642578125
+          },
+          "final_train_loss": {
+            "mean": 3.4777329762776694,
+            "std": 0.15062060362940288,
+            "median": 3.464289426803589,
+            "min": 3.334284782409668,
+            "max": 3.634624719619751
+          },
+          "final_rmt_memory_norm": {
+            "mean": 10.892942110697428,
+            "std": 2.809784230825259,
+            "median": 10.624170303344727,
+            "min": 8.227201461791992,
+            "max": 13.827454566955566
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.4034830729166667,
+            "std": 0.26270079577465466,
+            "median": 0.529052734375,
+            "min": 0.1015625,
+            "max": 0.579833984375
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.919921875,
+            "std": 0.08923264697550377,
+            "median": 0.93603515625,
+            "min": 0.82373046875,
+            "max": 1.0
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.7909342447916666,
+            "std": 0.27037924822607445,
+            "median": 0.943115234375,
+            "min": 0.478759765625,
+            "max": 0.950927734375
+          },
+          "stage_3_final_accuracy": {
+            "mean": 0.9993489583333334,
+            "std": 0.001127637244510988,
+            "median": 1.0,
+            "min": 0.998046875,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 0.9490559895833334,
+            "std": 0.0882376143829848,
+            "median": 1.0,
+            "min": 0.84716796875,
+            "max": 1.0
+          },
+          "stage_5_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_6_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_final_accuracy": {
+            "mean": 0.979248046875,
+            "std": 0.035943437168787735,
+            "median": 1.0,
+            "min": 0.937744140625,
+            "max": 1.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_5_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_6_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_learning_accuracy": {
+            "mean": 0.979248046875,
+            "std": 0.035943437168787735,
+            "median": 1.0,
+            "min": 0.937744140625,
+            "max": 1.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.93271484375,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.07476128472222222,
+            "final_avg_forgetting_from_learning": 0.06728515625
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.93447265625,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.07280815972222222,
+            "final_avg_forgetting_from_learning": 0.06552734375
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.84541015625,
+            "final_avg_learning_accuracy": 0.9937744140625,
+            "final_plasticity": 0.937744140625,
+            "final_avg_bwt": -0.1648491753472222,
+            "final_avg_forgetting_from_learning": 0.1483642578125
+          }
+        }
+      },
+      "base_rmt_nmem4": {
+        "num_runs": 3,
+        "condition": {
+          "condition_name": "10stage",
+          "num_stages": 10,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "train_examples_per_stage": 2048,
+          "test_examples_per_stage": 512,
+          "max_epochs": 8
+        },
+        "model_info": {
+          "num_parameters": 174336,
+          "state_size": 1024
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.90322265625,
+            "std": 0.027028561496991985,
+            "median": 0.9080078125,
+            "min": 0.87412109375,
+            "max": 0.9275390625
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_plasticity": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.10753038194444446,
+            "std": 0.03003173499665781,
+            "median": -0.10221354166666667,
+            "min": -0.1398654513888889,
+            "max": -0.08051215277777778
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.09677734375000001,
+            "std": 0.027028561496992027,
+            "median": 0.0919921875,
+            "min": 0.0724609375,
+            "max": 0.12587890625
+          },
+          "final_train_loss": {
+            "mean": 3.297990163167318,
+            "std": 0.08715868777020272,
+            "median": 3.284764051437378,
+            "min": 3.218200445175171,
+            "max": 3.3910059928894043
+          },
+          "final_rmt_memory_norm": {
+            "mean": 17.378442764282227,
+            "std": 14.828652011077276,
+            "median": 9.514066696166992,
+            "min": 8.138591766357422,
+            "max": 34.482669830322266
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.38671875,
+            "std": 0.19176884774653555,
+            "median": 0.418212890625,
+            "min": 0.18115234375,
+            "max": 0.560791015625
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.8528645833333334,
+            "std": 0.17328246693804414,
+            "median": 0.896728515625,
+            "min": 0.661865234375,
+            "max": 1.0
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.9053548177083334,
+            "std": 0.16393026442078484,
+            "median": 1.0,
+            "min": 0.716064453125,
+            "max": 1.0
+          },
+          "stage_3_final_accuracy": {
+            "mean": 0.98583984375,
+            "std": 0.024526110068113983,
+            "median": 1.0,
+            "min": 0.95751953125,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 0.9019368489583334,
+            "std": 0.16985035995446754,
+            "median": 1.0,
+            "min": 0.705810546875,
+            "max": 1.0
+          },
+          "stage_5_final_accuracy": {
+            "mean": 0.99951171875,
+            "std": 0.0008457279333832408,
+            "median": 1.0,
+            "min": 0.99853515625,
+            "max": 1.0
+          },
+          "stage_6_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_5_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_6_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.9080078125,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.10221354166666667,
+            "final_avg_forgetting_from_learning": 0.0919921875
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.9275390625,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.08051215277777778,
+            "final_avg_forgetting_from_learning": 0.0724609375
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.87412109375,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.1398654513888889,
+            "final_avg_forgetting_from_learning": 0.12587890625
+          }
+        }
+      },
+      "base_rmt_nmem8": {
+        "num_runs": 3,
+        "condition": {
+          "condition_name": "10stage",
+          "num_stages": 10,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "train_examples_per_stage": 2048,
+          "test_examples_per_stage": 512,
+          "max_epochs": 8
+        },
+        "model_info": {
+          "num_parameters": 174592,
+          "state_size": 2048
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.8611490885416666,
+            "std": 0.049028940892433856,
+            "median": 0.88427734375,
+            "min": 0.804833984375,
+            "max": 0.8943359375
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 0.9958902994791666,
+            "std": 0.006991734552186489,
+            "median": 0.999853515625,
+            "min": 0.9878173828125,
+            "max": 1.0
+          },
+          "final_plasticity": {
+            "mean": 0.9589029947916666,
+            "std": 0.06991734552186468,
+            "median": 0.99853515625,
+            "min": 0.878173828125,
+            "max": 1.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.14971245659722224,
+            "std": 0.04674654498561151,
+            "median": -0.12841796875,
+            "min": -0.2033148871527778,
+            "max": -0.1174045138888889
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.1347412109375,
+            "std": 0.04207189048705035,
+            "median": 0.115576171875,
+            "min": 0.1056640625,
+            "max": 0.1829833984375
+          },
+          "final_train_loss": {
+            "mean": 3.538644552230835,
+            "std": 0.1209154856378332,
+            "median": 3.4876766204833984,
+            "min": 3.4515573978424072,
+            "max": 3.676699638366699
+          },
+          "final_rmt_memory_norm": {
+            "mean": 17.117358207702637,
+            "std": 4.2326382738358195,
+            "median": 16.1085205078125,
+            "min": 13.480290412902832,
+            "max": 21.763263702392578
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.3499348958333333,
+            "std": 0.2198288516970463,
+            "median": 0.410400390625,
+            "min": 0.106201171875,
+            "max": 0.533203125
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.7611490885416666,
+            "std": 0.12616622801939192,
+            "median": 0.7021484375,
+            "min": 0.67529296875,
+            "max": 0.906005859375
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.5740559895833334,
+            "std": 0.15744653955030438,
+            "median": 0.626953125,
+            "min": 0.39697265625,
+            "max": 0.6982421875
+          },
+          "stage_3_final_accuracy": {
+            "mean": 0.967529296875,
+            "std": 0.04942807688650739,
+            "median": 0.991943359375,
+            "min": 0.91064453125,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 0.9999186197916666,
+            "std": 0.0001409546555638735,
+            "median": 1.0,
+            "min": 0.999755859375,
+            "max": 1.0
+          },
+          "stage_5_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_6_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_final_accuracy": {
+            "mean": 0.9589029947916666,
+            "std": 0.06991734552186468,
+            "median": 0.99853515625,
+            "min": 0.878173828125,
+            "max": 1.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_5_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_6_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_learning_accuracy": {
+            "mean": 0.9589029947916666,
+            "std": 0.06991734552186468,
+            "median": 0.99853515625,
+            "min": 0.878173828125,
+            "max": 1.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.88427734375,
+            "final_avg_learning_accuracy": 0.999853515625,
+            "final_plasticity": 0.99853515625,
+            "final_avg_bwt": -0.12841796875,
+            "final_avg_forgetting_from_learning": 0.115576171875
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.804833984375,
+            "final_avg_learning_accuracy": 0.9878173828125,
+            "final_plasticity": 0.878173828125,
+            "final_avg_bwt": -0.2033148871527778,
+            "final_avg_forgetting_from_learning": 0.1829833984375
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.8943359375,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.1174045138888889,
+            "final_avg_forgetting_from_learning": 0.1056640625
+          }
+        }
+      },
+      "base_rmt_nmem16": {
+        "num_runs": 3,
+        "condition": {
+          "condition_name": "10stage",
+          "num_stages": 10,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "train_examples_per_stage": 2048,
+          "test_examples_per_stage": 512,
+          "max_epochs": 8
+        },
+        "model_info": {
+          "num_parameters": 175104,
+          "state_size": 4096
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 0.9314046223958333,
+            "std": 0.04300117887315174,
+            "median": 0.9439697265625,
+            "min": 0.8835205078125,
+            "max": 0.9667236328125
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_plasticity": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_bwt": {
+            "mean": -0.07621708622685185,
+            "std": 0.0477790876368353,
+            "median": -0.062255859375,
+            "min": -0.1294216579861111,
+            "max": -0.03697374131944445
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.06859537760416667,
+            "std": 0.043001178873151774,
+            "median": 0.0560302734375,
+            "min": 0.0332763671875,
+            "max": 0.1164794921875
+          },
+          "final_train_loss": {
+            "mean": 3.425396998723348,
+            "std": 0.1272311731360198,
+            "median": 3.428279399871826,
+            "min": 3.2967491149902344,
+            "max": 3.5511624813079834
+          },
+          "final_rmt_memory_norm": {
+            "mean": 11.702164649963379,
+            "std": 4.743435800536815,
+            "median": 10.077978134155273,
+            "min": 7.984169960021973,
+            "max": 17.04434585571289
+          },
+          "stage_0_final_accuracy": {
+            "mean": 0.599853515625,
+            "std": 0.3512353858758416,
+            "median": 0.74853515625,
+            "min": 0.19873046875,
+            "max": 0.852294921875
+          },
+          "stage_1_final_accuracy": {
+            "mean": 0.9041341145833334,
+            "std": 0.07815945183562069,
+            "median": 0.859130859375,
+            "min": 0.85888671875,
+            "max": 0.994384765625
+          },
+          "stage_2_final_accuracy": {
+            "mean": 0.8826497395833334,
+            "std": 0.10390079264064626,
+            "median": 0.8466796875,
+            "min": 0.801513671875,
+            "max": 0.999755859375
+          },
+          "stage_3_final_accuracy": {
+            "mean": 0.9908854166666666,
+            "std": 0.014742401536588241,
+            "median": 0.998779296875,
+            "min": 0.973876953125,
+            "max": 1.0
+          },
+          "stage_4_final_accuracy": {
+            "mean": 0.944091796875,
+            "std": 0.09683584837238107,
+            "median": 1.0,
+            "min": 0.832275390625,
+            "max": 1.0
+          },
+          "stage_5_final_accuracy": {
+            "mean": 0.992431640625,
+            "std": 0.013108782967440233,
+            "median": 1.0,
+            "min": 0.977294921875,
+            "max": 1.0
+          },
+          "stage_6_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_1_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_2_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_3_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_4_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_5_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_6_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_7_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_8_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_9_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 0.9667236328125,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.03697374131944445,
+            "final_avg_forgetting_from_learning": 0.0332763671875
+          },
+          "456": {
+            "final_seen_avg_accuracy": 0.8835205078125,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.1294216579861111,
+            "final_avg_forgetting_from_learning": 0.1164794921875
+          },
+          "789": {
+            "final_seen_avg_accuracy": 0.9439697265625,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": -0.062255859375,
+            "final_avg_forgetting_from_learning": 0.0560302734375
+          }
+        }
+      }
+    }
+  },
+  "runs": [
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "5stage",
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 4096,
+        "test_examples_per_stage": 1024,
+        "max_epochs": 16
+      },
+      "model_name": "base_rmt_nmem2",
+      "seed": 123,
+      "run_id": "base-rmt-memory-5stage-nmem2-seed123",
+      "model_info": {
+        "num_parameters": 174208,
+        "state_size": 512
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.8214111328125,
+        "final_avg_learning_accuracy": 0.9999755859375,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.22320556640625,
+        "final_avg_forgetting_from_learning": 0.178564453125,
+        "final_train_loss": 0.02869366854429245,
+        "final_rmt_memory_norm": 5.865573883056641,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.1112060546875,
+          "1": 0.995849609375,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 0.9998779296875,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.8887939453125,
+          "1": -0.0040283203125,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.8887939453125,
+          "1": 0.0040283203125,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 5129
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "5stage",
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 4096,
+        "test_examples_per_stage": 1024,
+        "max_epochs": 16
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 123,
+      "run_id": "base-rmt-memory-5stage-nmem4-seed123",
+      "model_info": {
+        "num_parameters": 174336,
+        "state_size": 1024
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.79921875,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.2509765625,
+        "final_avg_forgetting_from_learning": 0.20078125,
+        "final_train_loss": 0.03079007752239704,
+        "final_rmt_memory_norm": 6.364304065704346,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 1.0,
+          "2": 0.99609375,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": 0.0,
+          "2": -0.00390625,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.0,
+          "2": 0.00390625,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 5129
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "5stage",
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 4096,
+        "test_examples_per_stage": 1024,
+        "max_epochs": 16
+      },
+      "model_name": "base_rmt_nmem8",
+      "seed": 123,
+      "run_id": "base-rmt-memory-5stage-nmem8-seed123",
+      "model_info": {
+        "num_parameters": 174592,
+        "state_size": 2048
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.7099365234375,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.362579345703125,
+        "final_avg_forgetting_from_learning": 0.2900634765625,
+        "final_train_loss": 0.04452192038297653,
+        "final_rmt_memory_norm": 12.56812858581543,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.736083984375,
+          "2": 0.8135986328125,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -0.263916015625,
+          "2": -0.1864013671875,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.263916015625,
+          "2": 0.1864013671875,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 5129
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "5stage",
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 4096,
+        "test_examples_per_stage": 1024,
+        "max_epochs": 16
+      },
+      "model_name": "base_rmt_nmem16",
+      "seed": 123,
+      "run_id": "base-rmt-memory-5stage-nmem16-seed123",
+      "model_info": {
+        "num_parameters": 175104,
+        "state_size": 4096
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.7891845703125,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.263519287109375,
+        "final_avg_forgetting_from_learning": 0.2108154296875,
+        "final_train_loss": 0.034770384430885315,
+        "final_rmt_memory_norm": 7.76192569732666,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.9459228515625,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -0.0540771484375,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.0540771484375,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 5129
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "5stage",
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 4096,
+        "test_examples_per_stage": 1024,
+        "max_epochs": 16
+      },
+      "model_name": "base_rmt_nmem2",
+      "seed": 456,
+      "run_id": "base-rmt-memory-5stage-nmem2-seed456",
+      "model_info": {
+        "num_parameters": 174208,
+        "state_size": 512
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.763623046875,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.29547119140625,
+        "final_avg_forgetting_from_learning": 0.236376953125,
+        "final_train_loss": 0.033708423376083374,
+        "final_rmt_memory_norm": 5.997225284576416,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.93017578125,
+          "2": 0.887939453125,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -0.06982421875,
+          "2": -0.112060546875,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.06982421875,
+          "2": 0.112060546875,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 5129
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "5stage",
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 4096,
+        "test_examples_per_stage": 1024,
+        "max_epochs": 16
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 456,
+      "run_id": "base-rmt-memory-5stage-nmem4-seed456",
+      "model_info": {
+        "num_parameters": 174336,
+        "state_size": 1024
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.8249755859375,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.218780517578125,
+        "final_avg_forgetting_from_learning": 0.1750244140625,
+        "final_train_loss": 0.028612712398171425,
+        "final_rmt_memory_norm": 4.976071357727051,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.1248779296875,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.8751220703125,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.8751220703125,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 5129
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "5stage",
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 4096,
+        "test_examples_per_stage": 1024,
+        "max_epochs": 16
+      },
+      "model_name": "base_rmt_nmem8",
+      "seed": 456,
+      "run_id": "base-rmt-memory-5stage-nmem8-seed456",
+      "model_info": {
+        "num_parameters": 174592,
+        "state_size": 2048
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.632470703125,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.45941162109375,
+        "final_avg_forgetting_from_learning": 0.367529296875,
+        "final_train_loss": 0.030227290466427803,
+        "final_rmt_memory_norm": 7.899506092071533,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.711669921875,
+          "2": 0.45068359375,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -0.288330078125,
+          "2": -0.54931640625,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.288330078125,
+          "2": 0.54931640625,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 5129
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "5stage",
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 4096,
+        "test_examples_per_stage": 1024,
+        "max_epochs": 16
+      },
+      "model_name": "base_rmt_nmem16",
+      "seed": 456,
+      "run_id": "base-rmt-memory-5stage-nmem16-seed456",
+      "model_info": {
+        "num_parameters": 175104,
+        "state_size": 4096
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.80263671875,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.2467041015625,
+        "final_avg_forgetting_from_learning": 0.19736328125,
+        "final_train_loss": 0.025640364736318588,
+        "final_rmt_memory_norm": 6.526761054992676,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.024169921875,
+          "1": 1.0,
+          "2": 0.989013671875,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.975830078125,
+          "1": 0.0,
+          "2": -0.010986328125,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.975830078125,
+          "1": 0.0,
+          "2": 0.010986328125,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 5129
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "5stage",
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 4096,
+        "test_examples_per_stage": 1024,
+        "max_epochs": 16
+      },
+      "model_name": "base_rmt_nmem2",
+      "seed": 789,
+      "run_id": "base-rmt-memory-5stage-nmem2-seed789",
+      "model_info": {
+        "num_parameters": 174208,
+        "state_size": 512
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.694580078125,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.38177490234375,
+        "final_avg_forgetting_from_learning": 0.305419921875,
+        "final_train_loss": 0.04531349614262581,
+        "final_rmt_memory_norm": 8.415258407592773,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 1.0,
+          "2": 0.472900390625,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": 0.0,
+          "2": -0.527099609375,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.0,
+          "2": 0.527099609375,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 5129
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "5stage",
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 4096,
+        "test_examples_per_stage": 1024,
+        "max_epochs": 16
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 789,
+      "run_id": "base-rmt-memory-5stage-nmem4-seed789",
+      "model_info": {
+        "num_parameters": 174336,
+        "state_size": 1024
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.8,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.25,
+        "final_avg_forgetting_from_learning": 0.2,
+        "final_train_loss": 0.03237609565258026,
+        "final_rmt_memory_norm": 5.529228210449219,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 5129
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "5stage",
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 4096,
+        "test_examples_per_stage": 1024,
+        "max_epochs": 16
+      },
+      "model_name": "base_rmt_nmem8",
+      "seed": 789,
+      "run_id": "base-rmt-memory-5stage-nmem8-seed789",
+      "model_info": {
+        "num_parameters": 174592,
+        "state_size": 2048
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.7514404296875,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.310699462890625,
+        "final_avg_forgetting_from_learning": 0.2485595703125,
+        "final_train_loss": 0.034493766725063324,
+        "final_rmt_memory_norm": 8.768911361694336,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 0.9969482421875,
+          "2": 0.8094482421875,
+          "3": 0.9508056640625,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": -0.0030517578125,
+          "2": -0.1905517578125,
+          "3": -0.0491943359375,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.0030517578125,
+          "2": 0.1905517578125,
+          "3": 0.0491943359375,
+          "4": 0.0
+        },
+        "num_log_records": 5129
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "5stage",
+        "num_stages": 5,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 4096,
+        "test_examples_per_stage": 1024,
+        "max_epochs": 16
+      },
+      "model_name": "base_rmt_nmem16",
+      "seed": 789,
+      "run_id": "base-rmt-memory-5stage-nmem16-seed789",
+      "model_info": {
+        "num_parameters": 175104,
+        "state_size": 4096
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.8,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.25,
+        "final_avg_forgetting_from_learning": 0.2,
+        "final_train_loss": 0.03268272429704666,
+        "final_rmt_memory_norm": 6.844940185546875,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0
+        },
+        "stage_bwt": {
+          "0": -1.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 1.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0
+        },
+        "num_log_records": 5129
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "10stage",
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 2048,
+        "test_examples_per_stage": 512,
+        "max_epochs": 8
+      },
+      "model_name": "base_rmt_nmem2",
+      "seed": 123,
+      "run_id": "base-rmt-memory-10stage-nmem2-seed123",
+      "model_info": {
+        "num_parameters": 174208,
+        "state_size": 512
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.93271484375,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.07476128472222222,
+        "final_avg_forgetting_from_learning": 0.06728515625,
+        "final_train_loss": 3.334284782409668,
+        "final_rmt_memory_norm": 10.624170303344727,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.529052734375,
+          "1": 1.0,
+          "2": 0.950927734375,
+          "3": 1.0,
+          "4": 0.84716796875,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.470947265625,
+          "1": 0.0,
+          "2": -0.049072265625,
+          "3": 0.0,
+          "4": -0.15283203125,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.470947265625,
+          "1": 0.0,
+          "2": 0.049072265625,
+          "3": 0.0,
+          "4": 0.15283203125,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "10stage",
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 2048,
+        "test_examples_per_stage": 512,
+        "max_epochs": 8
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 123,
+      "run_id": "base-rmt-memory-10stage-nmem4-seed123",
+      "model_info": {
+        "num_parameters": 174336,
+        "state_size": 1024
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.9080078125,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.10221354166666667,
+        "final_avg_forgetting_from_learning": 0.0919921875,
+        "final_train_loss": 3.3910059928894043,
+        "final_rmt_memory_norm": 9.514066696166992,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.418212890625,
+          "1": 0.661865234375,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.581787109375,
+          "1": -0.338134765625,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.581787109375,
+          "1": 0.338134765625,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "10stage",
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 2048,
+        "test_examples_per_stage": 512,
+        "max_epochs": 8
+      },
+      "model_name": "base_rmt_nmem8",
+      "seed": 123,
+      "run_id": "base-rmt-memory-10stage-nmem8-seed123",
+      "model_info": {
+        "num_parameters": 174592,
+        "state_size": 2048
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.88427734375,
+        "final_avg_learning_accuracy": 0.999853515625,
+        "final_plasticity": 0.99853515625,
+        "final_avg_bwt": -0.12841796875,
+        "final_avg_forgetting_from_learning": 0.115576171875,
+        "final_train_loss": 3.4515573978424072,
+        "final_rmt_memory_norm": 16.1085205078125,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.533203125,
+          "1": 0.7021484375,
+          "2": 0.6982421875,
+          "3": 0.91064453125,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 0.99853515625
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 0.99853515625
+        },
+        "stage_bwt": {
+          "0": -0.466796875,
+          "1": -0.2978515625,
+          "2": -0.3017578125,
+          "3": -0.08935546875,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.466796875,
+          "1": 0.2978515625,
+          "2": 0.3017578125,
+          "3": 0.08935546875,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "10stage",
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 2048,
+        "test_examples_per_stage": 512,
+        "max_epochs": 8
+      },
+      "model_name": "base_rmt_nmem16",
+      "seed": 123,
+      "run_id": "base-rmt-memory-10stage-nmem16-seed123",
+      "model_info": {
+        "num_parameters": 175104,
+        "state_size": 4096
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.9667236328125,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.03697374131944445,
+        "final_avg_forgetting_from_learning": 0.0332763671875,
+        "final_train_loss": 3.428279399871826,
+        "final_rmt_memory_norm": 17.04434585571289,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.852294921875,
+          "1": 0.994384765625,
+          "2": 0.8466796875,
+          "3": 0.973876953125,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.147705078125,
+          "1": -0.005615234375,
+          "2": -0.1533203125,
+          "3": -0.026123046875,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.147705078125,
+          "1": 0.005615234375,
+          "2": 0.1533203125,
+          "3": 0.026123046875,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "10stage",
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 2048,
+        "test_examples_per_stage": 512,
+        "max_epochs": 8
+      },
+      "model_name": "base_rmt_nmem2",
+      "seed": 456,
+      "run_id": "base-rmt-memory-10stage-nmem2-seed456",
+      "model_info": {
+        "num_parameters": 174208,
+        "state_size": 512
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.93447265625,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.07280815972222222,
+        "final_avg_forgetting_from_learning": 0.06552734375,
+        "final_train_loss": 3.464289426803589,
+        "final_rmt_memory_norm": 8.227201461791992,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.579833984375,
+          "1": 0.82373046875,
+          "2": 0.943115234375,
+          "3": 0.998046875,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.420166015625,
+          "1": -0.17626953125,
+          "2": -0.056884765625,
+          "3": -0.001953125,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.420166015625,
+          "1": 0.17626953125,
+          "2": 0.056884765625,
+          "3": 0.001953125,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "10stage",
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 2048,
+        "test_examples_per_stage": 512,
+        "max_epochs": 8
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 456,
+      "run_id": "base-rmt-memory-10stage-nmem4-seed456",
+      "model_info": {
+        "num_parameters": 174336,
+        "state_size": 1024
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.9275390625,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.08051215277777778,
+        "final_avg_forgetting_from_learning": 0.0724609375,
+        "final_train_loss": 3.218200445175171,
+        "final_rmt_memory_norm": 34.482669830322266,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.560791015625,
+          "1": 1.0,
+          "2": 0.716064453125,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 0.99853515625,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.439208984375,
+          "1": 0.0,
+          "2": -0.283935546875,
+          "3": 0.0,
+          "4": 0.0,
+          "5": -0.00146484375,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.439208984375,
+          "1": 0.0,
+          "2": 0.283935546875,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.00146484375,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "10stage",
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 2048,
+        "test_examples_per_stage": 512,
+        "max_epochs": 8
+      },
+      "model_name": "base_rmt_nmem8",
+      "seed": 456,
+      "run_id": "base-rmt-memory-10stage-nmem8-seed456",
+      "model_info": {
+        "num_parameters": 174592,
+        "state_size": 2048
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.804833984375,
+        "final_avg_learning_accuracy": 0.9878173828125,
+        "final_plasticity": 0.878173828125,
+        "final_avg_bwt": -0.2033148871527778,
+        "final_avg_forgetting_from_learning": 0.1829833984375,
+        "final_train_loss": 3.676699638366699,
+        "final_rmt_memory_norm": 21.763263702392578,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.106201171875,
+          "1": 0.67529296875,
+          "2": 0.39697265625,
+          "3": 0.991943359375,
+          "4": 0.999755859375,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 0.878173828125
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 0.878173828125
+        },
+        "stage_bwt": {
+          "0": -0.893798828125,
+          "1": -0.32470703125,
+          "2": -0.60302734375,
+          "3": -0.008056640625,
+          "4": -0.000244140625,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.893798828125,
+          "1": 0.32470703125,
+          "2": 0.60302734375,
+          "3": 0.008056640625,
+          "4": 0.000244140625,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "10stage",
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 2048,
+        "test_examples_per_stage": 512,
+        "max_epochs": 8
+      },
+      "model_name": "base_rmt_nmem16",
+      "seed": 456,
+      "run_id": "base-rmt-memory-10stage-nmem16-seed456",
+      "model_info": {
+        "num_parameters": 175104,
+        "state_size": 4096
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.8835205078125,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.1294216579861111,
+        "final_avg_forgetting_from_learning": 0.1164794921875,
+        "final_train_loss": 3.2967491149902344,
+        "final_rmt_memory_norm": 7.984169960021973,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.19873046875,
+          "1": 0.85888671875,
+          "2": 0.801513671875,
+          "3": 0.998779296875,
+          "4": 1.0,
+          "5": 0.977294921875,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.80126953125,
+          "1": -0.14111328125,
+          "2": -0.198486328125,
+          "3": -0.001220703125,
+          "4": 0.0,
+          "5": -0.022705078125,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.80126953125,
+          "1": 0.14111328125,
+          "2": 0.198486328125,
+          "3": 0.001220703125,
+          "4": 0.0,
+          "5": 0.022705078125,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "10stage",
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 2048,
+        "test_examples_per_stage": 512,
+        "max_epochs": 8
+      },
+      "model_name": "base_rmt_nmem2",
+      "seed": 789,
+      "run_id": "base-rmt-memory-10stage-nmem2-seed789",
+      "model_info": {
+        "num_parameters": 174208,
+        "state_size": 512
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.84541015625,
+        "final_avg_learning_accuracy": 0.9937744140625,
+        "final_plasticity": 0.937744140625,
+        "final_avg_bwt": -0.1648491753472222,
+        "final_avg_forgetting_from_learning": 0.1483642578125,
+        "final_train_loss": 3.634624719619751,
+        "final_rmt_memory_norm": 13.827454566955566,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.1015625,
+          "1": 0.93603515625,
+          "2": 0.478759765625,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 0.937744140625
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 0.937744140625
+        },
+        "stage_bwt": {
+          "0": -0.8984375,
+          "1": -0.06396484375,
+          "2": -0.521240234375,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.8984375,
+          "1": 0.06396484375,
+          "2": 0.521240234375,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "10stage",
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 2048,
+        "test_examples_per_stage": 512,
+        "max_epochs": 8
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 789,
+      "run_id": "base-rmt-memory-10stage-nmem4-seed789",
+      "model_info": {
+        "num_parameters": 174336,
+        "state_size": 1024
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.87412109375,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.1398654513888889,
+        "final_avg_forgetting_from_learning": 0.12587890625,
+        "final_train_loss": 3.284764051437378,
+        "final_rmt_memory_norm": 8.138591766357422,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.18115234375,
+          "1": 0.896728515625,
+          "2": 1.0,
+          "3": 0.95751953125,
+          "4": 0.705810546875,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.81884765625,
+          "1": -0.103271484375,
+          "2": 0.0,
+          "3": -0.04248046875,
+          "4": -0.294189453125,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.81884765625,
+          "1": 0.103271484375,
+          "2": 0.0,
+          "3": 0.04248046875,
+          "4": 0.294189453125,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "10stage",
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 2048,
+        "test_examples_per_stage": 512,
+        "max_epochs": 8
+      },
+      "model_name": "base_rmt_nmem8",
+      "seed": 789,
+      "run_id": "base-rmt-memory-10stage-nmem8-seed789",
+      "model_info": {
+        "num_parameters": 174592,
+        "state_size": 2048
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.8943359375,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.1174045138888889,
+        "final_avg_forgetting_from_learning": 0.1056640625,
+        "final_train_loss": 3.4876766204833984,
+        "final_rmt_memory_norm": 13.480290412902832,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.410400390625,
+          "1": 0.906005859375,
+          "2": 0.626953125,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.589599609375,
+          "1": -0.093994140625,
+          "2": -0.373046875,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.589599609375,
+          "1": 0.093994140625,
+          "2": 0.373046875,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    },
+    {
+      "module": "zoology.experiments.rmt_mqar.class_incremental_ar_base_rmt_memory_sweep",
+      "condition": {
+        "condition_name": "10stage",
+        "num_stages": 10,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "train_examples_per_stage": 2048,
+        "test_examples_per_stage": 512,
+        "max_epochs": 8
+      },
+      "model_name": "base_rmt_nmem16",
+      "seed": 789,
+      "run_id": "base-rmt-memory-10stage-nmem16-seed789",
+      "model_info": {
+        "num_parameters": 175104,
+        "state_size": 4096
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 0.9439697265625,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": -0.062255859375,
+        "final_avg_forgetting_from_learning": 0.0560302734375,
+        "final_train_loss": 3.5511624813079834,
+        "final_rmt_memory_norm": 10.077978134155273,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 0.74853515625,
+          "1": 0.859130859375,
+          "2": 0.999755859375,
+          "3": 1.0,
+          "4": 0.832275390625,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0,
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 1.0,
+          "5": 1.0,
+          "6": 1.0,
+          "7": 1.0,
+          "8": 1.0,
+          "9": 1.0
+        },
+        "stage_bwt": {
+          "0": -0.25146484375,
+          "1": -0.140869140625,
+          "2": -0.000244140625,
+          "3": 0.0,
+          "4": -0.167724609375,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.25146484375,
+          "1": 0.140869140625,
+          "2": 0.000244140625,
+          "3": 0.0,
+          "4": 0.167724609375,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.0
+        },
+        "num_log_records": 2579
+      }
+    }
+  ]
+}

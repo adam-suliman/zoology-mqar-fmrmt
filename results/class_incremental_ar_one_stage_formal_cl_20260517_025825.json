@@ -1,0 +1,745 @@
+{
+  "created_at": "2026-05-17T02:58:25",
+  "experiment": "class_incremental_ar_one_stage_formal_cl",
+  "module": "local_capture_one_stage_class_incremental_ar",
+  "setup": {
+    "cuda_visible_devices": "0",
+    "cuda_available": true,
+    "cuda_device_name": "NVIDIA GeForce GTX 1080 Ti",
+    "seeds": [
+      123,
+      456,
+      789
+    ],
+    "num_stages": 1,
+    "train_examples_per_stage": 4096,
+    "test_examples_per_stage": 1024,
+    "max_epochs": 16,
+    "batch_size": 64,
+    "learning_rate": 0.003,
+    "stage_local_random_accuracy": 0.0625
+  },
+  "aggregates": {
+    "1stage": {
+      "attention": {
+        "num_runs": 3,
+        "condition": {
+          "num_stages": 1,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "condition_name": "1stage"
+        },
+        "model_info": {
+          "num_parameters": 173824,
+          "state_size": 131072
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_plasticity": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_bwt": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "final_train_loss": {
+            "mean": 0.002651955233886838,
+            "std": 3.332329895481206e-05,
+            "median": 0.002632462652400136,
+            "min": 0.0026245438493788242,
+            "max": 0.0026988591998815536
+          },
+          "final_rmt_memory_norm": {
+            "mean": null,
+            "std": null,
+            "median": null,
+            "min": null,
+            "max": null
+          },
+          "final_rmt_memory_update_norm": {
+            "mean": null,
+            "std": null,
+            "median": null,
+            "min": null,
+            "max": null
+          },
+          "final_rmt_memory_grad_norm": {
+            "mean": null,
+            "std": null,
+            "median": null,
+            "min": null,
+            "max": null
+          },
+          "stage_0_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 1.0,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": 0.0,
+            "final_avg_forgetting_from_learning": 0.0
+          },
+          "456": {
+            "final_seen_avg_accuracy": 1.0,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": 0.0,
+            "final_avg_forgetting_from_learning": 0.0
+          },
+          "789": {
+            "final_seen_avg_accuracy": 1.0,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": 0.0,
+            "final_avg_forgetting_from_learning": 0.0
+          }
+        }
+      },
+      "base_rmt_nmem4": {
+        "num_runs": 3,
+        "condition": {
+          "num_stages": 1,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "condition_name": "1stage"
+        },
+        "model_info": {
+          "num_parameters": 174336,
+          "state_size": 1024
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_plasticity": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_bwt": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "final_train_loss": {
+            "mean": 0.0024342998707046113,
+            "std": 4.387235936990216e-05,
+            "median": 0.002449480816721916,
+            "min": 0.0023746101651340723,
+            "max": 0.002478808630257845
+          },
+          "final_rmt_memory_norm": {
+            "mean": 25.66677983601888,
+            "std": 0.7159913326695034,
+            "median": 25.578147888183594,
+            "min": 24.837554931640625,
+            "max": 26.584636688232422
+          },
+          "final_rmt_memory_update_norm": {
+            "mean": null,
+            "std": null,
+            "median": null,
+            "min": null,
+            "max": null
+          },
+          "final_rmt_memory_grad_norm": {
+            "mean": null,
+            "std": null,
+            "median": null,
+            "min": null,
+            "max": null
+          },
+          "stage_0_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 1.0,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": 0.0,
+            "final_avg_forgetting_from_learning": 0.0
+          },
+          "456": {
+            "final_seen_avg_accuracy": 1.0,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": 0.0,
+            "final_avg_forgetting_from_learning": 0.0
+          },
+          "789": {
+            "final_seen_avg_accuracy": 1.0,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": 0.0,
+            "final_avg_forgetting_from_learning": 0.0
+          }
+        }
+      },
+      "fmrmt_stable_lr0p005_slow4": {
+        "num_runs": 3,
+        "condition": {
+          "num_stages": 1,
+          "associations_per_stage": 16,
+          "num_query_associations": 8,
+          "input_seq_len": 128,
+          "condition_name": "1stage"
+        },
+        "model_info": {
+          "num_parameters": 175104,
+          "state_size": 2048
+        },
+        "metrics": {
+          "final_seen_avg_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_plasticity": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "final_avg_bwt": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "final_avg_forgetting_from_learning": {
+            "mean": 0.0,
+            "std": 0.0,
+            "median": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "final_train_loss": {
+            "mean": 0.010600512847304344,
+            "std": 0.0001598265552090729,
+            "median": 0.010695699602365494,
+            "min": 0.010375376790761948,
+            "max": 0.010730462148785591
+          },
+          "final_rmt_memory_norm": {
+            "mean": 0.2089029997587204,
+            "std": 0.00819319099203189,
+            "median": 0.20618602633476257,
+            "min": 0.20050668716430664,
+            "max": 0.22001628577709198
+          },
+          "final_rmt_memory_update_norm": {
+            "mean": 6.465939937546258e-07,
+            "std": 1.2343819385750099e-07,
+            "median": 6.998299113547546e-07,
+            "min": 4.7599709773749055e-07,
+            "max": 7.639549721716321e-07
+          },
+          "final_rmt_memory_grad_norm": {
+            "mean": 0.00012931880337418988,
+            "std": 2.468764102615533e-05,
+            "median": 0.00013996598136145622,
+            "min": 9.519942250335589e-05,
+            "max": 0.00015279100625775754
+          },
+          "stage_0_final_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          },
+          "stage_0_learning_accuracy": {
+            "mean": 1.0,
+            "std": 0.0,
+            "median": 1.0,
+            "min": 1.0,
+            "max": 1.0
+          }
+        },
+        "per_seed": {
+          "123": {
+            "final_seen_avg_accuracy": 1.0,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": 0.0,
+            "final_avg_forgetting_from_learning": 0.0
+          },
+          "456": {
+            "final_seen_avg_accuracy": 1.0,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": 0.0,
+            "final_avg_forgetting_from_learning": 0.0
+          },
+          "789": {
+            "final_seen_avg_accuracy": 1.0,
+            "final_avg_learning_accuracy": 1.0,
+            "final_plasticity": 1.0,
+            "final_avg_bwt": 0.0,
+            "final_avg_forgetting_from_learning": 0.0
+          }
+        }
+      }
+    }
+  },
+  "runs": [
+    {
+      "module": "one_stage_class_incremental_ar_local_capture",
+      "condition": {
+        "num_stages": 1,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "1stage"
+      },
+      "model_name": "attention",
+      "seed": 123,
+      "run_id": "attention-class-incremental-ar-1stage-seed123",
+      "model_info": {
+        "num_parameters": 173824,
+        "state_size": 131072
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 1.0,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": 0.0,
+        "final_avg_forgetting_from_learning": 0.0,
+        "final_train_loss": 0.0026988591998815536,
+        "final_rmt_memory_norm": null,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0
+        },
+        "stage_bwt": {
+          "0": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.0
+        },
+        "num_log_records": 1025
+      }
+    },
+    {
+      "module": "one_stage_class_incremental_ar_local_capture",
+      "condition": {
+        "num_stages": 1,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "1stage"
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 123,
+      "run_id": "base_rmt_nmem4-class-incremental-ar-1stage-seed123",
+      "model_info": {
+        "num_parameters": 174336,
+        "state_size": 1024
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 1.0,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": 0.0,
+        "final_avg_forgetting_from_learning": 0.0,
+        "final_train_loss": 0.002449480816721916,
+        "final_rmt_memory_norm": 25.578147888183594,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0
+        },
+        "stage_bwt": {
+          "0": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.0
+        },
+        "num_log_records": 1025
+      }
+    },
+    {
+      "module": "one_stage_class_incremental_ar_local_capture",
+      "condition": {
+        "num_stages": 1,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "1stage"
+      },
+      "model_name": "fmrmt_stable_lr0p005_slow4",
+      "seed": 123,
+      "run_id": "fmrmt_stable_lr0p005_slow4-class-incremental-ar-1stage-seed123",
+      "model_info": {
+        "num_parameters": 175104,
+        "state_size": 2048
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 1.0,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": 0.0,
+        "final_avg_forgetting_from_learning": 0.0,
+        "final_train_loss": 0.010730462148785591,
+        "final_rmt_memory_norm": 0.22001628577709198,
+        "final_rmt_memory_update_norm": 4.7599709773749055e-07,
+        "final_rmt_memory_grad_norm": 9.519942250335589e-05,
+        "stage_accuracy": {
+          "0": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0
+        },
+        "stage_bwt": {
+          "0": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.0
+        },
+        "num_log_records": 1025
+      }
+    },
+    {
+      "module": "one_stage_class_incremental_ar_local_capture",
+      "condition": {
+        "num_stages": 1,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "1stage"
+      },
+      "model_name": "attention",
+      "seed": 456,
+      "run_id": "attention-class-incremental-ar-1stage-seed456",
+      "model_info": {
+        "num_parameters": 173824,
+        "state_size": 131072
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 1.0,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": 0.0,
+        "final_avg_forgetting_from_learning": 0.0,
+        "final_train_loss": 0.002632462652400136,
+        "final_rmt_memory_norm": null,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0
+        },
+        "stage_bwt": {
+          "0": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.0
+        },
+        "num_log_records": 1025
+      }
+    },
+    {
+      "module": "one_stage_class_incremental_ar_local_capture",
+      "condition": {
+        "num_stages": 1,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "1stage"
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 456,
+      "run_id": "base_rmt_nmem4-class-incremental-ar-1stage-seed456",
+      "model_info": {
+        "num_parameters": 174336,
+        "state_size": 1024
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 1.0,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": 0.0,
+        "final_avg_forgetting_from_learning": 0.0,
+        "final_train_loss": 0.0023746101651340723,
+        "final_rmt_memory_norm": 26.584636688232422,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0
+        },
+        "stage_bwt": {
+          "0": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.0
+        },
+        "num_log_records": 1025
+      }
+    },
+    {
+      "module": "one_stage_class_incremental_ar_local_capture",
+      "condition": {
+        "num_stages": 1,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "1stage"
+      },
+      "model_name": "fmrmt_stable_lr0p005_slow4",
+      "seed": 456,
+      "run_id": "fmrmt_stable_lr0p005_slow4-class-incremental-ar-1stage-seed456",
+      "model_info": {
+        "num_parameters": 175104,
+        "state_size": 2048
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 1.0,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": 0.0,
+        "final_avg_forgetting_from_learning": 0.0,
+        "final_train_loss": 0.010375376790761948,
+        "final_rmt_memory_norm": 0.20050668716430664,
+        "final_rmt_memory_update_norm": 7.639549721716321e-07,
+        "final_rmt_memory_grad_norm": 0.00015279100625775754,
+        "stage_accuracy": {
+          "0": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0
+        },
+        "stage_bwt": {
+          "0": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.0
+        },
+        "num_log_records": 1025
+      }
+    },
+    {
+      "module": "one_stage_class_incremental_ar_local_capture",
+      "condition": {
+        "num_stages": 1,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "1stage"
+      },
+      "model_name": "attention",
+      "seed": 789,
+      "run_id": "attention-class-incremental-ar-1stage-seed789",
+      "model_info": {
+        "num_parameters": 173824,
+        "state_size": 131072
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 1.0,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": 0.0,
+        "final_avg_forgetting_from_learning": 0.0,
+        "final_train_loss": 0.0026245438493788242,
+        "final_rmt_memory_norm": null,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0
+        },
+        "stage_bwt": {
+          "0": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.0
+        },
+        "num_log_records": 1025
+      }
+    },
+    {
+      "module": "one_stage_class_incremental_ar_local_capture",
+      "condition": {
+        "num_stages": 1,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "1stage"
+      },
+      "model_name": "base_rmt_nmem4",
+      "seed": 789,
+      "run_id": "base_rmt_nmem4-class-incremental-ar-1stage-seed789",
+      "model_info": {
+        "num_parameters": 174336,
+        "state_size": 1024
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 1.0,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": 0.0,
+        "final_avg_forgetting_from_learning": 0.0,
+        "final_train_loss": 0.002478808630257845,
+        "final_rmt_memory_norm": 24.837554931640625,
+        "final_rmt_memory_update_norm": null,
+        "final_rmt_memory_grad_norm": null,
+        "stage_accuracy": {
+          "0": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0
+        },
+        "stage_bwt": {
+          "0": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.0
+        },
+        "num_log_records": 1025
+      }
+    },
+    {
+      "module": "one_stage_class_incremental_ar_local_capture",
+      "condition": {
+        "num_stages": 1,
+        "associations_per_stage": 16,
+        "num_query_associations": 8,
+        "input_seq_len": 128,
+        "condition_name": "1stage"
+      },
+      "model_name": "fmrmt_stable_lr0p005_slow4",
+      "seed": 789,
+      "run_id": "fmrmt_stable_lr0p005_slow4-class-incremental-ar-1stage-seed789",
+      "model_info": {
+        "num_parameters": 175104,
+        "state_size": 2048
+      },
+      "summary": {
+        "final_seen_avg_accuracy": 1.0,
+        "final_avg_learning_accuracy": 1.0,
+        "final_plasticity": 1.0,
+        "final_avg_bwt": 0.0,
+        "final_avg_forgetting_from_learning": 0.0,
+        "final_train_loss": 0.010695699602365494,
+        "final_rmt_memory_norm": 0.20618602633476257,
+        "final_rmt_memory_update_norm": 6.998299113547546e-07,
+        "final_rmt_memory_grad_norm": 0.00013996598136145622,
+        "stage_accuracy": {
+          "0": 1.0
+        },
+        "stage_learning_accuracy": {
+          "0": 1.0
+        },
+        "stage_bwt": {
+          "0": 0.0
+        },
+        "stage_forgetting_from_learning": {
+          "0": 0.0
+        },
+        "num_log_records": 1025
+      }
+    }
+  ]
+}

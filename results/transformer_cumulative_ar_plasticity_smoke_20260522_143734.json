@@ -1,0 +1,316 @@
+{
+  "aggregates": {
+    "first_plasticity_loss_stage_by_seed": {
+      "123": 1
+    },
+    "per_stage": {
+      "0": {
+        "continuous_cumulative_seen_accuracy": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "continuous_current_final_accuracy": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "continuous_current_learning_auc": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "fresh_current_final_accuracy": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "fresh_current_learning_auc": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "plasticity_gap_auc": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "plasticity_gap_final": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        }
+      },
+      "1": {
+        "continuous_cumulative_seen_accuracy": {
+          "max": 0.53369140625,
+          "mean": 0.53369140625,
+          "median": 0.53369140625,
+          "min": 0.53369140625,
+          "std": 0.0
+        },
+        "continuous_current_final_accuracy": {
+          "max": 0.0576171875,
+          "mean": 0.0576171875,
+          "median": 0.0576171875,
+          "min": 0.0576171875,
+          "std": 0.0
+        },
+        "continuous_current_learning_auc": {
+          "max": 0.02880859375,
+          "mean": 0.02880859375,
+          "median": 0.02880859375,
+          "min": 0.02880859375,
+          "std": 0.0
+        },
+        "fresh_current_final_accuracy": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "fresh_current_learning_auc": {
+          "max": 0.99169921875,
+          "mean": 0.99169921875,
+          "median": 0.99169921875,
+          "min": 0.99169921875,
+          "std": 0.0
+        },
+        "plasticity_gap_auc": {
+          "max": 0.962890625,
+          "mean": 0.962890625,
+          "median": 0.962890625,
+          "min": 0.962890625,
+          "std": 0.0
+        },
+        "plasticity_gap_final": {
+          "max": 0.9423828125,
+          "mean": 0.9423828125,
+          "median": 0.9423828125,
+          "min": 0.9423828125,
+          "std": 0.0
+        }
+      },
+      "2": {
+        "continuous_cumulative_seen_accuracy": {
+          "max": 0.5325520833333334,
+          "mean": 0.5325520833333334,
+          "median": 0.5325520833333334,
+          "min": 0.5325520833333334,
+          "std": 0.0
+        },
+        "continuous_current_final_accuracy": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "continuous_current_learning_auc": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "std": 0.0
+        },
+        "fresh_current_final_accuracy": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "fresh_current_learning_auc": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "plasticity_gap_auc": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "plasticity_gap_final": {
+          "max": 1.0,
+          "mean": 1.0,
+          "median": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        }
+      }
+    }
+  },
+  "created_at": "2026-05-22T14:37:34",
+  "experiment": "transformer_cumulative_ar_plasticity",
+  "notes": [
+    "Cumulative replay is a plasticity/intransigence probe, not a no-replay forgetting benchmark.",
+    "Fresh probes train on current-stage examples_per_seen_stage, matching the continuous stream's effective new-stage exposure.",
+    "Old-stage changes under cumulative replay should be interpreted as stability/interference, not forgetting."
+  ],
+  "runs": [
+    {
+      "detection": {
+        "consecutive_stages": 2,
+        "continuous_threshold": 0.8,
+        "first_plasticity_loss_stage": 1,
+        "fresh_threshold": 0.95,
+        "gap_threshold": 0.2,
+        "stage_flags": [
+          false,
+          true,
+          true
+        ]
+      },
+      "device": "cuda",
+      "model_info": {
+        "num_parameters": 173824,
+        "state_size": 131072
+      },
+      "seed": 123,
+      "stages": [
+        {
+          "continuous": {
+            "cumulative_seen_accuracy": 1.0,
+            "current_epoch_accuracy": [
+              1.0,
+              1.0
+            ],
+            "current_final_accuracy": 1.0,
+            "current_learning_auc": 1.0,
+            "current_pre_accuracy": 0.0,
+            "stage_local_accuracy_row": {
+              "0": 1.0
+            },
+            "train_examples": 512,
+            "train_tokens": 65536,
+            "train_wall_seconds": 0.2495860420167446
+          },
+          "fresh": {
+            "current_epoch_accuracy": [
+              1.0,
+              1.0
+            ],
+            "current_final_accuracy": 1.0,
+            "current_learning_auc": 1.0,
+            "current_pre_accuracy": 0.0,
+            "train_examples": 512,
+            "train_tokens": 65536,
+            "train_wall_seconds": 0.12724290043115616
+          },
+          "plasticity_gap_auc": 0.0,
+          "plasticity_gap_final": 0.0,
+          "stage_idx": 0
+        },
+        {
+          "continuous": {
+            "cumulative_seen_accuracy": 0.53369140625,
+            "current_epoch_accuracy": [
+              0.0,
+              0.0576171875
+            ],
+            "current_final_accuracy": 0.0576171875,
+            "current_learning_auc": 0.02880859375,
+            "current_pre_accuracy": 0.0,
+            "stage_local_accuracy_row": {
+              "0": 1.0,
+              "1": 0.0634765625
+            },
+            "train_examples": 1024,
+            "train_tokens": 131072,
+            "train_wall_seconds": 0.21820463612675667
+          },
+          "fresh": {
+            "current_epoch_accuracy": [
+              0.9833984375,
+              1.0
+            ],
+            "current_final_accuracy": 1.0,
+            "current_learning_auc": 0.99169921875,
+            "current_pre_accuracy": 0.0,
+            "train_examples": 512,
+            "train_tokens": 65536,
+            "train_wall_seconds": 0.13136819005012512
+          },
+          "plasticity_gap_auc": 0.962890625,
+          "plasticity_gap_final": 0.9423828125,
+          "stage_idx": 1
+        },
+        {
+          "continuous": {
+            "cumulative_seen_accuracy": 0.5325520833333334,
+            "current_epoch_accuracy": [
+              0.0,
+              0.0
+            ],
+            "current_final_accuracy": 0.0,
+            "current_learning_auc": 0.0,
+            "current_pre_accuracy": 0.0,
+            "stage_local_accuracy_row": {
+              "0": 1.0,
+              "1": 0.56640625,
+              "2": 0.0
+            },
+            "train_examples": 1536,
+            "train_tokens": 196608,
+            "train_wall_seconds": 0.28950243815779686
+          },
+          "fresh": {
+            "current_epoch_accuracy": [
+              1.0,
+              1.0
+            ],
+            "current_final_accuracy": 1.0,
+            "current_learning_auc": 1.0,
+            "current_pre_accuracy": 0.0,
+            "train_examples": 512,
+            "train_tokens": 65536,
+            "train_wall_seconds": 0.11802513524889946
+          },
+          "plasticity_gap_auc": 1.0,
+          "plasticity_gap_final": 1.0,
+          "stage_idx": 2
+        }
+      ]
+    }
+  ],
+  "setup": {
+    "association_table_seed": 20260522,
+    "associations_per_stage": 16,
+    "batch_size": 64,
+    "epochs_per_stage": 2,
+    "examples_per_seen_stage": 256,
+    "input_seq_len": 128,
+    "learning_rate": 0.003,
+    "num_query_associations": 8,
+    "num_stages": 3,
+    "output_prefix": "transformer_cumulative_ar_plasticity_smoke",
+    "results_dir": "results",
+    "seeds": [
+      123
+    ],
+    "test_examples_per_stage": 128,
+    "value_mapping": "permuted",
+    "verbose_progress": false,
+    "vocab_size": 1024,
+    "weight_decay": 0.1
+  }
+}

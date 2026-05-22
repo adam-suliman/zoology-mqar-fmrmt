@@ -1,0 +1,502 @@
+{
+  "aggregate": {
+    "attention": {
+      "avg_bwt": {
+        "mean": -0.96985,
+        "std": 0.026125322964510898,
+        "values": [
+          -1.0,
+          -0.95565,
+          -0.9539
+        ]
+      },
+      "avg_forgetting_from_learning": {
+        "mean": 0.77588,
+        "std": 0.020900258371608735,
+        "values": [
+          0.8,
+          0.76452,
+          0.76312
+        ]
+      },
+      "avg_learning_accuracy": {
+        "mean": 0.9510666666666667,
+        "std": 0.03874291333048318,
+        "values": [
+          0.9068,
+          0.9788,
+          0.9676
+        ]
+      },
+      "plasticity": {
+        "mean": 0.7553333333333333,
+        "std": 0.19371456665241601,
+        "values": [
+          0.534,
+          0.894,
+          0.838
+        ]
+      },
+      "seen_avg_accuracy": {
+        "mean": 0.17518666666666666,
+        "std": 0.05942694787159553,
+        "values": [
+          0.1068,
+          0.21428,
+          0.20448
+        ]
+      }
+    },
+    "base_rmt_nmem16": {
+      "avg_bwt": {
+        "mean": -0.2534445,
+        "std": 0.010601603805556971,
+        "values": [
+          -0.2656585,
+          -0.24805000000000002,
+          -0.246625
+        ]
+      },
+      "avg_forgetting_from_learning": {
+        "mean": 0.2027556,
+        "std": 0.008481283044445582,
+        "values": [
+          0.21252680000000002,
+          0.19844,
+          0.1973
+        ]
+      },
+      "avg_learning_accuracy": {
+        "mean": 1.0,
+        "std": 0.0,
+        "values": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "plasticity": {
+        "mean": 1.0,
+        "std": 0.0,
+        "values": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "seen_avg_accuracy": {
+        "mean": 0.7972444,
+        "std": 0.00848128304444556,
+        "values": [
+          0.7874732,
+          0.8015599999999999,
+          0.8027
+        ]
+      }
+    },
+    "fmrmt_plastic": {
+      "avg_bwt": {
+        "mean": -0.31578333333333336,
+        "std": 0.0575186129294973,
+        "values": [
+          -0.25,
+          -0.35660000000000003,
+          -0.34075
+        ]
+      },
+      "avg_forgetting_from_learning": {
+        "mean": 0.25262666666666667,
+        "std": 0.04601489034359783,
+        "values": [
+          0.2,
+          0.28528,
+          0.2726
+        ]
+      },
+      "avg_learning_accuracy": {
+        "mean": 1.0,
+        "std": 0.0,
+        "values": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "plasticity": {
+        "mean": 1.0,
+        "std": 0.0,
+        "values": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "seen_avg_accuracy": {
+        "mean": 0.7473733333333333,
+        "std": 0.04601489034359787,
+        "values": [
+          0.8,
+          0.71472,
+          0.7273999999999999
+        ]
+      }
+    },
+    "fmrmt_stable": {
+      "avg_bwt": {
+        "mean": -0.16516666666666668,
+        "std": 0.09910547832150013,
+        "values": [
+          -0.05075000000000002,
+          -0.2205,
+          -0.22425
+        ]
+      },
+      "avg_forgetting_from_learning": {
+        "mean": 0.13213333333333332,
+        "std": 0.0792843826572001,
+        "values": [
+          0.04060000000000001,
+          0.1764,
+          0.1794
+        ]
+      },
+      "avg_learning_accuracy": {
+        "mean": 1.0,
+        "std": 0.0,
+        "values": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "plasticity": {
+        "mean": 1.0,
+        "std": 0.0,
+        "values": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      "seen_avg_accuracy": {
+        "mean": 0.8678666666666667,
+        "std": 0.07928438265720013,
+        "values": [
+          0.9594,
+          0.8236,
+          0.8206
+        ]
+      }
+    }
+  },
+  "reconstruction_note": "Reconstructed from terminal log final stage-local evaluation lines. The run used zoology.launch with Comet, so no aggregate JSON was emitted. Comet reported metric throttling; stdout final validation lines were used for final CL metrics.",
+  "rows": [
+    {
+      "avg_bwt": -1.0,
+      "avg_forgetting_from_learning": 0.8,
+      "avg_learning_accuracy": 0.9068,
+      "comet_url": "https://www.comet.com/adam-suliman/zoology-rmt-mqar/28d49ac29b6a4a5aa5b473678342f499",
+      "final_accuracy_by_stage": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.534
+      },
+      "learning_accuracy_by_stage": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 0.534
+      },
+      "model": "attention",
+      "plasticity": 0.534,
+      "run_id": "interference-calibrated-continual_latest_fixed_all8_budget16-attention-seed123",
+      "seed": 123,
+      "seen_avg_accuracy": 0.1068
+    },
+    {
+      "avg_bwt": -0.2656585,
+      "avg_forgetting_from_learning": 0.21252680000000002,
+      "avg_learning_accuracy": 1.0,
+      "comet_url": "https://www.comet.com/adam-suliman/zoology-rmt-mqar/798993b275ce40699018d10831c2aacc",
+      "final_accuracy_by_stage": {
+        "0": 0.000366,
+        "1": 0.949,
+        "2": 1.0,
+        "3": 0.988,
+        "4": 1.0
+      },
+      "learning_accuracy_by_stage": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "model": "base_rmt_nmem16",
+      "plasticity": 1.0,
+      "run_id": "interference-calibrated-continual_latest_fixed_all8_budget16-base_rmt_nmem16-seed123",
+      "seed": 123,
+      "seen_avg_accuracy": 0.7874732
+    },
+    {
+      "avg_bwt": -0.05075000000000002,
+      "avg_forgetting_from_learning": 0.04060000000000001,
+      "avg_learning_accuracy": 1.0,
+      "comet_url": "https://www.comet.com/adam-suliman/zoology-rmt-mqar/6f08dc281a8546bf858143319941882a",
+      "final_accuracy_by_stage": {
+        "0": 0.824,
+        "1": 0.976,
+        "2": 0.997,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "learning_accuracy_by_stage": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "model": "fmrmt_stable",
+      "plasticity": 1.0,
+      "run_id": "interference-calibrated-continual_latest_fixed_all8_budget16-fmrmt_stable-seed123",
+      "seed": 123,
+      "seen_avg_accuracy": 0.9594
+    },
+    {
+      "avg_bwt": -0.25,
+      "avg_forgetting_from_learning": 0.2,
+      "avg_learning_accuracy": 1.0,
+      "comet_url": "https://www.comet.com/adam-suliman/zoology-rmt-mqar/7974b1d6d0e64af69ff4e17ae479a5d3",
+      "final_accuracy_by_stage": {
+        "0": 0.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "learning_accuracy_by_stage": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "model": "fmrmt_plastic",
+      "plasticity": 1.0,
+      "run_id": "interference-calibrated-continual_latest_fixed_all8_budget16-fmrmt_plastic-seed123",
+      "seed": 123,
+      "seen_avg_accuracy": 0.8
+    },
+    {
+      "avg_bwt": -0.95565,
+      "avg_forgetting_from_learning": 0.76452,
+      "avg_learning_accuracy": 0.9788,
+      "comet_url": "https://www.comet.com/adam-suliman/zoology-rmt-mqar/c0338f3b06d149d7be8f0a4ab6ee8fe3",
+      "final_accuracy_by_stage": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0674,
+        "3": 0.11,
+        "4": 0.894
+      },
+      "learning_accuracy_by_stage": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 0.894
+      },
+      "model": "attention",
+      "plasticity": 0.894,
+      "run_id": "interference-calibrated-continual_latest_fixed_all8_budget16-attention-seed456",
+      "seed": 456,
+      "seen_avg_accuracy": 0.21428
+    },
+    {
+      "avg_bwt": -0.24805000000000002,
+      "avg_forgetting_from_learning": 0.19844,
+      "avg_learning_accuracy": 1.0,
+      "comet_url": "https://www.comet.com/adam-suliman/zoology-rmt-mqar/653836f5dd774c5387bdcef44b9fbbb2",
+      "final_accuracy_by_stage": {
+        "0": 0.0658,
+        "1": 0.942,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "learning_accuracy_by_stage": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "model": "base_rmt_nmem16",
+      "plasticity": 1.0,
+      "run_id": "interference-calibrated-continual_latest_fixed_all8_budget16-base_rmt_nmem16-seed456",
+      "seed": 456,
+      "seen_avg_accuracy": 0.8015599999999999
+    },
+    {
+      "avg_bwt": -0.2205,
+      "avg_forgetting_from_learning": 0.1764,
+      "avg_learning_accuracy": 1.0,
+      "comet_url": "https://www.comet.com/adam-suliman/zoology-rmt-mqar/4e605ce1cb44448f8fadf236a889277e",
+      "final_accuracy_by_stage": {
+        "0": 0.276,
+        "1": 1.0,
+        "2": 0.842,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "learning_accuracy_by_stage": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "model": "fmrmt_stable",
+      "plasticity": 1.0,
+      "run_id": "interference-calibrated-continual_latest_fixed_all8_budget16-fmrmt_stable-seed456",
+      "seed": 456,
+      "seen_avg_accuracy": 0.8236
+    },
+    {
+      "avg_bwt": -0.35660000000000003,
+      "avg_forgetting_from_learning": 0.28528,
+      "avg_learning_accuracy": 1.0,
+      "comet_url": "https://www.comet.com/adam-suliman/zoology-rmt-mqar/49109a90aae347d984a3dd93c9d155fb",
+      "final_accuracy_by_stage": {
+        "0": 0.0166,
+        "1": 1.0,
+        "2": 0.557,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "learning_accuracy_by_stage": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "model": "fmrmt_plastic",
+      "plasticity": 1.0,
+      "run_id": "interference-calibrated-continual_latest_fixed_all8_budget16-fmrmt_plastic-seed456",
+      "seed": 456,
+      "seen_avg_accuracy": 0.71472
+    },
+    {
+      "avg_bwt": -0.9539,
+      "avg_forgetting_from_learning": 0.76312,
+      "avg_learning_accuracy": 0.9676,
+      "comet_url": "https://www.comet.com/adam-suliman/zoology-rmt-mqar/7f016623e69d4ec8bf795df370874af0",
+      "final_accuracy_by_stage": {
+        "0": 0.0,
+        "1": 0.0,
+        "2": 0.0614,
+        "3": 0.123,
+        "4": 0.838
+      },
+      "learning_accuracy_by_stage": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 0.838
+      },
+      "model": "attention",
+      "plasticity": 0.838,
+      "run_id": "interference-calibrated-continual_latest_fixed_all8_budget16-attention-seed789",
+      "seed": 789,
+      "seen_avg_accuracy": 0.20448
+    },
+    {
+      "avg_bwt": -0.246625,
+      "avg_forgetting_from_learning": 0.1973,
+      "avg_learning_accuracy": 1.0,
+      "comet_url": "https://www.comet.com/adam-suliman/zoology-rmt-mqar/fb699da528a741d19e8f024390842544",
+      "final_accuracy_by_stage": {
+        "0": 0.0135,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "learning_accuracy_by_stage": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "model": "base_rmt_nmem16",
+      "plasticity": 1.0,
+      "run_id": "interference-calibrated-continual_latest_fixed_all8_budget16-base_rmt_nmem16-seed789",
+      "seed": 789,
+      "seen_avg_accuracy": 0.8027
+    },
+    {
+      "avg_bwt": -0.22425,
+      "avg_forgetting_from_learning": 0.1794,
+      "avg_learning_accuracy": 1.0,
+      "comet_url": "https://www.comet.com/adam-suliman/zoology-rmt-mqar/2e68e73f3380470885bf3e2e99b85626",
+      "final_accuracy_by_stage": {
+        "0": 0.489,
+        "1": 0.614,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "learning_accuracy_by_stage": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "model": "fmrmt_stable",
+      "plasticity": 1.0,
+      "run_id": "interference-calibrated-continual_latest_fixed_all8_budget16-fmrmt_stable-seed789",
+      "seed": 789,
+      "seen_avg_accuracy": 0.8206
+    },
+    {
+      "avg_bwt": -0.34075,
+      "avg_forgetting_from_learning": 0.2726,
+      "avg_learning_accuracy": 1.0,
+      "comet_url": "https://www.comet.com/adam-suliman/zoology-rmt-mqar/18343aea2875438ca84091f3fdcd00e9",
+      "final_accuracy_by_stage": {
+        "0": 0.0,
+        "1": 0.699,
+        "2": 0.938,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "learning_accuracy_by_stage": {
+        "0": 1.0,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "model": "fmrmt_plastic",
+      "plasticity": 1.0,
+      "run_id": "interference-calibrated-continual_latest_fixed_all8_budget16-fmrmt_plastic-seed789",
+      "seed": 789,
+      "seen_avg_accuracy": 0.7273999999999999
+    }
+  ],
+  "seeds": [
+    123,
+    456,
+    789
+  ],
+  "source_log": "logs/calibrated_fixed_all8_budget16_comet_20260520_140157.log",
+  "task": "continual_latest_fixed_all8_budget16"
+}

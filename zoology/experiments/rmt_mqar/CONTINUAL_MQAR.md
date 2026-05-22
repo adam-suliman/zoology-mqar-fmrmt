@@ -105,7 +105,7 @@ for each stage:
   optionally evaluate the current stage before training it
   train on that stage for max_epochs
   evaluate every seen test stage
-  log seen-stage metrics, plasticity, BWT, FWT, and forgetting
+  log seen-stage metrics, plasticity, BWT, FWT, forgetting, and timing
 ```
 
 The optimizer is not recreated between stages. That means optimizer momentum and
@@ -150,6 +150,37 @@ continual/avg_learning_accuracy
 continual/plasticity_drop_from_stage_0
 continual/avg_bwt
 ```
+
+Stage-level compute and timing metrics are also logged on the same continual
+summary record:
+
+```text
+continual/stage_train_wall_seconds
+continual/stage_train_examples
+continual/stage_train_tokens
+continual/stage_train_batches
+continual/stage_optimizer_steps
+continual/stage_train_examples_per_second
+continual/stage_train_tokens_per_second
+continual/stage_seen_eval_wall_seconds
+continual/stage_seen_eval_examples
+continual/stage_seen_eval_tokens
+continual/stage_seen_eval_batches
+continual/stage_seen_eval_examples_per_second
+continual/stage_seen_eval_tokens_per_second
+continual/stage_wall_seconds
+continual/cumulative_train_wall_seconds
+continual/cumulative_seen_eval_wall_seconds
+continual/cumulative_wall_seconds
+```
+
+The token counts are processed input-token counts, not hardware FLOP estimates.
+For training, examples, tokens, and batches include all epochs for that stage.
+`stage_optimizer_steps` reflects the slow-update cadence used by models such as
+FMRMT. For seen validation, examples, tokens, and batches include the test splits
+for all stages evaluated after the current training stage. On CUDA, the trainer
+synchronizes before and after timed training/evaluation blocks so wall-clock
+measurements include queued GPU work.
 
 Plasticity is the current stage's accuracy immediately after training that
 stage:

@@ -9,12 +9,14 @@ from zoology.data.interference_ar import InterferenceARConfig
 def tiny_config(
     target_policy: str = "latest",
     num_interference_pairs: int = 2,
+    num_query_associations: int = 4,
+    update_value_mode: str = "random",
 ):
     return InterferenceARConfig(
         stage_idx=1,
         num_stages=3,
         associations_per_stage=4,
-        num_query_associations=4,
+        num_query_associations=num_query_associations,
         num_interference_pairs=num_interference_pairs,
         input_seq_len=40,
         vocab_size=128,
@@ -22,6 +24,7 @@ def tiny_config(
         eval_mode="current",
         distractor_mode="current",
         target_policy=target_policy,
+        update_value_mode=update_value_mode,
         include_slices=True,
     )
 
@@ -55,6 +58,26 @@ def test_interference_ar_old_and_latest_targets_differ():
     assert torch.any(old_labels != latest_labels)
 
 
+def test_interference_ar_fixed_shift_latest_targets_follow_update_mapping():
+    config = tiny_config(
+        target_policy="latest",
+        num_query_associations=4,
+        num_interference_pairs=4,
+        update_value_mode="fixed_shift",
+    )
+    data = config.build(seed=123)
+
+    label_mask = data.labels != -100
+    query_keys = data.inputs[label_mask]
+    labels = data.labels[label_mask]
+    value_start = config.vocab_size // 2 + config.stage_idx * config.associations_per_stage
+    key_start = 1 + config.stage_idx * config.associations_per_stage
+    expected = value_start + ((query_keys - key_start + 1) % config.associations_per_stage)
+
+    assert torch.equal(labels, expected)
+    assert data.slices["update_value_mode"] == "fixed_shift"
+
+
 def test_interference_ar_no_conflict_imports():
     config = tiny_config(target_policy="latest", num_interference_pairs=0)
     data = config.build(seed=123)
@@ -80,4 +103,5 @@ if __name__ == "__main__":
     test_interference_ar_shapes_and_label_range()
     test_interference_ar_old_and_latest_targets_differ()
     test_interference_ar_no_conflict_imports()
+    test_interference_ar_fixed_shift_latest_targets_follow_update_mapping()
     test_class_incremental_interference_experiment_imports_configs()

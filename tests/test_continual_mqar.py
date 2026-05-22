@@ -91,6 +91,8 @@ def test_continual_train_config_imports_and_builds():
 
     assert config.training_mode == "continual"
     assert config.evaluate_future_stages is False
+    assert config.train_log_interval == 1
+    assert config.continual_epoch_eval_interval == 1
     assert len(config.data.train_stage_configs) == 2
     assert len(config.data.test_stage_configs) == 2
 
@@ -173,10 +175,35 @@ def test_continual_train_smoke_logs_seen_accuracy_and_forgetting():
     finally:
         train_module.WandbLogger = original_logger
 
-    assert any("continual/seen_avg_accuracy" in metrics for metrics in logs)
-    assert any("continual/avg_forgetting" in metrics for metrics in logs)
-    assert any("continual/plasticity" in metrics for metrics in logs)
-    assert any("continual/avg_bwt" in metrics for metrics in logs)
+    epoch_logs = [
+        metrics for metrics in logs
+        if "continual/current_stage_epoch/accuracy" in metrics
+    ]
+    assert epoch_logs
+    assert any("continual/current_stage_epoch/loss" in metrics for metrics in epoch_logs)
+    assert any("continual/current_stage_epoch_number" in metrics for metrics in epoch_logs)
+    assert any("continual/current_stage_epoch_train_wall_seconds" in metrics for metrics in epoch_logs)
+    assert any("train/epoch_loss" in metrics for metrics in epoch_logs)
+    assert any("train/global_batch" in metrics for metrics in epoch_logs)
+    assert any("train/global_optimizer_step" in metrics for metrics in epoch_logs)
+    assert any("continual/stage_0/epoch_accuracy" in metrics for metrics in epoch_logs)
+
+    summary_logs = [metrics for metrics in logs if "continual/seen_avg_accuracy" in metrics]
+    assert summary_logs
+    assert any("continual/avg_forgetting" in metrics for metrics in summary_logs)
+    assert any("continual/plasticity" in metrics for metrics in summary_logs)
+    assert any("continual/avg_bwt" in metrics for metrics in summary_logs)
+    assert any("continual/stage_train_wall_seconds" in metrics for metrics in summary_logs)
+    assert any("continual/stage_seen_eval_wall_seconds" in metrics for metrics in summary_logs)
+    assert any("continual/stage_epoch_eval_wall_seconds" in metrics for metrics in summary_logs)
+    assert any("continual/cumulative_epoch_eval_wall_seconds" in metrics for metrics in summary_logs)
+    assert any("continual/stage_train_epoch_loss" in metrics for metrics in summary_logs)
+    assert any("continual/stage_wall_seconds" in metrics for metrics in summary_logs)
+    assert any("continual/stage_train_batches" in metrics for metrics in summary_logs)
+    assert any("continual/stage_optimizer_steps" in metrics for metrics in summary_logs)
+    assert any("continual/stage_seen_eval_batches" in metrics for metrics in summary_logs)
+    assert any("continual/stage_train_examples_per_second" in metrics for metrics in summary_logs)
+    assert any("continual/stage_train_tokens_per_second" in metrics for metrics in summary_logs)
 
 
 def test_continual_train_future_eval_logs_pre_learning_and_fwt():

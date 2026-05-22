@@ -16,6 +16,8 @@ class ClassIncrementalARConfig(DataSegmentConfig):
     num_query_associations: int = 8
     eval_mode: Literal["current", "seen"] = "current"
     distractor_mode: Literal["current", "seen", "all"] = "current"
+    value_mapping: Literal["aligned", "permuted"] = "aligned"
+    association_table_seed: int = 0
     include_slices: bool = True
 
     def stage_range(self, stage_idx: int = None):
@@ -91,14 +93,32 @@ def _association_tokens(
     associations_per_stage: int,
     stage_start: int,
     stage_end: int,
+    value_mapping: str = "aligned",
+    association_table_seed: int = 0,
 ):
-    association_offsets = np.arange(
-        stage_start * associations_per_stage,
-        stage_end * associations_per_stage,
-    )
     key_vocab_size = vocab_size // 2
-    keys = 1 + association_offsets
-    values = key_vocab_size + association_offsets
+    stage_keys = []
+    stage_values = []
+
+    for stage_idx in range(stage_start, stage_end):
+        stage_offsets = np.arange(associations_per_stage)
+        key_start = 1 + stage_idx * associations_per_stage
+        value_start = key_vocab_size + stage_idx * associations_per_stage
+
+        keys = key_start + stage_offsets
+        if value_mapping == "aligned":
+            values = value_start + stage_offsets
+        elif value_mapping == "permuted":
+            rng = np.random.default_rng(association_table_seed + stage_idx)
+            values = value_start + rng.permutation(associations_per_stage)
+        else:
+            raise ValueError(f"Unsupported value_mapping: {value_mapping}")
+
+        stage_keys.append(keys)
+        stage_values.append(values)
+
+    keys = np.concatenate(stage_keys)
+    values = np.concatenate(stage_values)
     return keys, values
 
 
@@ -124,6 +144,8 @@ def class_incremental_ar(
     num_query_associations: int = 8,
     eval_mode: str = "current",
     distractor_mode: str = "current",
+    value_mapping: str = "aligned",
+    association_table_seed: int = 0,
     include_slices: bool = True,
     **kwargs,
 ) -> DataSegment:
@@ -171,6 +193,8 @@ def class_incremental_ar(
         associations_per_stage=associations_per_stage,
         stage_start=active_stage_start,
         stage_end=active_stage_end,
+        value_mapping=value_mapping,
+        association_table_seed=association_table_seed,
     )
 
     association_ids = np.arange(active_associations)
@@ -229,6 +253,8 @@ def class_incremental_ar(
         associations_per_stage=associations_per_stage,
         stage_start=distractor_stage_start,
         stage_end=distractor_stage_end,
+        value_mapping=value_mapping,
+        association_table_seed=association_table_seed,
     )
     distractor_choices = torch.tensor(
         np.concatenate([distractor_keys, distractor_values]),
@@ -260,6 +286,8 @@ def class_incremental_ar(
             "input_seq_len": input_seq_len,
             "eval_mode": eval_mode,
             "distractor_mode": distractor_mode,
+            "value_mapping": value_mapping,
+            "association_table_seed": association_table_seed,
             "active_stage_start": active_stage_start,
             "active_stage_end": active_stage_end,
             "current_key_start": current_key_start,

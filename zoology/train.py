@@ -1,5 +1,7 @@
 import argparse
+import os
 import random
+import time
 from datetime import datetime
 from typing import List, Union
 import pandas as pd
@@ -32,6 +34,7 @@ class Trainer:
         weight_decay: float = 0.1,
         early_stopping_metric: str = None,
         early_stopping_threshold: float = None,
+        train_log_interval: int = 1,
         loss_type: str = "ce",
         slice_keys: List[str] = [],
         device: Union[str, int] = "cuda",
@@ -50,8 +53,11 @@ class Trainer:
         self.learning_rate = learning_rate
         self.weight_decay = weight_decay
         self.slice_keys = slice_keys
+        self.train_log_interval = train_log_interval
         self.loss_type = loss_type
         self.log_context = {}
+        self.global_train_batch = 0
+        self.global_optimizer_step = 0
 
     def _modules_with_hook(self, hook_name: str):
         return [
@@ -160,15 +166,22 @@ class Trainer:
                 preds = logits.argmax(dim=-1)
                 return loss, preds
 
-    def train_epoch(self, epoch_idx: int):
+    def train_epoch(
+        self,
+        epoch_idx: int,
+        desc: str = None,
+        log_context: dict = None,
+    ):
         self.model.train()
         self._call_model_hook("on_epoch_start", epoch_idx=epoch_idx)
         iterator = tqdm(
             self.train_dataloader,
             total=len(self.train_dataloader),
-            desc=f"Train Epoch {epoch_idx}/{self.max_epochs}",
+            desc=desc or f"Train Epoch {epoch_idx + 1}/{self.max_epochs}",
         )
 
+        log_context = log_context or {}
+        loss_values = []
         slow_update_freq = self._slow_update_freq()
         for batch_idx, (inputs, targets, slices) in enumerate(iterator):
             inputs, targets = inputs.to(self.device), targets.to(self.device)
@@ -195,15 +208,40 @@ class Trainer:
             self._call_model_hook("update_fast_memory")
             if (batch_idx + 1) % slow_update_freq == 0:
                 self.optimizer.step()
+                self.global_optimizer_step += 1
+            self.global_train_batch += 1
 
-            diagnostics = self._collect_model_diagnostics()
-            iterator.set_postfix({"loss": loss.item()})
-            self.logger.log({
-                "train/loss": loss.item(),
-                "epoch": epoch_idx,
-                **self.log_context,
-                **diagnostics,
-            })
+            loss_value = loss.item()
+            loss_values.append(loss_value)
+            iterator.set_postfix({"loss": loss_value})
+
+            should_log_batch = (
+                self.train_log_interval > 0
+                and (
+                    self.global_train_batch == 1
+                    or self.global_train_batch % self.train_log_interval == 0
+                    or batch_idx + 1 == len(self.train_dataloader)
+                )
+            )
+            if should_log_batch:
+                diagnostics = self._collect_model_diagnostics()
+                self.logger.log({
+                    "train/loss": loss_value,
+                    "train/global_batch": self.global_train_batch,
+                    "train/global_optimizer_step": self.global_optimizer_step,
+                    "train/batch_in_epoch": batch_idx + 1,
+                    "epoch": epoch_idx,
+                    **self.log_context,
+                    **log_context,
+                    **diagnostics,
+                })
+
+        return {
+            "train/epoch_loss": float(np.mean(loss_values)),
+            "train/epoch_batches": len(loss_values),
+            "train/global_batch": self.global_train_batch,
+            "train/global_optimizer_step": self.global_optimizer_step,
+        }
 
     def evaluate(
         self,
@@ -212,6 +250,7 @@ class Trainer:
         metric_prefix: str = "valid",
         desc: str = None,
         log: bool = True,
+        log_context: dict = None,
     ):
         self.model.eval()
         test_loss = 0
@@ -219,7 +258,7 @@ class Trainer:
 
         with torch.no_grad(), tqdm(
             total=len(dataloader),
-            desc=desc or f"Valid Epoch {epoch_idx}/{self.max_epochs}",
+            desc=desc or f"Valid Epoch {epoch_idx + 1}/{self.max_epochs}",
             postfix={"loss": "-", "acc": "-"},
         ) as iterator:
             for inputs, targets, slices in dataloader:
@@ -247,7 +286,12 @@ class Trainer:
 
             iterator.set_postfix(metrics)
             if log:
-                self.logger.log({"epoch": epoch_idx, **self.log_context, **metrics})
+                self.logger.log({
+                    "epoch": epoch_idx,
+                    **self.log_context,
+                    **(log_context or {}),
+                    **metrics,
+                })
         return metrics
 
     def test(self, epoch_idx: int):
@@ -275,7 +319,8 @@ class Trainer:
     def fit(self):
         self.initialize_training()
         for epoch_idx in range(self.max_epochs):
-            self.train_epoch(epoch_idx)
+            train_metrics = self.train_epoch(epoch_idx)
+            self.logger.log({"epoch": epoch_idx, **train_metrics})
             metrics = self.test(epoch_idx)
 
             # early stopping
@@ -337,6 +382,7 @@ def train(config: TrainConfig):
         weight_decay=config.weight_decay,
         early_stopping_metric=config.early_stopping_metric,
         early_stopping_threshold=config.early_stopping_threshold,
+        train_log_interval=_train_log_interval(config),
         slice_keys=config.slice_keys,
         loss_type=config.loss_type,
         device="cuda" if torch.cuda.is_available() else "cpu",
@@ -503,6 +549,55 @@ def _stage_random_accuracy(config: ContinualTrainConfig, stage_idx: int):
     return None
 
 
+def _train_log_interval(config: TrainConfig):
+    value = os.getenv("ZOOLOGY_TRAIN_LOG_INTERVAL")
+    if value is None:
+        return config.train_log_interval
+    return int(value)
+
+
+def _sync_device_for_timing(device):
+    if (
+        isinstance(device, str)
+        and device.startswith("cuda")
+        and torch.cuda.is_available()
+    ):
+        torch.cuda.synchronize()
+
+
+def _dataloader_num_examples(dataloader: DataLoader):
+    dataset = getattr(dataloader, "dataset", None)
+    if dataset is None:
+        return None
+    try:
+        return len(dataset)
+    except TypeError:
+        return None
+
+
+def _sequence_length_from_config(stage_config):
+    return getattr(stage_config, "input_seq_len", None)
+
+
+def _throughput_metrics(
+    prefix: str,
+    wall_seconds: float,
+    examples: int = None,
+    sequence_length: int = None,
+):
+    metrics = {f"{prefix}_wall_seconds": wall_seconds}
+    if examples is not None:
+        metrics[f"{prefix}_examples"] = examples
+        if wall_seconds > 0:
+            metrics[f"{prefix}_examples_per_second"] = examples / wall_seconds
+    if examples is not None and sequence_length is not None:
+        tokens = examples * sequence_length
+        metrics[f"{prefix}_tokens"] = tokens
+        if wall_seconds > 0:
+            metrics[f"{prefix}_tokens_per_second"] = tokens / wall_seconds
+    return metrics
+
+
 def train_continual(config: ContinualTrainConfig):
     set_determinism(config.seed)
 
@@ -535,6 +630,7 @@ def train_continual(config: ContinualTrainConfig):
         weight_decay=config.weight_decay,
         early_stopping_metric=config.early_stopping_metric,
         early_stopping_threshold=config.early_stopping_threshold,
+        train_log_interval=_train_log_interval(config),
         slice_keys=config.slice_keys,
         loss_type=config.loss_type,
         device=device,
@@ -569,6 +665,11 @@ def train_continual(config: ContinualTrainConfig):
             ]
         pre_learning_stage_accuracy[0] = pretrain_stage_accuracy[0]
 
+    cumulative_train_wall_seconds = 0.0
+    cumulative_epoch_eval_wall_seconds = 0.0
+    cumulative_seen_eval_wall_seconds = 0.0
+    cumulative_wall_seconds = 0.0
+
     should_stop = False
     for stage_idx, (train_dataloader, _) in enumerate(stage_dataloaders):
         trainer.train_dataloader = train_dataloader
@@ -588,12 +689,83 @@ def train_continual(config: ContinualTrainConfig):
             ]
             pre_learning_stage_accuracy[stage_idx] = pre_learning_accuracy
 
+        current_test_dataloader = stage_dataloaders[stage_idx][1]
+        epoch_eval_interval = config.continual_epoch_eval_interval
+        train_wall_seconds = 0.0
+        epoch_eval_wall_seconds = 0.0
+        train_epoch_summaries = []
+
         for local_epoch_idx in range(config.max_epochs):
             global_epoch_idx = stage_idx * config.max_epochs + local_epoch_idx
-            trainer.train_epoch(global_epoch_idx)
+            epoch_log_context = {
+                "continual/global_epoch": global_epoch_idx,
+                "continual/local_epoch": local_epoch_idx,
+                "continual/stage_epoch": local_epoch_idx + 1,
+            }
+
+            _sync_device_for_timing(device)
+            epoch_train_wall_start = time.perf_counter()
+            train_metrics = trainer.train_epoch(
+                global_epoch_idx,
+                desc=(
+                    f"Train Continual Stage {stage_idx + 1}/{len(stage_dataloaders)} "
+                    f"Epoch {local_epoch_idx + 1}/{config.max_epochs}"
+                ),
+                log_context=epoch_log_context,
+            )
             trainer.scheduler.step()
+            _sync_device_for_timing(device)
+            epoch_train_wall = time.perf_counter() - epoch_train_wall_start
+            train_wall_seconds += epoch_train_wall
+            train_epoch_summaries.append(train_metrics)
+
+            should_log_epoch_eval = (
+                epoch_eval_interval > 0
+                and (
+                    (local_epoch_idx + 1) % epoch_eval_interval == 0
+                    or local_epoch_idx == config.max_epochs - 1
+                )
+            )
+            if should_log_epoch_eval:
+                _sync_device_for_timing(device)
+                epoch_eval_wall_start = time.perf_counter()
+                current_epoch_metrics = trainer.evaluate(
+                    current_test_dataloader,
+                    epoch_idx=global_epoch_idx,
+                    metric_prefix="continual/current_stage_epoch",
+                    desc=(
+                        f"Valid Continual Stage {stage_idx + 1}/{len(stage_dataloaders)} "
+                        f"Epoch {local_epoch_idx + 1}/{config.max_epochs}"
+                    ),
+                    log=False,
+                )
+                _sync_device_for_timing(device)
+                current_epoch_eval_wall = time.perf_counter() - epoch_eval_wall_start
+                epoch_eval_wall_seconds += current_epoch_eval_wall
+
+                current_epoch_accuracy = current_epoch_metrics[
+                    "continual/current_stage_epoch/accuracy"
+                ]
+                current_epoch_loss = current_epoch_metrics[
+                    "continual/current_stage_epoch/loss"
+                ]
+                logger.log({
+                    "epoch": global_epoch_idx,
+                    "continual/stage": stage_idx,
+                    **epoch_log_context,
+                    "continual/current_stage_epoch_index": local_epoch_idx,
+                    "continual/current_stage_epoch_number": local_epoch_idx + 1,
+                    "continual/current_stage_epoch_train_wall_seconds": epoch_train_wall,
+                    "continual/current_stage_epoch_eval_wall_seconds": current_epoch_eval_wall,
+                    f"continual/stage_{stage_idx}/epoch_accuracy": current_epoch_accuracy,
+                    f"continual/stage_{stage_idx}/epoch_loss": current_epoch_loss,
+                    **train_metrics,
+                    **current_epoch_metrics,
+                })
 
         stage_metrics = {}
+        _sync_device_for_timing(device)
+        seen_eval_wall_start = time.perf_counter()
         for eval_stage_idx in range(stage_idx + 1):
             test_dataloader = stage_dataloaders[eval_stage_idx][1]
             metrics = trainer.evaluate(
@@ -604,6 +776,8 @@ def train_continual(config: ContinualTrainConfig):
                 log=False,
             )
             stage_metrics[eval_stage_idx] = metrics
+        _sync_device_for_timing(device)
+        seen_eval_wall_seconds = time.perf_counter() - seen_eval_wall_start
 
         learning_stage_accuracy[stage_idx] = stage_metrics[stage_idx][
             f"continual/stage_{stage_idx}/accuracy"
@@ -618,9 +792,86 @@ def train_continual(config: ContinualTrainConfig):
             pretrain_stage_accuracy=pretrain_stage_accuracy,
             stage_random_accuracy=stage_random_accuracy,
         )
+
+        train_examples_per_epoch = _dataloader_num_examples(train_dataloader)
+        train_examples = (
+            train_examples_per_epoch * config.max_epochs
+            if train_examples_per_epoch is not None
+            else None
+        )
+        train_sequence_length = _sequence_length_from_config(
+            config.data.train_stage_configs[stage_idx]
+        )
+        stage_train_batches = len(train_dataloader) * config.max_epochs
+        slow_update_freq = trainer._slow_update_freq()
+        stage_optimizer_steps = (
+            len(train_dataloader) // slow_update_freq
+        ) * config.max_epochs
+        seen_eval_examples = 0
+        seen_eval_sequence_tokens = 0
+        stage_seen_eval_batches = 0
+        for eval_stage_idx in range(stage_idx + 1):
+            test_dataloader = stage_dataloaders[eval_stage_idx][1]
+            stage_seen_eval_batches += len(test_dataloader)
+            eval_examples = _dataloader_num_examples(test_dataloader)
+            eval_sequence_length = _sequence_length_from_config(
+                config.data.test_stage_configs[eval_stage_idx]
+            )
+            if eval_examples is not None:
+                seen_eval_examples += eval_examples
+                if eval_sequence_length is not None:
+                    seen_eval_sequence_tokens += eval_examples * eval_sequence_length
+
+        stage_epoch_loss = (
+            float(np.mean([summary["train/epoch_loss"] for summary in train_epoch_summaries]))
+            if train_epoch_summaries
+            else float("nan")
+        )
+        stage_wall_seconds = (
+            train_wall_seconds + epoch_eval_wall_seconds + seen_eval_wall_seconds
+        )
+        cumulative_train_wall_seconds += train_wall_seconds
+        cumulative_epoch_eval_wall_seconds += epoch_eval_wall_seconds
+        cumulative_seen_eval_wall_seconds += seen_eval_wall_seconds
+        cumulative_wall_seconds += stage_wall_seconds
+
+        timing_metrics = {
+            **_throughput_metrics(
+                "continual/stage_train",
+                train_wall_seconds,
+                examples=train_examples,
+                sequence_length=train_sequence_length,
+            ),
+            **_throughput_metrics(
+                "continual/stage_seen_eval",
+                seen_eval_wall_seconds,
+                examples=seen_eval_examples,
+            ),
+            "continual/stage_train_batches": stage_train_batches,
+            "continual/stage_optimizer_steps": stage_optimizer_steps,
+            "continual/stage_seen_eval_batches": stage_seen_eval_batches,
+            "continual/stage_seen_eval_tokens": seen_eval_sequence_tokens,
+            "continual/stage_epoch_eval_wall_seconds": epoch_eval_wall_seconds,
+            "continual/stage_train_epoch_loss": stage_epoch_loss,
+            "continual/stage_wall_seconds": stage_wall_seconds,
+            "continual/cumulative_train_wall_seconds": cumulative_train_wall_seconds,
+            "continual/cumulative_epoch_eval_wall_seconds": cumulative_epoch_eval_wall_seconds,
+            "continual/cumulative_seen_eval_wall_seconds": cumulative_seen_eval_wall_seconds,
+            "continual/cumulative_wall_seconds": cumulative_wall_seconds,
+        }
+        if seen_eval_wall_seconds > 0:
+            timing_metrics["continual/stage_seen_eval_tokens_per_second"] = (
+                seen_eval_sequence_tokens / seen_eval_wall_seconds
+            )
+
+        stage_end_epoch = (stage_idx + 1) * config.max_epochs - 1
         logger.log({
-            "epoch": (stage_idx + 1) * config.max_epochs - 1,
+            "epoch": stage_end_epoch,
+            "continual/global_epoch": stage_end_epoch,
+            "continual/local_epoch": config.max_epochs - 1,
+            "continual/stage_epoch": config.max_epochs,
             **metrics,
+            **timing_metrics,
         })
 
         if config.evaluate_future_stages and stage_idx + 1 < len(stage_dataloaders):
@@ -638,7 +889,10 @@ def train_continual(config: ContinualTrainConfig):
             ]
             pre_learning_stage_accuracy[next_stage_idx] = pre_learning_accuracy
             logger.log({
-                "epoch": (stage_idx + 1) * config.max_epochs - 1,
+                "epoch": stage_end_epoch,
+                "continual/global_epoch": stage_end_epoch,
+                "continual/local_epoch": config.max_epochs - 1,
+                "continual/stage_epoch": config.max_epochs,
                 "continual/stage": stage_idx,
                 f"continual/stage_{next_stage_idx}/pre_learning_accuracy": pre_learning_accuracy,
                 **(

@@ -12,6 +12,8 @@ def tiny_config(
     distractor_mode: str = "current",
     num_examples: int = 8,
     num_query_associations: int = 3,
+    value_mapping: str = "aligned",
+    association_table_seed: int = 0,
 ):
     return ClassIncrementalARConfig(
         stage_idx=stage_idx,
@@ -23,12 +25,26 @@ def tiny_config(
         num_examples=num_examples,
         eval_mode=eval_mode,
         distractor_mode=distractor_mode,
+        value_mapping=value_mapping,
+        association_table_seed=association_table_seed,
         include_slices=True,
     )
 
 
 def non_ignored_labels(data):
     return data.labels[data.labels != -100]
+
+
+def context_mapping(data, config):
+    context_size = config.num_query_associations * 2
+    context = data.inputs[:, :context_size]
+    mapping = {}
+    for row in context:
+        for key, value in zip(row[0::2].tolist(), row[1::2].tolist()):
+            if key in mapping:
+                assert mapping[key] == value
+            mapping[key] = value
+    return mapping
 
 
 def test_class_incremental_ar_stage_ranges_are_disjoint():
@@ -73,6 +89,30 @@ def test_class_incremental_ar_seen_mode_labels_cover_seen_stages():
     assert data.slices["eval_mode"] == "seen"
     assert data.slices["active_stage_start"] == 0
     assert data.slices["active_stage_end"] == 3
+
+
+def test_class_incremental_ar_permuted_mapping_is_stable_across_data_seeds():
+    config = tiny_config(
+        stage_idx=0,
+        num_examples=16,
+        num_query_associations=4,
+        value_mapping="permuted",
+        association_table_seed=0,
+    )
+    first = config.build(seed=123)
+    second = config.build(seed=456)
+    first_mapping = context_mapping(first, config)
+    second_mapping = context_mapping(second, config)
+    value_start, value_end = config.value_range(stage_idx=0)
+
+    assert first_mapping == second_mapping
+    assert sorted(first_mapping.values()) == list(range(value_start, value_end))
+    assert any(
+        value - value_start != key - config.key_range(stage_idx=0)[0]
+        for key, value in first_mapping.items()
+    )
+    assert first.slices["value_mapping"] == "permuted"
+    assert first.slices["association_table_seed"] == 0
 
 
 def test_class_incremental_ar_final_seen_random_baseline():
@@ -120,6 +160,7 @@ if __name__ == "__main__":
     test_class_incremental_ar_stage_ranges_are_disjoint()
     test_class_incremental_ar_current_mode_labels_are_current_stage_only()
     test_class_incremental_ar_seen_mode_labels_cover_seen_stages()
+    test_class_incremental_ar_permuted_mapping_is_stable_across_data_seeds()
     test_class_incremental_ar_final_seen_random_baseline()
     test_class_incremental_ar_experiment_imports_configs()
     test_class_incremental_ar_horizon_experiment_imports_configs()

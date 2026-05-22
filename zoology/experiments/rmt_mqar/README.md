@@ -35,6 +35,15 @@ Local experiment summaries are tracked in `RESULTS.md`.
   over more stages, with future-stage/pre-learning metrics enabled.
 - `class_incremental_ar_interference.py`: continual repeated-key interference
   variants with no-conflict, latest-value, and old-value targets.
+- `class_incremental_ar_interference_calibrated.py`: calibrated repeated-key
+  latest-value interference with fixed-update all-queried-key overwrite variants
+  and a local JSON runner.
+- `class_incremental_ar_fmrmt_plasticity_tuning.py`: FMRMT-only plasticity
+  tuning grid for the 10-stage horizon and repeated-key latest-value hard cases.
+- `class_incremental_ar_base_rmt_memory_sweep.py`: Base RMT memory-token
+  control for clean 5-stage and 10-stage formal CL comparisons.
+- `class_incremental_ar_timing_selected.py`: selected formal reruns for
+  compute-aware 5-stage and 10-stage comparisons.
 - `_common.py`: shared model and train-config factories.
 - `ARCHITECTURES.md`: explicit architecture descriptions and diagrams for the
   Transformer/MHA baseline, Base RMT, and Fast Memory RMT.
@@ -148,6 +157,51 @@ Class-incremental interference sweep:
 
 ```bash
 python -m zoology.launch zoology/experiments/rmt_mqar/class_incremental_ar_interference.py --gpus 1
+```
+
+Calibrated fixed-update interference benchmark:
+
+```bash
+INTERFERENCE_CALIBRATION_TASKS=continual_latest_fixed_all8_low \
+INTERFERENCE_CALIBRATION_MODELS=attention,base_rmt_nmem16,fmrmt_stable,fmrmt_plastic \
+INTERFERENCE_CALIBRATION_SEEDS=123,456,789 \
+.venv/bin/python -m zoology.experiments.rmt_mqar.class_incremental_ar_interference_calibrated
+```
+
+FMRMT plasticity tuning hard-case screen:
+
+```bash
+.venv/bin/python -m zoology.launch zoology/experiments/rmt_mqar/class_incremental_ar_fmrmt_plasticity_tuning.py --gpus 0
+```
+
+Base RMT memory-token formal CL control:
+
+```bash
+.venv/bin/python -m zoology.launch zoology/experiments/rmt_mqar/class_incremental_ar_base_rmt_memory_sweep.py --gpus 0
+```
+
+Selected formal timing reruns:
+
+```bash
+.venv/bin/python -m zoology.launch zoology/experiments/rmt_mqar/class_incremental_ar_timing_selected.py --gpus 0
+```
+
+Base RMT subset controls before launch:
+
+```bash
+export BASE_RMT_MEMORY_SWEEP_TASKS=5stage,10stage
+export BASE_RMT_MEMORY_SWEEP_N_MEMS=2,4,8,16
+export BASE_RMT_MEMORY_SWEEP_SEEDS=123,456,789
+```
+
+FMRMT subset controls before launch:
+
+```bash
+export FMRMT_TUNING_TASKS=horizon10
+export FMRMT_TUNING_SEEDS=123,456,789
+export FMRMT_TUNING_FAST_LRS=0.005,0.01
+export FMRMT_TUNING_SLOW_FREQS=2,4
+export FMRMT_TUNING_EPOCH_RESETS=true,false
 ```
 
 Multi-GPU parallel launch, if supported by current Zoology:

@@ -18,6 +18,8 @@ class InterferenceARConfig(DataSegmentConfig):
     eval_mode: Literal["current", "seen"] = "current"
     distractor_mode: Literal["current", "seen", "all"] = "current"
     target_policy: Literal["latest", "old"] = "latest"
+    update_value_mode: Literal["random", "fixed_shift"] = "random"
+    fixed_update_offset: int = 1
     include_slices: bool = True
 
     def active_stage_range(self):
@@ -90,6 +92,8 @@ def interference_ar(
     eval_mode: str = "current",
     distractor_mode: str = "current",
     target_policy: str = "latest",
+    update_value_mode: str = "random",
+    fixed_update_offset: int = 1,
     include_slices: bool = True,
     **kwargs,
 ) -> DataSegment:
@@ -99,11 +103,19 @@ def interference_ar(
     Each example first presents selected key/value associations, then repeats a
     subset of keys with changed values. `target_policy="latest"` asks for the
     updated value; `target_policy="old"` asks for the original value.
+
+    `update_value_mode="random"` samples each changed value independently per
+    example. `update_value_mode="fixed_shift"` gives each key a deterministic
+    changed value by shifting within the active value set, making the latest-value
+    task a class-incremental overwrite benchmark rather than arbitrary in-context
+    value copying.
     """
     assert input_seq_len % 2 == 0, "input_seq_len must be even"
     assert vocab_size > input_seq_len
     assert 0 <= stage_idx < num_stages
     assert 0 <= num_interference_pairs <= num_query_associations
+    if update_value_mode not in {"random", "fixed_shift"}:
+        raise ValueError(f"Unsupported update_value_mode: {update_value_mode}")
 
     key_vocab_size = vocab_size // 2
     total_associations = num_stages * associations_per_stage
@@ -167,11 +179,21 @@ def interference_ar(
 
     latest_values = old_values.copy()
     changed_values = np.zeros((num_examples, num_interference_pairs), dtype=np.int64)
+    fixed_offset = fixed_update_offset % active_associations
+    if update_value_mode == "fixed_shift" and fixed_offset == 0:
+        raise ValueError("fixed_update_offset must not be a multiple of the active association count")
+
     for example_idx in range(num_examples):
         for update_idx, selected_idx in enumerate(interference_indices[example_idx]):
             old_value = old_values[example_idx, selected_idx]
-            choices = value_choices[value_choices != old_value]
-            new_value = np.random.choice(choices)
+            if update_value_mode == "random":
+                choices = value_choices[value_choices != old_value]
+                new_value = np.random.choice(choices)
+            elif update_value_mode == "fixed_shift":
+                association_id = selected[example_idx, selected_idx]
+                new_value = value_choices[(association_id + fixed_offset) % active_associations]
+            else:
+                raise ValueError(f"Unsupported update_value_mode: {update_value_mode}")
             changed_values[example_idx, update_idx] = new_value
             latest_values[example_idx, selected_idx] = new_value
 
@@ -256,6 +278,8 @@ def interference_ar(
             "eval_mode": eval_mode,
             "distractor_mode": distractor_mode,
             "target_policy": target_policy,
+            "update_value_mode": update_value_mode,
+            "fixed_update_offset": fixed_update_offset,
             "active_stage_start": active_stage_start,
             "active_stage_end": active_stage_end,
             "random_accuracy": 1.0 / active_associations,
