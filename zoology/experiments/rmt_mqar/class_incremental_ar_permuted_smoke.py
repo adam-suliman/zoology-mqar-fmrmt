@@ -288,6 +288,10 @@ def _model_settings(config: ContinualTrainConfig):
             "reset_memory_each_batch",
             "reset_memory_each_epoch",
             "rmt_clip_memory_grad",
+            "segment_len",
+            "detach_memory_between_segments",
+            "memory_layout",
+            "eval_memory_policy",
         ]
         if key in kwargs
     }
@@ -310,6 +314,15 @@ def aggregate_runs(runs: list[dict[str, Any]]):
         "final_plasticity": "continual/plasticity",
         "final_avg_bwt": "continual/avg_bwt",
         "final_avg_forgetting_from_learning": "continual/avg_forgetting_from_learning",
+        "final_old_stage_avg_accuracy": "continual/old_stage_avg_accuracy",
+        "final_old_stage_avg_forgetting": "continual/old_stage_avg_forgetting",
+        "final_old_stage_avg_forgetting_from_learning": "continual/old_stage_avg_forgetting_from_learning",
+        "final_old_stage_avg_bwt": "continual/old_stage_avg_bwt",
+        "seen_avg_accuracy_stage_auc": "continual/seen_avg_accuracy_stage_auc",
+        "old_stage_avg_accuracy_stage_auc": "continual/old_stage_avg_accuracy_stage_auc",
+        "old_stage_avg_forgetting_stage_auc": "continual/old_stage_avg_forgetting_stage_auc",
+        "old_stage_avg_forgetting_from_learning_stage_auc": "continual/old_stage_avg_forgetting_from_learning_stage_auc",
+        "old_stage_avg_bwt_stage_auc": "continual/old_stage_avg_bwt_stage_auc",
         "final_cumulative_wall_seconds": "continual/cumulative_wall_seconds",
     }
     grouped = {}
@@ -341,6 +354,79 @@ def aggregate_runs(runs: list[dict[str, Any]]):
     return aggregates
 
 
+def _json_safe_metrics(metrics: dict[str, Any]):
+    return {str(key): _json_safe(value) for key, value in metrics.items()}
+
+
+def _json_safe_history(history: list[dict[str, Any]]):
+    return [_json_safe_metrics(entry) for entry in history]
+
+
+def _stage_end_history(history: list[dict[str, Any]]):
+    return [
+        _json_safe_metrics(entry)
+        for entry in history
+        if "continual/seen_avg_accuracy" in entry
+    ]
+
+
+def _current_stage_epoch_history(history: list[dict[str, Any]]):
+    return [
+        _json_safe_metrics(entry)
+        for entry in history
+        if "continual/current_stage_epoch/accuracy" in entry
+    ]
+
+
+def _matrix_from_stage_end(stage_end_entries: list[dict[str, Any]], num_stages: int, metric_name: str):
+    matrix = []
+    for train_stage_idx, entry in enumerate(stage_end_entries):
+        row = []
+        for eval_stage_idx in range(num_stages):
+            key = f"continual/stage_{eval_stage_idx}/{metric_name}"
+            row.append(entry.get(key) if eval_stage_idx <= train_stage_idx else None)
+        matrix.append(row)
+    return matrix
+
+
+def _stage_end_matrices(history: list[dict[str, Any]], num_stages: int):
+    stage_end_entries = _stage_end_history(history)
+    return {
+        "accuracy": _matrix_from_stage_end(stage_end_entries, num_stages, "accuracy"),
+        "loss": _matrix_from_stage_end(stage_end_entries, num_stages, "loss"),
+        "learning_accuracy": _matrix_from_stage_end(stage_end_entries, num_stages, "learning_accuracy"),
+        "bwt": _matrix_from_stage_end(stage_end_entries, num_stages, "bwt"),
+        "forgetting": _matrix_from_stage_end(stage_end_entries, num_stages, "forgetting"),
+        "forgetting_from_learning": _matrix_from_stage_end(stage_end_entries, num_stages, "forgetting_from_learning"),
+        "pre_learning_accuracy": _matrix_from_stage_end(stage_end_entries, num_stages, "pre_learning_accuracy"),
+        "fwt_from_random": _matrix_from_stage_end(stage_end_entries, num_stages, "fwt_from_random"),
+    }
+
+
+def _current_stage_epoch_curves(history: list[dict[str, Any]]):
+    curves: dict[str, list[dict[str, Any]]] = {}
+    for entry in _current_stage_epoch_history(history):
+        stage_idx = entry.get("continual/stage")
+        if stage_idx is None:
+            continue
+        key = str(stage_idx)
+        curves.setdefault(key, []).append({
+            "global_epoch": entry.get("continual/global_epoch", entry.get("epoch")),
+            "local_epoch": entry.get("continual/local_epoch"),
+            "stage_epoch": entry.get("continual/stage_epoch"),
+            "accuracy": entry.get("continual/current_stage_epoch/accuracy"),
+            "loss": entry.get("continual/current_stage_epoch/loss"),
+            "train_epoch_loss": entry.get("train/epoch_loss"),
+            "train_lr": entry.get("train/lr"),
+            "slow_update_mode_is_accumulate": entry.get("train/slow_update_mode_is_accumulate"),
+            "slow_update_freq": entry.get("train/slow_update_freq"),
+            "global_optimizer_step": entry.get("train/global_optimizer_step"),
+            "train_wall_seconds": entry.get("continual/current_stage_epoch_train_wall_seconds"),
+            "eval_wall_seconds": entry.get("continual/current_stage_epoch_eval_wall_seconds"),
+        })
+    return curves
+
+
 def run_all(output_prefix: str = "class_incremental_ar_permuted_smoke"):
     import torch
     import zoology.train as train_module
@@ -360,6 +446,7 @@ def run_all(output_prefix: str = "class_incremental_ar_permuted_smoke"):
             train_module.train_continual(config)
             logger = CaptureLogger.instances[-1]
             summary = _final_summary(logger.history)
+            task_spec = TASK_SPECS[task_name]
             run = {
                 "run_id": config.run_id,
                 "task_name": task_name,
@@ -368,7 +455,23 @@ def run_all(output_prefix: str = "class_incremental_ar_permuted_smoke"):
                 "seed": config.seed,
                 "model_settings": _model_settings(config),
                 "model_info": logger.model_info,
+                "lr_scheduler_mode": getattr(config, "lr_scheduler_mode", "global_cosine"),
+                "slow_update_mode": getattr(config, "slow_update_mode", "skip"),
+                "continual_epoch_eval_interval": getattr(config, "continual_epoch_eval_interval", 0),
+                "stage_order": [
+                    stage_config.stage_idx
+                    for stage_config in config.data.train_stage_configs
+                    if hasattr(stage_config, "stage_idx")
+                ],
                 "summary": summary,
+                "history": _json_safe_history(logger.history),
+                "stage_end_history": _stage_end_history(logger.history),
+                "stage_end_matrices": _stage_end_matrices(
+                    logger.history,
+                    num_stages=task_spec["num_stages"],
+                ),
+                "current_stage_epoch_history": _current_stage_epoch_history(logger.history),
+                "current_stage_epoch_curves": _current_stage_epoch_curves(logger.history),
             }
             runs.append(run)
             print(
@@ -384,7 +487,7 @@ def run_all(output_prefix: str = "class_incremental_ar_permuted_smoke"):
         train_module.WandbLogger = original_logger
         train_module.tqdm = original_tqdm
 
-    created_at = datetime.now().strftime("%Y%m%d_%H%M%S")
+    created_at = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
     task_slug = "_".join(TASK_NAMES)
     output_path = Path("results") / f"{output_prefix}_{task_slug}_{created_at}.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -406,9 +509,32 @@ def run_all(output_prefix: str = "class_incremental_ar_permuted_smoke"):
             "batch_size": BATCH_SIZE,
             "segment_len": SEGMENT_LEN,
             "learning_rate": LEARNING_RATE,
+            "lr_scheduler_modes": sorted({
+                getattr(config, "lr_scheduler_mode", "global_cosine")
+                for config in configs
+            }),
+            "slow_update_modes": sorted({
+                getattr(config, "slow_update_mode", "skip")
+                for config in configs
+            }),
+            "continual_epoch_eval_intervals": sorted({
+                getattr(config, "continual_epoch_eval_interval", 0)
+                for config in configs
+            }),
             "value_mapping": VALUE_MAPPING,
             "association_table_seed": ASSOCIATION_TABLE_SEED,
             "stage_local_random_accuracy": 1.0 / ASSOCIATIONS_PER_STAGE,
+            "stage_orders": sorted({
+                tuple(
+                    stage_config.stage_idx
+                    for stage_config in config.data.train_stage_configs
+                    if hasattr(stage_config, "stage_idx")
+                )
+                for config in configs
+            }),
+            "raw_metric_history_saved": True,
+            "stage_end_matrices_saved": True,
+            "current_stage_epoch_curves_saved": True,
         },
         "task_specs": {name: TASK_SPECS[name] for name in TASK_NAMES},
         "aggregates": aggregate_runs(runs),

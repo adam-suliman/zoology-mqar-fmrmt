@@ -412,6 +412,15 @@ def aggregate_runs(runs: list[dict[str, Any]]):
         "final_plasticity": "continual/plasticity",
         "final_avg_bwt": "continual/avg_bwt",
         "final_avg_forgetting_from_learning": "continual/avg_forgetting_from_learning",
+        "final_old_stage_avg_accuracy": "continual/old_stage_avg_accuracy",
+        "final_old_stage_avg_forgetting": "continual/old_stage_avg_forgetting",
+        "final_old_stage_avg_forgetting_from_learning": "continual/old_stage_avg_forgetting_from_learning",
+        "final_old_stage_avg_bwt": "continual/old_stage_avg_bwt",
+        "seen_avg_accuracy_stage_auc": "continual/seen_avg_accuracy_stage_auc",
+        "old_stage_avg_accuracy_stage_auc": "continual/old_stage_avg_accuracy_stage_auc",
+        "old_stage_avg_forgetting_stage_auc": "continual/old_stage_avg_forgetting_stage_auc",
+        "old_stage_avg_forgetting_from_learning_stage_auc": "continual/old_stage_avg_forgetting_from_learning_stage_auc",
+        "old_stage_avg_bwt_stage_auc": "continual/old_stage_avg_bwt_stage_auc",
         "final_train_loss": "train/loss",
         "final_cumulative_wall_seconds": "continual/cumulative_wall_seconds",
         "final_cumulative_train_wall_seconds": "continual/cumulative_train_wall_seconds",
@@ -480,8 +489,10 @@ def run_all(output_prefix: str = "interference_ar_calibrated"):
                 "model_name": config.model.name,
                 "model_settings": _model_settings(config),
                 "model_info": logger.model_info,
+                "config": getattr(logger, "config_dump", None),
                 "condition": _condition(task_name),
                 "summary": summary,
+                "history": logger.history,
             }
             runs.append(run)
             print(
@@ -497,7 +508,7 @@ def run_all(output_prefix: str = "interference_ar_calibrated"):
         train_module.WandbLogger = original_logger
         train_module.tqdm = original_tqdm
 
-    created_at = datetime.now().strftime("%Y%m%d_%H%M%S")
+    created_at = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
     task_slug = "_".join(TASK_NAMES)
     if len(task_slug) > 80:
         task_slug = "multi"
