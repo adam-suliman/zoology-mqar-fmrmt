@@ -17,6 +17,14 @@ checkpoints
 wandb
 bert/data
 
+# Local experiment launchers and generated experiment artifacts
+/run_*.sh
+/results/
+/outputs/
+/sweep_outputs/
+/logs/
+/checkpoints/
+
 # Distribution / packaging
 .Python
 build/
