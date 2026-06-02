@@ -160,6 +160,7 @@ class TrainConfig(BaseConfig):
 
     learning_rate: float = 1e-3
     weight_decay: float = 0.1
+    slow_update_mode: Literal["skip", "accumulate"] = "skip"
     seed: int = 123
 
     launch_id: Optional[str] = None
@@ -171,6 +172,12 @@ class ContinualTrainConfig(TrainConfig):
     data: ContinualDataConfig
     training_mode: Literal["continual"] = "continual"
     evaluate_future_stages: bool = False
+    lr_scheduler_mode: Literal[
+        "global_cosine",
+        "stage_cosine",
+        "stage_onecycle",
+        "constant",
+    ] = "global_cosine"
 
     # Log current-stage validation curves during continual training. Stage-end
     # evaluation still computes all seen-stage CL metrics. Set <= 0 to disable.

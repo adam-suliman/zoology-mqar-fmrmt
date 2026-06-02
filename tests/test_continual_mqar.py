@@ -25,6 +25,8 @@ def tiny_continual_config(
     max_epochs: int = 1,
     num_examples: int = 2,
     evaluate_future_stages: bool = False,
+    lr_scheduler_mode: str = "global_cosine",
+    slow_update_mode: str = "skip",
 ):
     return ContinualTrainConfig(
         data=ContinualDataConfig(
@@ -48,8 +50,10 @@ def tiny_continual_config(
         logger=LoggerConfig(backend="none"),
         max_epochs=max_epochs,
         learning_rate=1e-3,
+        slow_update_mode=slow_update_mode,
         early_stopping_metric=None,
         evaluate_future_stages=evaluate_future_stages,
+        lr_scheduler_mode=lr_scheduler_mode,
         slice_keys=["stage_idx"],
         run_id="continual-smoke",
     )
@@ -142,11 +146,17 @@ def test_continual_eval_summary_tracks_plasticity_bwt_and_forgetting():
     assert second["continual/plasticity"] == 0.7
     assert abs(second["continual/stage_0/bwt"] + 0.3) < 1e-8
     assert abs(second["continual/avg_bwt"] + 0.3) < 1e-8
+    assert abs(second["continual/old_stage_avg_accuracy"] - 0.5) < 1e-8
+    assert abs(second["continual/old_stage_avg_bwt"] + 0.3) < 1e-8
     assert abs(second["continual/stage_1/fwt_from_random"] - 0.01) < 1e-8
     assert abs(second["continual/stage_1/fwt_from_initial"] - 0.01) < 1e-8
     assert abs(second["continual/stage_0/forgetting"] - 0.3) < 1e-8
     assert abs(second["continual/avg_forgetting"] - 0.15) < 1e-8
     assert abs(second["continual/avg_forgetting_from_learning"] - 0.15) < 1e-8
+    assert (
+        abs(second["continual/old_stage_avg_forgetting_from_learning"] - 0.3)
+        < 1e-8
+    )
 
 
 def test_continual_train_smoke_logs_seen_accuracy_and_forgetting():
@@ -243,6 +253,45 @@ def test_continual_train_future_eval_logs_pre_learning_and_fwt():
     assert any("continual/avg_fwt_from_random" in metrics for metrics in logs)
 
 
+def test_continual_stage_onecycle_runs_and_logs_lr():
+    logs = []
+
+    class DummyLogger:
+        def __init__(self, config):
+            pass
+
+        def log_config(self, config):
+            pass
+
+        def log_model(self, model, config):
+            pass
+
+        def log(self, metrics):
+            logs.append(metrics)
+
+        def finish(self):
+            pass
+
+    original_logger = train_module.WandbLogger
+    train_module.WandbLogger = DummyLogger
+    try:
+        train_module.train_continual(
+            tiny_continual_config(
+                max_epochs=1,
+                num_examples=2,
+                lr_scheduler_mode="stage_onecycle",
+                slow_update_mode="accumulate",
+            )
+        )
+    finally:
+        train_module.WandbLogger = original_logger
+
+    summary_logs = [metrics for metrics in logs if "continual/seen_avg_accuracy" in metrics]
+    assert summary_logs
+    assert any("continual/lr" in metrics for metrics in summary_logs)
+    assert any("train/lr" in metrics for metrics in logs)
+
+
 if __name__ == "__main__":
     test_incremental_mqar_shapes_and_stage_ranges()
     test_incremental_mqar_stage_ranges_are_disjoint()
@@ -250,3 +299,4 @@ if __name__ == "__main__":
     test_continual_eval_summary_tracks_plasticity_bwt_and_forgetting()
     test_continual_train_smoke_logs_seen_accuracy_and_forgetting()
     test_continual_train_future_eval_logs_pre_learning_and_fwt()
+    test_continual_stage_onecycle_runs_and_logs_lr()

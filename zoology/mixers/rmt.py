@@ -253,6 +253,7 @@ class FastMemoryRMTMixer(BaseRMTMixer):
         rmt_clip_memory_grad: Optional[float] = 1.0,
         reset_memory_each_batch: bool = True,
         reset_memory_each_epoch: bool = False,
+        eval_memory_policy: str = "initial",
         layer_idx: Optional[int] = None,
         **kwargs,
     ):
@@ -272,6 +273,8 @@ class FastMemoryRMTMixer(BaseRMTMixer):
         )
         if rmt_slow_update_freq <= 0:
             raise ValueError("rmt_slow_update_freq must be positive")
+        if eval_memory_policy not in {"initial", "fast"}:
+            raise ValueError("eval_memory_policy must be 'initial' or 'fast'")
 
         memory = self.memory_tokens.detach().clone()
         del self._parameters["memory_tokens"]
@@ -283,6 +286,7 @@ class FastMemoryRMTMixer(BaseRMTMixer):
         self.rmt_clip_memory_grad = rmt_clip_memory_grad
         self.reset_memory_each_batch = reset_memory_each_batch
         self.reset_memory_each_epoch = reset_memory_each_epoch
+        self.eval_memory_policy = eval_memory_policy
 
     def fast_memory_parameters(self):
         return [self.fast_memory_tokens]
@@ -308,6 +312,8 @@ class FastMemoryRMTMixer(BaseRMTMixer):
                 + self.initial_memory_tokens
                 - self.initial_memory_tokens.detach()
             )
+        elif self.eval_memory_policy == "fast":
+            memory_tokens = self.fast_memory_tokens
         else:
             memory_tokens = self.initial_memory_tokens
 

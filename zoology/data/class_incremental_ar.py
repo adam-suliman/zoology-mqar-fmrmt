@@ -261,10 +261,13 @@ def class_incremental_ar(
         dtype=inputs.dtype,
     )
     zero_mask = inputs == 0
+    torch_generator = torch.Generator(device=inputs.device)
+    torch_generator.manual_seed(int(seed))
     random_indices = torch.randint(
         len(distractor_choices),
         size=inputs.shape,
         device=inputs.device,
+        generator=torch_generator,
     )
     inputs[zero_mask] = distractor_choices[random_indices][zero_mask]
 

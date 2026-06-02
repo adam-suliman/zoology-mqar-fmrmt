@@ -115,6 +115,17 @@ def test_class_incremental_ar_permuted_mapping_is_stable_across_data_seeds():
     assert first.slices["association_table_seed"] == 0
 
 
+def test_class_incremental_ar_seed_controls_distractor_fill():
+    config = tiny_config(stage_idx=1, num_examples=16)
+    torch.manual_seed(1)
+    first = config.build(seed=123)
+    torch.manual_seed(2)
+    second = config.build(seed=123)
+
+    assert torch.equal(first.inputs, second.inputs)
+    assert torch.equal(first.labels, second.labels)
+
+
 def test_class_incremental_ar_final_seen_random_baseline():
     config = tiny_config(
         stage_idx=3,

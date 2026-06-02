@@ -82,6 +82,7 @@ def fast_memory_rmt_model(
     rmt_clip_memory_grad: float = 1.0,
     reset_memory_each_batch: bool = True,
     reset_memory_each_epoch: bool = False,
+    eval_memory_policy: str = "initial",
     vocab_size: int = VOCAB_SIZE,
 ):
     return ModelConfig(
@@ -106,6 +107,7 @@ def fast_memory_rmt_model(
                 "rmt_clip_memory_grad": rmt_clip_memory_grad,
                 "reset_memory_each_batch": reset_memory_each_batch,
                 "reset_memory_each_epoch": reset_memory_each_epoch,
+                "eval_memory_policy": eval_memory_policy,
             },
         ),
         name="fast_memory_rmt",

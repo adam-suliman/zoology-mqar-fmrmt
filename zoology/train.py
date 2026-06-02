@@ -37,6 +37,7 @@ class Trainer:
         train_log_interval: int = 1,
         loss_type: str = "ce",
         slice_keys: List[str] = [],
+        slow_update_mode: str = "skip",
         device: Union[str, int] = "cuda",
         logger: WandbLogger = None,
     ):
@@ -55,6 +56,9 @@ class Trainer:
         self.slice_keys = slice_keys
         self.train_log_interval = train_log_interval
         self.loss_type = loss_type
+        if slow_update_mode not in {"skip", "accumulate"}:
+            raise ValueError("slow_update_mode must be 'skip' or 'accumulate'")
+        self.slow_update_mode = slow_update_mode
         self.log_context = {}
         self.global_train_batch = 0
         self.global_optimizer_step = 0
@@ -84,12 +88,27 @@ class Trainer:
             if p.requires_grad and id(p) not in fast_memory_parameter_ids
         ]
 
+    def _scale_fast_memory_grads(self, scale: float):
+        if scale == 1.0:
+            return
+        for module in self._modules_with_hook("fast_memory_parameters"):
+            for parameter in module.fast_memory_parameters():
+                if parameter.grad is not None:
+                    parameter.grad.mul_(scale)
+
     def _slow_update_freq(self):
         freqs = [
             getattr(module, "rmt_slow_update_freq", 1)
             for module in self._modules_with_hook("update_fast_memory")
         ]
         return max(freqs) if freqs else 1
+
+    def _optimizer_steps_per_epoch(self, dataloader: DataLoader = None):
+        dataloader = dataloader or self.train_dataloader
+        slow_update_freq = self._slow_update_freq()
+        if self.slow_update_mode == "accumulate":
+            return int(np.ceil(len(dataloader) / slow_update_freq))
+        return len(dataloader) // slow_update_freq
 
     def _collect_model_diagnostics(self):
         diagnostics = {}
@@ -103,6 +122,12 @@ class Trainer:
         for key, values in aggregate.items():
             diagnostics[f"train/{key}"] = float(np.mean(values))
         return diagnostics
+
+    def on_before_optimizer_step(self):
+        return None
+
+    def on_after_optimizer_step(self, optimizer_step_context):
+        return None
 
     def compute_loss(self, inputs, targets):
         if self.input_type == "continuous":
@@ -183,6 +208,13 @@ class Trainer:
         log_context = log_context or {}
         loss_values = []
         slow_update_freq = self._slow_update_freq()
+        accumulate_slow_grads = (
+            self.slow_update_mode == "accumulate" and slow_update_freq > 1
+        )
+        tail_batches = len(self.train_dataloader) % slow_update_freq
+        if accumulate_slow_grads:
+            self.optimizer.zero_grad()
+
         for batch_idx, (inputs, targets, slices) in enumerate(iterator):
             inputs, targets = inputs.to(self.device), targets.to(self.device)
             self._call_model_hook(
@@ -190,7 +222,8 @@ class Trainer:
                 epoch_idx=epoch_idx,
                 batch_idx=batch_idx,
             )
-            self.optimizer.zero_grad()
+            if not accumulate_slow_grads:
+                self.optimizer.zero_grad()
 
             loss, preds = self.compute_loss(inputs, targets)
 
@@ -204,11 +237,37 @@ class Trainer:
                 if auxiliary_loss:
                     loss = loss + sum(auxiliary_loss)
 
-            loss.backward()
+            if accumulate_slow_grads:
+                is_tail_accumulation = (
+                    tail_batches != 0
+                    and batch_idx >= len(self.train_dataloader) - tail_batches
+                )
+                accumulation_divisor = (
+                    tail_batches if is_tail_accumulation else slow_update_freq
+                )
+                (loss / accumulation_divisor).backward()
+                # Keep the fast-memory step at per-batch scale while averaging
+                # only the slow-parameter gradients over the accumulation window.
+                self._scale_fast_memory_grads(accumulation_divisor)
+                do_slow_step = (
+                    (batch_idx + 1) % slow_update_freq == 0
+                    or batch_idx + 1 == len(self.train_dataloader)
+                )
+            else:
+                accumulation_divisor = 1
+                loss.backward()
+                do_slow_step = (batch_idx + 1) % slow_update_freq == 0
+
             self._call_model_hook("update_fast_memory")
-            if (batch_idx + 1) % slow_update_freq == 0:
+            if do_slow_step:
+                optimizer_step_context = self.on_before_optimizer_step()
                 self.optimizer.step()
+                self.on_after_optimizer_step(optimizer_step_context)
                 self.global_optimizer_step += 1
+                if getattr(self, "scheduler_steps_on_optimizer_step", False):
+                    self.scheduler.step()
+                if accumulate_slow_grads:
+                    self.optimizer.zero_grad()
             self.global_train_batch += 1
 
             loss_value = loss.item()
@@ -227,6 +286,10 @@ class Trainer:
                 diagnostics = self._collect_model_diagnostics()
                 self.logger.log({
                     "train/loss": loss_value,
+                    "train/lr": self.current_learning_rate(),
+                    "train/slow_update_mode_is_accumulate": float(self.slow_update_mode == "accumulate"),
+                    "train/slow_update_freq": slow_update_freq,
+                    "train/accumulation_divisor": accumulation_divisor,
                     "train/global_batch": self.global_train_batch,
                     "train/global_optimizer_step": self.global_optimizer_step,
                     "train/batch_in_epoch": batch_idx + 1,
@@ -239,6 +302,9 @@ class Trainer:
         return {
             "train/epoch_loss": float(np.mean(loss_values)),
             "train/epoch_batches": len(loss_values),
+            "train/lr": self.current_learning_rate(),
+            "train/slow_update_mode_is_accumulate": float(self.slow_update_mode == "accumulate"),
+            "train/slow_update_freq": slow_update_freq,
             "train/global_batch": self.global_train_batch,
             "train/global_optimizer_step": self.global_optimizer_step,
         }
@@ -302,7 +368,71 @@ class Trainer:
             log=True,
         )
 
-    def initialize_training(self, scheduler_epochs: int = None):
+    def _set_optimizer_lr(self, learning_rate: float):
+        for group in self.optimizer.param_groups:
+            group["lr"] = learning_rate
+
+    def current_learning_rate(self) -> float:
+        if not hasattr(self, "optimizer") or not self.optimizer.param_groups:
+            return float(self.learning_rate)
+        return float(self.optimizer.param_groups[0]["lr"])
+
+    def reset_scheduler(
+        self,
+        scheduler_epochs: int = None,
+        scheduler_mode: str = None,
+        scheduler_steps_per_epoch: int = None,
+        reset_lr: bool = True,
+    ):
+        scheduler_mode = scheduler_mode or getattr(
+            self, "scheduler_mode", "global_cosine"
+        )
+        self.scheduler_mode = scheduler_mode
+        self.scheduler_steps_on_optimizer_step = False
+        if reset_lr:
+            self._set_optimizer_lr(self.learning_rate)
+
+        if scheduler_mode in {"global_cosine", "stage_cosine"}:
+            self.scheduler = optim.lr_scheduler.CosineAnnealingLR(
+                self.optimizer,
+                T_max=scheduler_epochs or self.max_epochs,
+                eta_min=0.0,
+            )
+        elif scheduler_mode == "constant":
+            self.scheduler = optim.lr_scheduler.LambdaLR(
+                self.optimizer,
+                lr_lambda=lambda _: 1.0,
+            )
+        elif scheduler_mode == "stage_onecycle":
+            steps_per_epoch = scheduler_steps_per_epoch
+            if steps_per_epoch is None:
+                steps_per_epoch = max(1, self._optimizer_steps_per_epoch())
+            scheduler_epochs = scheduler_epochs or self.max_epochs
+            # PyTorch's linear OneCycleLR reaches the final LR one call before
+            # its nominal total_steps and can go negative on the last exact
+            # step. Add one internal scheduler slot so the last optimizer step
+            # lands on the configured final LR.
+            total_steps = max(1, steps_per_epoch) * scheduler_epochs + 1
+            self.scheduler = optim.lr_scheduler.OneCycleLR(
+                self.optimizer,
+                max_lr=self.learning_rate,
+                anneal_strategy="linear",
+                total_steps=total_steps,
+            )
+            self.scheduler_steps_on_optimizer_step = True
+        else:
+            raise ValueError(
+                "scheduler_mode must be one of "
+                "'global_cosine', 'stage_cosine', 'stage_onecycle', "
+                "or 'constant'"
+            )
+
+    def initialize_training(
+        self,
+        scheduler_epochs: int = None,
+        scheduler_mode: str = "global_cosine",
+        scheduler_steps_per_epoch: int = None,
+    ):
         self.model.to(self.device)
         self.loss_fn = nn.CrossEntropyLoss()
         self.optimizer = optim.AdamW(
@@ -310,10 +440,11 @@ class Trainer:
             lr=self.learning_rate,
             weight_decay=self.weight_decay,
         )
-        self.scheduler = optim.lr_scheduler.CosineAnnealingLR(
-            self.optimizer,
-            T_max=scheduler_epochs or self.max_epochs,
-            eta_min=0.0,
+        self.reset_scheduler(
+            scheduler_epochs=scheduler_epochs or self.max_epochs,
+            scheduler_mode=scheduler_mode,
+            scheduler_steps_per_epoch=scheduler_steps_per_epoch,
+            reset_lr=False,
         )
 
     def fit(self):
@@ -333,7 +464,11 @@ class Trainer:
                 )
                 break
 
-            self.scheduler.step()
+            if not getattr(self, "scheduler_steps_on_optimizer_step", False):
+                self.scheduler.step()
+
+    def on_continual_stage_end(self, stage_idx: int, train_dataloader: DataLoader):
+        return {}
 
 
 def compute_metrics(
@@ -385,6 +520,7 @@ def train(config: TrainConfig):
         train_log_interval=_train_log_interval(config),
         slice_keys=config.slice_keys,
         loss_type=config.loss_type,
+        slow_update_mode=getattr(config, "slow_update_mode", "skip"),
         device="cuda" if torch.cuda.is_available() else "cpu",
         logger=logger,
     )
@@ -426,6 +562,9 @@ def _summarize_continual_eval(
     accuracies = []
     forgetting = []
     forgetting_from_learning = []
+    old_stage_accuracies = []
+    old_stage_forgetting = []
+    old_stage_forgetting_from_learning = []
     old_stage_bwt = []
 
     for eval_stage_idx, eval_metrics in sorted(stage_metrics.items()):
@@ -439,6 +578,9 @@ def _summarize_continual_eval(
 
         accuracies.append(accuracy)
         forgetting.append(stage_forgetting)
+        if eval_stage_idx < stage_idx:
+            old_stage_accuracies.append(accuracy)
+            old_stage_forgetting.append(stage_forgetting)
         metrics[acc_key] = accuracy
         metrics[loss_key] = eval_metrics[loss_key]
         metrics[f"continual/stage_{eval_stage_idx}/forgetting"] = stage_forgetting
@@ -455,6 +597,7 @@ def _summarize_continual_eval(
             forgetting_from_learning.append(learning_forgetting)
             if eval_stage_idx < stage_idx:
                 old_stage_bwt.append(bwt)
+                old_stage_forgetting_from_learning.append(learning_forgetting)
 
         if eval_stage_idx in pre_learning_stage_accuracy:
             pre_learning_accuracy = pre_learning_stage_accuracy[eval_stage_idx]
@@ -480,6 +623,26 @@ def _summarize_continual_eval(
         else 0.0
     )
     metrics["continual/avg_bwt"] = (
+        float(np.mean(old_stage_bwt))
+        if old_stage_bwt
+        else 0.0
+    )
+    metrics["continual/old_stage_avg_accuracy"] = (
+        float(np.mean(old_stage_accuracies))
+        if old_stage_accuracies
+        else 0.0
+    )
+    metrics["continual/old_stage_avg_forgetting"] = (
+        float(np.mean(old_stage_forgetting))
+        if old_stage_forgetting
+        else 0.0
+    )
+    metrics["continual/old_stage_avg_forgetting_from_learning"] = (
+        float(np.mean(old_stage_forgetting_from_learning))
+        if old_stage_forgetting_from_learning
+        else 0.0
+    )
+    metrics["continual/old_stage_avg_bwt"] = (
         float(np.mean(old_stage_bwt))
         if old_stage_bwt
         else 0.0
@@ -539,6 +702,16 @@ def _summarize_continual_eval(
             np.mean(learned_fwt_from_initial)
         )
     return metrics
+
+
+def _normalized_stage_auc(values):
+    if not values:
+        return 0.0
+    if len(values) == 1:
+        return float(values[0])
+    array = np.asarray(values, dtype=float)
+    area = 0.5 * array[0] + array[1:-1].sum() + 0.5 * array[-1]
+    return float(area / (len(array) - 1))
 
 
 def _stage_random_accuracy(config: ContinualTrainConfig, stage_idx: int):
@@ -633,11 +806,23 @@ def train_continual(config: ContinualTrainConfig):
         train_log_interval=_train_log_interval(config),
         slice_keys=config.slice_keys,
         loss_type=config.loss_type,
+        slow_update_mode=getattr(config, "slow_update_mode", "skip"),
         device=device,
         logger=logger,
     )
+    lr_scheduler_mode = getattr(config, "lr_scheduler_mode", "global_cosine")
+    scheduler_epochs = (
+        config.max_epochs * len(stage_dataloaders)
+        if lr_scheduler_mode == "global_cosine"
+        else config.max_epochs
+    )
+    scheduler_steps_per_epoch = None
+    if lr_scheduler_mode == "stage_onecycle":
+        scheduler_steps_per_epoch = max(1, trainer._optimizer_steps_per_epoch())
     trainer.initialize_training(
-        scheduler_epochs=config.max_epochs * len(stage_dataloaders)
+        scheduler_epochs=scheduler_epochs,
+        scheduler_mode=lr_scheduler_mode,
+        scheduler_steps_per_epoch=scheduler_steps_per_epoch,
     )
 
     best_stage_accuracy = {}
@@ -669,11 +854,26 @@ def train_continual(config: ContinualTrainConfig):
     cumulative_epoch_eval_wall_seconds = 0.0
     cumulative_seen_eval_wall_seconds = 0.0
     cumulative_wall_seconds = 0.0
+    seen_avg_accuracy_curve = []
+    old_stage_avg_accuracy_curve = []
+    old_stage_avg_forgetting_curve = []
+    old_stage_avg_forgetting_from_learning_curve = []
+    old_stage_avg_bwt_curve = []
 
     should_stop = False
     for stage_idx, (train_dataloader, _) in enumerate(stage_dataloaders):
         trainer.train_dataloader = train_dataloader
         trainer.log_context = {"continual/stage": stage_idx}
+        if lr_scheduler_mode in {"stage_cosine", "stage_onecycle"}:
+            trainer.reset_scheduler(
+                scheduler_epochs=config.max_epochs,
+                scheduler_mode=lr_scheduler_mode,
+                scheduler_steps_per_epoch=max(
+                    1,
+                    trainer._optimizer_steps_per_epoch(train_dataloader),
+                ),
+                reset_lr=True,
+            )
 
         if config.evaluate_future_stages and stage_idx not in pre_learning_stage_accuracy:
             test_dataloader = stage_dataloaders[stage_idx][1]
@@ -713,7 +913,8 @@ def train_continual(config: ContinualTrainConfig):
                 ),
                 log_context=epoch_log_context,
             )
-            trainer.scheduler.step()
+            if not getattr(trainer, "scheduler_steps_on_optimizer_step", False):
+                trainer.scheduler.step()
             _sync_device_for_timing(device)
             epoch_train_wall = time.perf_counter() - epoch_train_wall_start
             train_wall_seconds += epoch_train_wall
@@ -792,6 +993,33 @@ def train_continual(config: ContinualTrainConfig):
             pretrain_stage_accuracy=pretrain_stage_accuracy,
             stage_random_accuracy=stage_random_accuracy,
         )
+        seen_avg_accuracy_curve.append(metrics["continual/seen_avg_accuracy"])
+        metrics["continual/seen_avg_accuracy_stage_auc"] = _normalized_stage_auc(
+            seen_avg_accuracy_curve
+        )
+        if stage_idx > 0:
+            old_stage_avg_accuracy_curve.append(
+                metrics["continual/old_stage_avg_accuracy"]
+            )
+            old_stage_avg_forgetting_curve.append(
+                metrics["continual/old_stage_avg_forgetting"]
+            )
+            old_stage_avg_forgetting_from_learning_curve.append(
+                metrics["continual/old_stage_avg_forgetting_from_learning"]
+            )
+            old_stage_avg_bwt_curve.append(metrics["continual/old_stage_avg_bwt"])
+        metrics["continual/old_stage_avg_accuracy_stage_auc"] = _normalized_stage_auc(
+            old_stage_avg_accuracy_curve
+        )
+        metrics["continual/old_stage_avg_forgetting_stage_auc"] = _normalized_stage_auc(
+            old_stage_avg_forgetting_curve
+        )
+        metrics[
+            "continual/old_stage_avg_forgetting_from_learning_stage_auc"
+        ] = _normalized_stage_auc(old_stage_avg_forgetting_from_learning_curve)
+        metrics["continual/old_stage_avg_bwt_stage_auc"] = _normalized_stage_auc(
+            old_stage_avg_bwt_curve
+        )
 
         train_examples_per_epoch = _dataloader_num_examples(train_dataloader)
         train_examples = (
@@ -805,8 +1033,9 @@ def train_continual(config: ContinualTrainConfig):
         stage_train_batches = len(train_dataloader) * config.max_epochs
         slow_update_freq = trainer._slow_update_freq()
         stage_optimizer_steps = (
-            len(train_dataloader) // slow_update_freq
-        ) * config.max_epochs
+            trainer._optimizer_steps_per_epoch(train_dataloader)
+            * config.max_epochs
+        )
         seen_eval_examples = 0
         seen_eval_sequence_tokens = 0
         stage_seen_eval_batches = 0
@@ -849,8 +1078,13 @@ def train_continual(config: ContinualTrainConfig):
             ),
             "continual/stage_train_batches": stage_train_batches,
             "continual/stage_optimizer_steps": stage_optimizer_steps,
+            "continual/slow_update_mode_is_accumulate": float(
+                getattr(config, "slow_update_mode", "skip") == "accumulate"
+            ),
+            "continual/slow_update_freq": slow_update_freq,
             "continual/stage_seen_eval_batches": stage_seen_eval_batches,
             "continual/stage_seen_eval_tokens": seen_eval_sequence_tokens,
+            "continual/lr": trainer.current_learning_rate(),
             "continual/stage_epoch_eval_wall_seconds": epoch_eval_wall_seconds,
             "continual/stage_train_epoch_loss": stage_epoch_loss,
             "continual/stage_wall_seconds": stage_wall_seconds,
@@ -873,6 +1107,20 @@ def train_continual(config: ContinualTrainConfig):
             **metrics,
             **timing_metrics,
         })
+
+        stage_end_hook_metrics = trainer.on_continual_stage_end(
+            stage_idx=stage_idx,
+            train_dataloader=train_dataloader,
+        )
+        if stage_end_hook_metrics:
+            logger.log({
+                "epoch": stage_end_epoch,
+                "continual/global_epoch": stage_end_epoch,
+                "continual/local_epoch": config.max_epochs - 1,
+                "continual/stage_epoch": config.max_epochs,
+                "continual/stage": stage_idx,
+                **stage_end_hook_metrics,
+            })
 
         if config.evaluate_future_stages and stage_idx + 1 < len(stage_dataloaders):
             next_stage_idx = stage_idx + 1
